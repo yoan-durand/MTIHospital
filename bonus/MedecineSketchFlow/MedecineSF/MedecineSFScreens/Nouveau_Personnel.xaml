@@ -1,0 +1,33 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:TestScreens" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:pi="http://schemas.microsoft.com/prototyping/2010/interactivity" x:Name="nouveau_collaborateur"
+	mc:Ignorable="d"
+	x:Class="TestScreens.Écran_1_2"
+	Width="640" Height="480">
+
+	<Grid x:Name="LayoutRoot" Background="White">
+		<local:Menu HorizontalAlignment="Left" VerticalAlignment="Top" d:IsPrototypingComposition="True" Height="120"/>
+		<local:Menu HorizontalAlignment="Left" VerticalAlignment="Top" Height="120"/>
+		<Button x:Name="Add_button" Content="Ajouter" Height="28.5" Margin="257,0,256,49.5" Style="{DynamicResource SimpleButton}" VerticalAlignment="Bottom">
+			<i:Interaction.Triggers>
+				<i:EventTrigger EventName="Click">
+					<pi:NavigateToScreenAction TargetScreen="TestScreens.Fiche_Patient"/>
+				</i:EventTrigger>
+			</i:Interaction.Triggers>
+		</Button>
+		<TextBox x:Name="Name_input" Height="22.5" Margin="297,190.5,175.5,0" Style="{DynamicResource SimpleTextBox}" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.203,-0.649"/>
+		<TextBox x:Name="Firstname_input" Height="20.5" Margin="297,213,175.5,0" Style="{DynamicResource SimpleTextBox}" TextWrapping="Wrap" VerticalAlignment="Top"/>
+		<Label Content="Nom" Height="22.5" Margin="174,190.5,0,0" Style="{DynamicResource SimpleLabel}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="101"/>
+		<Label Content="Prenom" Height="20.5" Margin="174,213,0,0" Style="{DynamicResource SimpleLabel}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="101"/>
+		<TextBlock HorizontalAlignment="Left" Height="33" Margin="8,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" FontSize="21.333" FontWeight="Bold"><Run Language="fr-fr" Text="Ajouter un collaborateur"/></TextBlock>
+		<Label Content="Role" Margin="174,234.5,0,225" Style="{DynamicResource SimpleLabel}" HorizontalAlignment="Left" Width="101"/>
+		<ComboBox x:Name="Role_liste" SelectedIndex="0" Margin="297,234.5,175.5,225" Style="{DynamicResource SimpleComboBox}">
+			<ComboBoxItem Content="Medecin"/>
+			<ComboBoxItem Content="infirmier(e)"/>
+		</ComboBox>
+		<Image x:Name="Avatar" Height="100" Margin="269,0,271,82" VerticalAlignment="Bottom"/>
+		<TextBlock Height="25" Margin="269,0,271,186" TextWrapping="Wrap" VerticalAlignment="Bottom"><Run Language="fr-fr" Text="Photo de profil"/></TextBlock>
+	</Grid>
+</UserControl>

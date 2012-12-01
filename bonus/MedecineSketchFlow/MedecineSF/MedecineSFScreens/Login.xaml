@@ -1,0 +1,24 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:pi="http://schemas.microsoft.com/prototyping/2010/interactivity" xmlns:local="clr-namespace:TestScreens" x:Name="login"
+	mc:Ignorable="d"
+	x:Class="TestScreens.Écran_1"
+	Width="640" Height="480">
+
+	<Grid x:Name="LayoutRoot" Background="White">
+		<TextBox x:Name="Login" Margin="249,176,191.446,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+		<PasswordBox x:Name="Password" Margin="249,211,191.446,0" VerticalAlignment="Top"/>
+		<Button x:Name="Connection" Content="Se connecter" Margin="309,0,256,214.707" VerticalAlignment="Bottom" Background="{x:Null}">
+			<i:Interaction.Triggers>
+				<i:EventTrigger EventName="Click">
+					<pi:NavigateToScreenAction TargetScreen="TestScreens.Écran_1_1"/>
+				</i:EventTrigger>
+			</i:Interaction.Triggers>
+		</Button>
+		<Label Content="Veuillez vous connecter" HorizontalAlignment="Right" Margin="0,146.04,223.672,0" VerticalAlignment="Top"/>
+		<TextBlock x:Name="Idendifiant" HorizontalAlignment="Left" Height="21.96" Margin="158,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87"><Run Language="fr-fr" Text="Identifiant"/></TextBlock>
+		<TextBlock x:Name="MDP" HorizontalAlignment="Left" Height="21.96" Margin="158,208.84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87"><Run Language="fr-fr" Text="Mot de passe"/></TextBlock>
+	</Grid>
+</UserControl>
