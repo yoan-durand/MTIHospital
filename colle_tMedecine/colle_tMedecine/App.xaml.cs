@@ -15,7 +15,7 @@ namespace colle_tMedecine
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            View.Login window = new colle_tMedecine.View.Login();
+            View.MainWindow window = new colle_tMedecine.View.MainWindow();
             ViewModel.LoginViewModel vm = new colle_tMedecine.ViewModel.LoginViewModel();
             window.DataContext = vm;
             window.Show();
