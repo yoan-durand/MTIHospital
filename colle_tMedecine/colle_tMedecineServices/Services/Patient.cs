@@ -9,41 +9,70 @@ namespace colle_tMedecineServices.Services
     {
         public ServicePatient.Patient[] GetListPatient()
         {
-            using (ServicePatient.ServicePatientClient client = new ServicePatient.ServicePatientClient())
+            try
             {
-                ServicePatient.Patient[] listPatient = client.GetListPatient();
-                if (listPatient == null || listPatient.Count() == 0)
-                    throw new ArgumentNullException();
-                else
-                    return listPatient;
+                using (ServicePatient.ServicePatientClient client = new ServicePatient.ServicePatientClient())
+                {
+                    ServicePatient.Patient[] listPatient = client.GetListPatient();
+                    if (listPatient == null || listPatient.Count() == 0)
+                        throw new ArgumentNullException();
+                    else
+                        return listPatient;
+                }
+            }
+            catch
+            {
+                throw new TimeoutException();
             }
         }
 
         public ServicePatient.Patient GetPatient(int id)
         {
-            using (ServicePatient.ServicePatientClient client = new ServicePatient.ServicePatientClient())
+            try
             {
-                ServicePatient.Patient patient = client.GetPatient(id);
-                if (patient == null)
-                    throw new ArgumentNullException();
-                else
-                    return patient;
+                using (ServicePatient.ServicePatientClient client = new ServicePatient.ServicePatientClient())
+                {
+                    ServicePatient.Patient patient = client.GetPatient(id);
+                    if (patient == null)
+                        throw new ArgumentNullException();
+                    else
+                        return patient;
+                }
+            }
+            catch
+            {
+                throw new TimeoutException();
             }
         }
 
         public bool AddPatient(ServicePatient.Patient user)
         {
-            using (ServicePatient.ServicePatientClient client = new ServicePatient.ServicePatientClient())
+            try
             {
-                 return client.AddPatient(user);
+
+                using (ServicePatient.ServicePatientClient client = new ServicePatient.ServicePatientClient())
+                {
+                    return client.AddPatient(user);
+                }
+            }
+            catch
+            {
+                throw new TimeoutException();
             }
         }
 
         public bool DeletePatient(int id)
         {
-            using (ServicePatient.ServicePatientClient client = new ServicePatient.ServicePatientClient())
+            try
             {
-                return client.DeletePatient(id);
+                using (ServicePatient.ServicePatientClient client = new ServicePatient.ServicePatientClient())
+                {
+                    return client.DeletePatient(id);
+                }
+            }
+            catch
+            {
+                throw new TimeoutException();
             }
         }
     }

@@ -11,7 +11,14 @@ namespace colle_tMedecineServices.Services
         {
             using (ServiceObservation.ServiceObservationClient client = new ServiceObservation.ServiceObservationClient())
             {
-                return client.AddObservation(idPatient, obs);
+                try
+                {
+                    return client.AddObservation(idPatient, obs);
+                }
+                catch
+                {
+                    throw new TimeoutException();
+                }
             }
         }
     }

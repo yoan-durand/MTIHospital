@@ -9,70 +9,119 @@ namespace colle_tMedecineServices.Services
     {
         public ServiceUser.User[] GetListUser()
         {
-            using (ServiceUser.ServiceUserClient client = new ServiceUser.ServiceUserClient())
+            try
             {
-                ServiceUser.User[] listUser = client.GetListUser();
-                if (listUser == null || listUser.Count() == 0)
-                    throw new ArgumentNullException();
-                else
-                    return listUser;
+                using (ServiceUser.ServiceUserClient client = new ServiceUser.ServiceUserClient())
+                {
+                    ServiceUser.User[] listUser = client.GetListUser();
+                    if (listUser == null || listUser.Count() == 0)
+                        throw new ArgumentNullException();
+                    else
+                        return listUser;
+                }
+            }
+            catch
+            {
+                throw new TimeoutException();
             }
         }
 
         public ServiceUser.User GetUser(string login)
         {
-            using (ServiceUser.ServiceUserClient client = new ServiceUser.ServiceUserClient())
+            try
             {
-                ServiceUser.User user = client.GetUser(login);
-                if (user == null)
-                    throw new ArgumentNullException();
-                else
-                    return user;
+                using (ServiceUser.ServiceUserClient client = new ServiceUser.ServiceUserClient())
+                {
+                    ServiceUser.User user = client.GetUser(login);
+                    if (user == null)
+                        throw new ArgumentNullException();
+                    else
+                        return user;
+                }
+            }
+            catch
+            {
+                throw new TimeoutException();
             }
         }
 
         public bool AddUser(ServiceUser.User user)
         {
-            using (ServiceUser.ServiceUserClient client = new ServiceUser.ServiceUserClient())
+            try
             {
-                return client.AddUser(user);
+                using (ServiceUser.ServiceUserClient client = new ServiceUser.ServiceUserClient())
+                {
+                    return client.AddUser(user);
+                }
+            }
+            catch
+            {
+                throw new TimeoutException();
             }
         }
 
         public bool DeleteUser(string login)
         {
-            using (ServiceUser.ServiceUserClient client = new ServiceUser.ServiceUserClient())
+            try
             {
-                return client.DeleteUser(login);
+                using (ServiceUser.ServiceUserClient client = new ServiceUser.ServiceUserClient())
+                {
+                    return client.DeleteUser(login);
+                }
+            }
+            catch
+            {
+                throw new TimeoutException();
             }
         }
 
         public bool Connect(string login, string pwd)
         {
-            using (ServiceUser.ServiceUserClient client = new ServiceUser.ServiceUserClient())
+            try
             {
-                return client.Connect(login, pwd);
+                using (ServiceUser.ServiceUserClient client = new ServiceUser.ServiceUserClient())
+                {
+                    return client.Connect(login, pwd);
+                }
+            }
+            catch
+            {
+                throw new TimeoutException();
             }
         }
 
         public void Disconnect(string login)
         {
-            using (ServiceUser.ServiceUserClient client = new ServiceUser.ServiceUserClient())
+            try
             {
-                client.Disconnect(login);
+                using (ServiceUser.ServiceUserClient client = new ServiceUser.ServiceUserClient())
+                {
+                    client.Disconnect(login);
+                }
+            }
+            catch
+            {
+                throw new TimeoutException();
             }
         }
 
         public string GetRole(string login)
         {
-            using (ServiceUser.ServiceUserClient client = new ServiceUser.ServiceUserClient())
+            try
             {
-                string role = client.GetRole(login);
+                using (ServiceUser.ServiceUserClient client = new ServiceUser.ServiceUserClient())
+                {
+                    string role = client.GetRole(login);
 
-                if (role == null)
-                    throw new ArgumentNullException();
-                else
-                    return role;
+                    if (role == null)
+                        throw new ArgumentNullException();
+                    else
+                        return role;
+                }
+            }
+            catch
+            {
+                throw new TimeoutException();
             }
         }
     }
