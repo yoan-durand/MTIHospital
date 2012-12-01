@@ -77,7 +77,6 @@ namespace colle_tMedecine.ViewModel
                 handler(this, e);
             }
         }
-
         #endregion
     }
 }
