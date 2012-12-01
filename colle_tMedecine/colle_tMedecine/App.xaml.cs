@@ -12,5 +12,13 @@ namespace colle_tMedecine
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+{
+base.OnStartup(e);
+View.LoginView window = new colle_tMedecine.View.LoginView();
+ViewModel.LoginViewModel vm = new colle_tMedecine.ViewModel.LoginViewModel();
+window.DataContext = vm;
+window.Show();
+}
     }
 }
