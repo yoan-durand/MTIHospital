@@ -1,0 +1,31 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:pi="http://schemas.microsoft.com/prototyping/2010/interactivity" x:Name="nav_menu"
+	mc:Ignorable="d"
+	x:Class="colle_tMedecine.View.Menu"
+	Width="200" Height="200">
+
+	<Grid x:Name="LayoutRoot" Background="White" Margin="0,0,-436,-48">
+		<StackPanel x:Name="Menu1" Orientation="Horizontal" Margin="8,0" Height="90" VerticalAlignment="Top">
+			<Button x:Name="patient_nav_item" Content="Patients" Height="18" VerticalAlignment="Center" Width="103">
+			</Button>
+			<Button x:Name="personnel_nav_item" Content="Personnel Medical" Height="18" VerticalAlignment="Center" Width="131" HorizontalAlignment="Center">
+				<Button.Background>
+					<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+						<GradientStop Color="#FFEEEEEE" Offset="0"/>
+						<GradientStop Color="#FFCCCCCC" Offset="1"/>
+					</LinearGradientBrush>
+				</Button.Background>
+			</Button>
+			<StackPanel x:Name="Compte"  Margin="177,0,4,13.5" Width="103.5">
+				<TextBlock x:Name="Login_info" Margin="0" TextWrapping="Wrap" Width="96" VerticalAlignment="Center" HorizontalAlignment="Left"><Run Language="fr-fr" Text="Bienvenue Roger"/></TextBlock>
+				<TextBlock x:Name="Role_info" Height="23" Margin="0,0,8,0" TextWrapping="Wrap"><Run Language="fr-fr" Text="Role : Medecin"/></TextBlock>
+				<Button x:Name="Deconnexion" Content="Deconnexion"  Width="80.5" HorizontalAlignment="Left" Margin="0" Height="20.75">
+				</Button>
+			</StackPanel>
+			<Image x:Name="Avatar"  Margin="0,0,0,13.5" Width="88.5" d:LayoutOverrides="Height"/>
+		</StackPanel>
+	</Grid>
+</UserControl>

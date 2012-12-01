@@ -1,0 +1,88 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:colle_tMedecine.View" x:Name="fiche_patient"
+	mc:Ignorable="d"
+	x:Class="colle_tMedecine.View.Fiche_Patient"
+	Width="640" Height="480">
+
+	<Grid x:Name="LayoutRoot" Background="White">
+		<local:Menu HorizontalAlignment="Left" VerticalAlignment="Top" d:IsPrototypingComposition="True" Height="84"/>
+		<ListBox x:Name="Observations" HorizontalAlignment="Left" Margin="8,130,0,87" Width="100">
+			<ListBoxItem>
+				<ListBoxItem Content="10/04/11"/>
+			</ListBoxItem>
+			<ListBoxItem>
+				<ListBoxItem Content="10/04/11"/>
+			</ListBoxItem>
+			<ListBoxItem>
+				<ListBoxItem Content="10/04/11"/>
+			</ListBoxItem>
+			<ListBoxItem>
+				<ListBoxItem Content="10/04/11"/>
+			</ListBoxItem>
+			<ListBoxItem>
+				<ListBoxItem Content="10/04/11"/>
+			</ListBoxItem>
+			<ListBoxItem>
+				<ListBoxItem Content="10/04/11"/>
+			</ListBoxItem>
+		</ListBox>
+		<TextBlock x:Name="Patient_title" HorizontalAlignment="Left" Height="31" Margin="0,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="272" FontSize="18.667" FontWeight="Bold" TextAlignment="Center">
+			<TextBlock.Background>
+				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+					<GradientStop Color="#FFCCCCCC"/>
+					<GradientStop Color="White" Offset="1"/>
+				</LinearGradientBrush>
+			</TextBlock.Background><Run Language="fr-fr" Text="Jean-Paul Roux"/></TextBlock>
+		<Grid x:Name="Content" Margin="112,130,20,0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="0.061*"/>
+				<ColumnDefinition Width="0.004*"/>
+				<ColumnDefinition Width="0.52*"/>
+				<ColumnDefinition Width="0.059*"/>
+				<ColumnDefinition Width="0.356*"/>
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="0.464*"/>
+				<RowDefinition Height="0.536*"/>
+			</Grid.RowDefinitions>
+			<StackPanel x:Name="Informations" Margin="3,0,12,0" Grid.ColumnSpan="3">
+				<TextBlock Height="21" Margin="63,0,80,0" TextWrapping="Wrap"><Run Language="fr-fr" Text="Informations"/><LineBreak/><Run Language="fr-fr"/></TextBlock>
+				<StackPanel Orientation="Horizontal" x:Name="Name_info" Height="24">
+					<TextBlock TextWrapping="Wrap" Margin="0,0,0,8" Width="66.517"><Run Language="fr-fr" Text="Nom : "/></TextBlock>
+					<TextBlock x:Name="Name" TextWrapping="Wrap" Margin="0,0,0,8" Width="155.503"><Run Language="fr-fr" Text="Roux"/></TextBlock>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal" x:Name="Name_info_Copy" Height="25" Margin="0" VerticalAlignment="Top">
+					<TextBlock TextWrapping="Wrap" Margin="0" Width="65.517" VerticalAlignment="Top"><Run Language="fr-fr" Text="Prenom"/></TextBlock>
+					<TextBlock x:Name="Firstname" TextWrapping="Wrap" Margin="0" Width="155.503" VerticalAlignment="Top"><Run Language="fr-fr" Text="Jean-Paul"/></TextBlock>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal" x:Name="Name_info_Copy1" Height="25" Margin="0" VerticalAlignment="Top">
+					<TextBlock TextWrapping="Wrap" Margin="0" Width="65.517" VerticalAlignment="Top"><Run Language="fr-fr" Text="Date"/></TextBlock>
+					<TextBlock x:Name="Date" TextWrapping="Wrap" Margin="0" Width="155.503" VerticalAlignment="Top" Height="17"><Run Language="fr-fr" Text="10/04/78"/><LineBreak/><Run Language="fr-fr"/></TextBlock>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal" x:Name="Name_info_Copy2" Height="34" VerticalAlignment="Top">
+					<TextBlock TextWrapping="Wrap" Margin="0" Width="65.517" VerticalAlignment="Top"><Run Language="fr-fr" Text="Poids(kg)"/></TextBlock>
+					<TextBlock x:Name="Poids" TextWrapping="Wrap" Margin="0" Width="32.503" VerticalAlignment="Top"><Run Language="fr-fr" Text="70"/></TextBlock>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal" x:Name="Name_info_Copy3" Height="25" Margin="0" VerticalAlignment="Top">
+					<TextBlock TextWrapping="Wrap" Margin="0,0,0,9.04" Width="111.517" VerticalAlignment="Bottom"><Run Language="fr-fr" Text="Rythme cardiaque:"/></TextBlock>
+					<TextBlock x:Name="Cardio" TextWrapping="Wrap" Margin="0" Width="40.503" VerticalAlignment="Top"><Run Language="fr-fr" Text="70"/></TextBlock>
+					<TextBlock TextWrapping="Wrap" Margin="0" Width="80.517" VerticalAlignment="Top"><Run Language="fr-fr" Text="Température"/></TextBlock>
+					<TextBlock x:Name="Temperature" TextWrapping="Wrap" Margin="0" Width="41.503" VerticalAlignment="Top"><Run Language="fr-fr" Text="37,5"/></TextBlock>
+				</StackPanel>
+			</StackPanel>
+			<ListView x:Name="Prescriptions" ToolTip="Prescriptions" Grid.Column="3" Margin="-8,0,8,46" Grid.ColumnSpan="2">
+				<ListView.View>
+					<GridView>
+						<GridViewColumn/>
+					</GridView>
+				</ListView.View>
+			</ListView>
+			<TextBlock x:Name="Comments" TextWrapping="Wrap" Grid.Row="1" Grid.ColumnSpan="5" Margin="0,0,0,8" Height="77.904" VerticalAlignment="Bottom"><Run Language="fr-fr" Text="Commentaires:"/></TextBlock>
+			<StackPanel Orientation="Horizontal" x:Name="Images" Margin="3,4,0,89.904" Grid.Row="1" Grid.ColumnSpan="5"/>
+			<Button x:Name="Graph_live" Content="Graphiques" Grid.Column="4" Height="19" Margin="0,0,38.848,8" VerticalAlignment="Bottom"/>
+		</Grid>
+	</Grid>
+</UserControl>
