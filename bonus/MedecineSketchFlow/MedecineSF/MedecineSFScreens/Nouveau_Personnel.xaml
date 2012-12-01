@@ -9,7 +9,7 @@
 
 	<Grid x:Name="LayoutRoot" Background="White">
 		<local:Menu HorizontalAlignment="Left" VerticalAlignment="Top" d:IsPrototypingComposition="True" Height="120"/>
-		<local:Menu HorizontalAlignment="Left" VerticalAlignment="Top" Height="120"/>
+		<local:Menu HorizontalAlignment="Left" VerticalAlignment="Top" Height="124"/>
 		<Button x:Name="Add_button" Content="Ajouter" Height="28.5" Margin="257,0,256,49.5" Style="{DynamicResource SimpleButton}" VerticalAlignment="Bottom">
 			<i:Interaction.Triggers>
 				<i:EventTrigger EventName="Click">

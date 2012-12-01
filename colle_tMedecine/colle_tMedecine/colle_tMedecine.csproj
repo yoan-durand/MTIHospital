@@ -64,6 +64,27 @@
     <Compile Include="ViewModel\NewMedicViewModel.cs" />
     <Compile Include="ViewModel\NewPatientViewModel.cs" />
     <Compile Include="ViewModel\PatientViewModel.cs" />
+    <Compile Include="View\Fiche_Patient.xaml.cs">
+      <DependentUpon>Fiche_Patient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Menu.xaml.cs">
+      <DependentUpon>Menu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Nouveau_patient.xaml.cs">
+      <DependentUpon>Nouveau_patient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Nouveau_Personnel.xaml.cs">
+      <DependentUpon>Nouveau_Personnel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\patients.xaml.cs">
+      <DependentUpon>patients.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Personnel.xaml.cs">
+      <DependentUpon>Personnel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowCloseBehaviour.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -80,6 +101,34 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\Fiche_Patient.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Login.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Menu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Nouveau_patient.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Nouveau_Personnel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\patients.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Personnel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -105,9 +154,7 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\colle_tMedecineServices\colle_tMedecineServices.csproj">
       <Project>{4E2ABC67-B335-4995-86B1-8AD1B6C64FFA}</Project>
