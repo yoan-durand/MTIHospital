@@ -7,35 +7,18 @@
 	x:Class="colle_tMedecine.View.Fiche_Patient"
 	Width="640" Height="480">
 
-	<Grid x:Name="LayoutRoot" Background="White">
+	<Grid x:Name="LayoutRoot" Background="White" DataContext="{Binding Patient}">
 		<local:Menu HorizontalAlignment="Left" VerticalAlignment="Top" d:IsPrototypingComposition="True" Height="84"/>
-		<ListBox x:Name="Observations" HorizontalAlignment="Left" Margin="8,130,0,87" Width="100">
-			<ListBoxItem>
-				<ListBoxItem Content="10/04/11"/>
-			</ListBoxItem>
-			<ListBoxItem>
-				<ListBoxItem Content="10/04/11"/>
-			</ListBoxItem>
-			<ListBoxItem>
-				<ListBoxItem Content="10/04/11"/>
-			</ListBoxItem>
-			<ListBoxItem>
-				<ListBoxItem Content="10/04/11"/>
-			</ListBoxItem>
-			<ListBoxItem>
-				<ListBoxItem Content="10/04/11"/>
-			</ListBoxItem>
-			<ListBoxItem>
-				<ListBoxItem Content="10/04/11"/>
-			</ListBoxItem>
-		</ListBox>
+		<ListBox x:Name="Observations" HorizontalAlignment="Left" Margin="8,130,0,87" Width="100" ItemsSource="{Binding DataContext.Observations}"
+                 SelectedItem="{Binding DataContext.SelectedObservation,ElementName=Root, Mode=TwoWay}">
+        </ListBox>
 		<TextBlock x:Name="Patient_title" HorizontalAlignment="Left" Height="31" Margin="0,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="272" FontSize="18.667" FontWeight="Bold" TextAlignment="Center">
 			<TextBlock.Background>
 				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 					<GradientStop Color="#FFCCCCCC"/>
 					<GradientStop Color="White" Offset="1"/>
 				</LinearGradientBrush>
-			</TextBlock.Background><Run Language="fr-fr" Text="Jean-Paul Roux"/></TextBlock>
+			</TextBlock.Background><Run Language="fr-fr" Text="{Binding Path=Name}"/></TextBlock>
 		<Grid x:Name="Content" Margin="112,130,20,0">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="0.061*"/>
@@ -48,32 +31,32 @@
 				<RowDefinition Height="0.464*"/>
 				<RowDefinition Height="0.536*"/>
 			</Grid.RowDefinitions>
-			<StackPanel x:Name="Informations" Margin="3,0,12,0" Grid.ColumnSpan="3">
+			<StackPanel x:Name="Informations" Margin="3,0,12,0" Grid.ColumnSpan="3" DataContext="{Binding}">
 				<TextBlock Height="21" Margin="63,0,80,0" TextWrapping="Wrap"><Run Language="fr-fr" Text="Informations"/><LineBreak/><Run Language="fr-fr"/></TextBlock>
 				<StackPanel Orientation="Horizontal" x:Name="Name_info" Height="24">
 					<TextBlock TextWrapping="Wrap" Margin="0,0,0,8" Width="66.517"><Run Language="fr-fr" Text="Nom : "/></TextBlock>
-					<TextBlock x:Name="Name" TextWrapping="Wrap" Margin="0,0,0,8" Width="155.503"><Run Language="fr-fr" Text="Roux"/></TextBlock>
+					<TextBlock x:Name="Name" TextWrapping="Wrap" Margin="0,0,0,8" Width="155.503"><Run Language="fr-fr" Text="{Binding Path=Name}"/></TextBlock>
 				</StackPanel>
 				<StackPanel Orientation="Horizontal" x:Name="Name_info_Copy" Height="25" Margin="0" VerticalAlignment="Top">
 					<TextBlock TextWrapping="Wrap" Margin="0" Width="65.517" VerticalAlignment="Top"><Run Language="fr-fr" Text="Prenom"/></TextBlock>
-					<TextBlock x:Name="Firstname" TextWrapping="Wrap" Margin="0" Width="155.503" VerticalAlignment="Top"><Run Language="fr-fr" Text="Jean-Paul"/></TextBlock>
+					<TextBlock x:Name="Firstname" TextWrapping="Wrap" Margin="0" Width="155.503" VerticalAlignment="Top"><Run Language="fr-fr" Text="{Binding Path=Firstname}"/></TextBlock>
 				</StackPanel>
 				<StackPanel Orientation="Horizontal" x:Name="Name_info_Copy1" Height="25" Margin="0" VerticalAlignment="Top">
 					<TextBlock TextWrapping="Wrap" Margin="0" Width="65.517" VerticalAlignment="Top"><Run Language="fr-fr" Text="Date"/></TextBlock>
-					<TextBlock x:Name="Date" TextWrapping="Wrap" Margin="0" Width="155.503" VerticalAlignment="Top" Height="17"><Run Language="fr-fr" Text="10/04/78"/><LineBreak/><Run Language="fr-fr"/></TextBlock>
+					<TextBlock x:Name="Date" TextWrapping="Wrap" Margin="0" Width="155.503" VerticalAlignment="Top" Height="17"><Run Language="fr-fr" Text="{Binding Path=Birthday}"/><LineBreak/><Run Language="fr-fr"/></TextBlock>
 				</StackPanel>
 				<StackPanel Orientation="Horizontal" x:Name="Name_info_Copy2" Height="34" VerticalAlignment="Top">
-					<TextBlock TextWrapping="Wrap" Margin="0" Width="65.517" VerticalAlignment="Top"><Run Language="fr-fr" Text="Poids(kg)"/></TextBlock>
+					<TextBlock TextWrapping="Wrap" Margin="0" Width="65.517" VerticalAlignment="Top"><Run Language="fr-fr" Text="{Binding Path=Weight}"/></TextBlock>
 					<TextBlock x:Name="Poids" TextWrapping="Wrap" Margin="0" Width="32.503" VerticalAlignment="Top"><Run Language="fr-fr" Text="70"/></TextBlock>
 				</StackPanel>
 				<StackPanel Orientation="Horizontal" x:Name="Name_info_Copy3" Height="25" Margin="0" VerticalAlignment="Top">
 					<TextBlock TextWrapping="Wrap" Margin="0,0,0,9.04" Width="111.517" VerticalAlignment="Bottom"><Run Language="fr-fr" Text="Rythme cardiaque:"/></TextBlock>
-					<TextBlock x:Name="Cardio" TextWrapping="Wrap" Margin="0" Width="40.503" VerticalAlignment="Top"><Run Language="fr-fr" Text="70"/></TextBlock>
+					<TextBlock x:Name="Cardio" TextWrapping="Wrap" Margin="0" Width="40.503" VerticalAlignment="Top"><Run Language="fr-fr" Text=""/></TextBlock>
 					<TextBlock TextWrapping="Wrap" Margin="0" Width="80.517" VerticalAlignment="Top"><Run Language="fr-fr" Text="Température"/></TextBlock>
 					<TextBlock x:Name="Temperature" TextWrapping="Wrap" Margin="0" Width="41.503" VerticalAlignment="Top"><Run Language="fr-fr" Text="37,5"/></TextBlock>
 				</StackPanel>
 			</StackPanel>
-			<ListView x:Name="Prescriptions" ToolTip="Prescriptions" Grid.Column="3" Margin="-8,0,8,46" Grid.ColumnSpan="2">
+			<ListView x:Name="Prescriptions" ToolTip="Prescriptions" Grid.Column="3" Margin="-8,0,8,46" Grid.ColumnSpan="2" ItemsSource="{Binding Path=Prescription}">
 				<ListView.View>
 					<GridView>
 						<GridViewColumn/>

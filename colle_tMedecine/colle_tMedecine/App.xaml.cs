@@ -22,10 +22,10 @@ namespace colle_tMedecine
             log.DataContext = vm;
             window.contentcontrol.Content = log;
 
-            View.Fiche_Patient menu = new colle_tMedecine.View.Fiche_Patient();
+           /* View.Fiche_Patient menu = new colle_tMedecine.View.Fiche_Patient();
             ViewModel.Fiche_PatientViewModel fm = new colle_tMedecine.ViewModel.Fiche_PatientViewModel();
             menu.DataContext = fm;
-            window.contentcontrol.Content = menu;
+            window.contentcontrol.Content = menu; */
 
             window.Show();
             // Application.Current.MainWindow.DataContext;

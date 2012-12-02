@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 namespace colle_tMedecine.Model
 {
     [DataContract]
-    class User
+    class User : colle_tMedecineServices.ServiceUser.User
     {
         #region Variables
         private string _login;
