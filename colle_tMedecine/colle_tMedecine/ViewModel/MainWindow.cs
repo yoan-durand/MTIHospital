@@ -9,6 +9,7 @@ namespace colle_tMedecine.ViewModel
 {
     class MainWindow : BaseViewModel
     {
+
         #region Attributs
         private ICommand _showPatientList;
 
@@ -63,6 +64,7 @@ namespace colle_tMedecine.ViewModel
             _logOut = new RelayCommand(param => disconnect(), param => true);
             _menuIsActive = true;
 
+
         }
 
         private void disconnect()
@@ -97,6 +99,8 @@ namespace colle_tMedecine.ViewModel
             view.DataContext = vm;
             mainwindow.contentcontrol.Content = view;
         }
+
+
         #endregion
     }
 }
