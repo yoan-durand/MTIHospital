@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
-using colle_tMedecineServices.ServicePatient;
+using colle_tMedecine.ServicePatient;
 
 namespace colle_tMedecine.ViewModel
 {

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Input;
-using colle_tMedecineServices.ServiceUser;
 
 namespace colle_tMedecine.ViewModel
 {

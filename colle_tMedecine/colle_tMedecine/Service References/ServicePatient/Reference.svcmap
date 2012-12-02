@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="5e4b09e5-b46d-4c39-bfa2-27b85e658ed2" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://windows.kasiamac.com/Wcf-Medical_deploy/ServicePatient.svc?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServicePatient.xsd" MetadataType="Schema" ID="8cee5725-761f-469f-8d91-605b97f0ff9e" SourceId="1" SourceUrl="http://windows.kasiamac.com/Wcf-Medical_deploy/ServicePatient.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServicePatient1.xsd" MetadataType="Schema" ID="ccf3e16a-e2aa-4714-8aa5-0f4fd1bd8a2c" SourceId="1" SourceUrl="http://windows.kasiamac.com/Wcf-Medical_deploy/ServicePatient.svc?xsd=xsd3" />
+    <MetadataFile FileName="ServicePatient2.xsd" MetadataType="Schema" ID="38edda26-25bc-4eac-9f45-037f7d33c70e" SourceId="1" SourceUrl="http://windows.kasiamac.com/Wcf-Medical_deploy/ServicePatient.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServicePatient3.xsd" MetadataType="Schema" ID="e045af37-d967-48d4-ae3e-474562441cd9" SourceId="1" SourceUrl="http://windows.kasiamac.com/Wcf-Medical_deploy/ServicePatient.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServicePatient.wsdl" MetadataType="Wsdl" ID="f8f4b30b-397f-4fd1-b1fe-27540a1812df" SourceId="1" SourceUrl="http://windows.kasiamac.com/Wcf-Medical_deploy/ServicePatient.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

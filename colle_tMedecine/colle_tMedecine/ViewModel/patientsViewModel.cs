@@ -53,7 +53,7 @@ namespace colle_tMedecine.ViewModel
             View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
 
             View.Fiche_Patient view = new colle_tMedecine.View.Fiche_Patient();
-            ViewModel.Fiche_PatientViewModel vm = new colle_tMedecine.ViewModel.Fiche_PatientViewModel();
+            ViewModel.Fiche_PatientViewModel vm = new colle_tMedecine.ViewModel.Fiche_PatientViewModel(null);
             view.DataContext = vm;
             mainwindow.contentcontrol.Content = view;
         }

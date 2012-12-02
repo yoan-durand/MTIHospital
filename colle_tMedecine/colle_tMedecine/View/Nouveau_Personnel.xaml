@@ -9,7 +9,7 @@
 	Width="640" Height="480">
 
 	<Grid x:Name="LayoutRoot" Background="White">
-		<Button x:Name="Add_button" Content="Ajouter" Height="29" Margin="254,0,259,19" VerticalAlignment="Bottom">
+        <Button x:Name="Add_button" Command="{Binding AddCommand}" Content="Ajouter" Height="29" Margin="254,0,259,19" VerticalAlignment="Bottom">
 		</Button>
         <TextBox x:Name="Name_input" Text="{Binding NameInput}" Height="29" Margin="297,173,157,0"  TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.203,-0.649"/>
         <TextBox x:Name="Firstname_input" Text="{Binding FirstnameInput}" Height="28" Margin="297,202,157,0"  TextWrapping="Wrap" VerticalAlignment="Top"/>
@@ -17,7 +17,7 @@
 		<Label Content="Prenom *" Height="29" Margin="174,201,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="101"/>
 		<TextBlock HorizontalAlignment="Left" Height="33" Margin="8,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" FontSize="21.333" FontWeight="Bold"><Run Language="fr-fr" Text="Ajouter un collaborateur"/></TextBlock>
 		<Label Content="Role *" Margin="174,230,0,220" HorizontalAlignment="Left" Width="101"/>
-		<ComboBox x:Name="Role_liste" SelectedIndex="0" Margin="297,234,157,225">
+        <ComboBox x:Name="Role_liste" SelectedValue="{Binding RoleInput}" SelectedIndex="0" Margin="297,234,157,225">
 			<ComboBoxItem Content="Medecin"/>
 			<ComboBoxItem Content="infirmier(e)"/>
 		</ComboBox>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
+using colle_tMedecine.ServiceUser;
 
 namespace colle_tMedecine.ViewModel
 {
@@ -31,6 +32,15 @@ namespace colle_tMedecine.ViewModel
             get { return _firstNameInput; }
             set { _firstNameInput = value; }
         }
+
+        private String _roleInput;
+
+        public String RoleInput
+        {
+            get { return _roleInput; }
+            set { _roleInput = value; }
+        }
+        
 
         private String _loginInput;
 
@@ -63,7 +73,14 @@ namespace colle_tMedecine.ViewModel
 
         private void addUser()
         {
-            
+            User new_user = new User();
+            new_user.Connected = false;
+            new_user.Firstname = _firstNameInput;
+            new_user.Name = _nameInput;
+            new_user.Role = _roleInput;
+            new_user.Pwd = _passwordInput;
+            new_user.Login = _loginInput;
+            //picture
         }
         
         

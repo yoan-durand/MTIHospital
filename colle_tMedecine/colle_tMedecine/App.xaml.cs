@@ -4,7 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Windows;
-using colle_tMedecineServices.ServiceUser;
+using colle_tMedecine.ServiceUser;
 
 namespace colle_tMedecine
 {
@@ -26,9 +26,9 @@ namespace colle_tMedecine
             login_view.DataContext = vm;
             window.contentcontrol.Content = login_view;
 
-          //  ServiceUserClient clientService = new ServiceUserClient();
+            ServiceUserClient clientService = new ServiceUserClient();
 
-            /*User user = clientService.GetUser("root");
+           /* User user = clientService.GetUser("root");
             if (user == null)
             {
                 user = new User();

@@ -6,15 +6,30 @@
 	xmlns:ff="clr-namespace:colle_tMedecine.Helper"
     mc:Ignorable="d"
 	x:Class="colle_tMedecine.View.Login"
-	Width="640" Height="480">
+	Width="992" Height="580">
+	<UserControl.Background>
+		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+			<GradientStop Color="Black" Offset="0"/>
+			<GradientStop Color="White" Offset="1"/>
+		</LinearGradientBrush>
+	</UserControl.Background>
 
-	<Grid x:Name="LayoutRoot" Background="White">
-        <TextBox x:Name="Login_text" Text="{Binding LoginInput}" Margin="249,176,191.446,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <PasswordBox x:Name="Password" ff:PasswordHelper.Attach="True"  ff:PasswordHelper.Password="{Binding PasswordInput, Mode=TwoWay}" Margin="249,211,191.446,0" VerticalAlignment="Top"/>
-        <Button x:Name="Connection" Command="{Binding Connect}" Content="Se connecter" Margin="300,0,248,182" VerticalAlignment="Bottom" Background="{x:Null}">
+	<Grid x:Name="LayoutRoot" Background="#FF184F76">
+		<Rectangle Fill="#FF346586" Margin="201,85,175,152" Stroke="Black" RadiusX="20" RadiusY="20"/>
+        <Button x:Name="Connection" Command="{Binding Connect}" Content="Se connecter" Margin="446,0,406,224" VerticalAlignment="Bottom" Background="{x:Null}">
 		</Button>
-		<Label Content="Veuillez vous connecter" HorizontalAlignment="Right" Margin="0,146.04,223.672,0" VerticalAlignment="Top"/>
-		<TextBlock x:Name="Idendifiant" HorizontalAlignment="Left" Height="21.96" Margin="158,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87"><Run Language="fr-fr" Text="Identifiant"/></TextBlock>
-		<TextBlock x:Name="MDP" HorizontalAlignment="Left" Height="21.96" Margin="158,208.84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87"><Run Language="fr-fr" Text="Mot de passe"/></TextBlock>
+		<Label Content="Veuillez vous connecter" Margin="430.661,133.04,426.672,0" VerticalAlignment="Top" d:LayoutOverrides="Width"/>
+		<StackPanel Margin="354,194,324,0" Height="88" VerticalAlignment="Top" Background="#FFC9DBE7" d:LayoutOverrides="Width">
+			<StackPanel Margin="0,0,58,0" Orientation="Horizontal" Height="28">
+				<TextBlock x:Name="Idendifiant" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" Width="87" Margin="0"><Run Language="fr-fr" Text="Identifiant :"/></TextBlock>
+				<TextBox x:Name="Login_text" Text="{Binding LoginInput}" Margin="0,1.5" TextWrapping="Wrap" Height="25" Width="169"/>
+			</StackPanel>
+			<StackPanel Margin="0,0,58,0" Orientation="Horizontal" Height="26" VerticalAlignment="Center" HorizontalAlignment="Center">
+				<TextBlock x:Name="MDP" Margin="0" TextWrapping="Wrap" Width="87" Height="25" VerticalAlignment="Top"><Run Language="fr-fr" Text="Mot de passe"/></TextBlock>
+				<PasswordBox x:Name="Password" ff:PasswordHelper.Attach="True"  ff:PasswordHelper.Password="{Binding PasswordInput, Mode=TwoWay}" Width="167.554" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+			</StackPanel>
+		</StackPanel>
+		
+		
 	</Grid>
 </UserControl>

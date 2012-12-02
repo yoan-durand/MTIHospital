@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace colle_tMedecineServices.ServicePatient {
+namespace colle_tMedecine.ServicePatient {
     using System.Runtime.Serialization;
     using System;
     
@@ -35,7 +35,7 @@ namespace colle_tMedecineServices.ServicePatient {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private colle_tMedecineServices.ServicePatient.Observation[] ObservationsField;
+        private colle_tMedecine.ServicePatient.Observation[] ObservationsField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -100,7 +100,7 @@ namespace colle_tMedecineServices.ServicePatient {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public colle_tMedecineServices.ServicePatient.Observation[] Observations {
+        public colle_tMedecine.ServicePatient.Observation[] Observations {
             get {
                 return this.ObservationsField;
             }
@@ -252,25 +252,25 @@ namespace colle_tMedecineServices.ServicePatient {
     public interface IServicePatient {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicePatient/GetListPatient", ReplyAction="http://tempuri.org/IServicePatient/GetListPatientResponse")]
-        colle_tMedecineServices.ServicePatient.Patient[] GetListPatient();
+        colle_tMedecine.ServicePatient.Patient[] GetListPatient();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicePatient/GetPatient", ReplyAction="http://tempuri.org/IServicePatient/GetPatientResponse")]
-        colle_tMedecineServices.ServicePatient.Patient GetPatient(int id);
+        colle_tMedecine.ServicePatient.Patient GetPatient(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicePatient/AddPatient", ReplyAction="http://tempuri.org/IServicePatient/AddPatientResponse")]
-        bool AddPatient(colle_tMedecineServices.ServicePatient.Patient user);
+        bool AddPatient(colle_tMedecine.ServicePatient.Patient user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicePatient/DeletePatient", ReplyAction="http://tempuri.org/IServicePatient/DeletePatientResponse")]
         bool DeletePatient(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IServicePatientChannel : colle_tMedecineServices.ServicePatient.IServicePatient, System.ServiceModel.IClientChannel {
+    public interface IServicePatientChannel : colle_tMedecine.ServicePatient.IServicePatient, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ServicePatientClient : System.ServiceModel.ClientBase<colle_tMedecineServices.ServicePatient.IServicePatient>, colle_tMedecineServices.ServicePatient.IServicePatient {
+    public partial class ServicePatientClient : System.ServiceModel.ClientBase<colle_tMedecine.ServicePatient.IServicePatient>, colle_tMedecine.ServicePatient.IServicePatient {
         
         public ServicePatientClient() {
         }
@@ -291,15 +291,15 @@ namespace colle_tMedecineServices.ServicePatient {
                 base(binding, remoteAddress) {
         }
         
-        public colle_tMedecineServices.ServicePatient.Patient[] GetListPatient() {
+        public colle_tMedecine.ServicePatient.Patient[] GetListPatient() {
             return base.Channel.GetListPatient();
         }
         
-        public colle_tMedecineServices.ServicePatient.Patient GetPatient(int id) {
+        public colle_tMedecine.ServicePatient.Patient GetPatient(int id) {
             return base.Channel.GetPatient(id);
         }
         
-        public bool AddPatient(colle_tMedecineServices.ServicePatient.Patient user) {
+        public bool AddPatient(colle_tMedecine.ServicePatient.Patient user) {
             return base.Channel.AddPatient(user);
         }
         

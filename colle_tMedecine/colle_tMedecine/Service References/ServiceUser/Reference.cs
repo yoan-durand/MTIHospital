@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace colle_tMedecineServices.ServiceUser {
+namespace colle_tMedecine.ServiceUser {
     using System.Runtime.Serialization;
     using System;
     
@@ -159,13 +159,13 @@ namespace colle_tMedecineServices.ServiceUser {
     public interface IServiceUser {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUser/GetListUser", ReplyAction="http://tempuri.org/IServiceUser/GetListUserResponse")]
-        colle_tMedecineServices.ServiceUser.User[] GetListUser();
+        colle_tMedecine.ServiceUser.User[] GetListUser();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUser/GetUser", ReplyAction="http://tempuri.org/IServiceUser/GetUserResponse")]
-        colle_tMedecineServices.ServiceUser.User GetUser(string login);
+        colle_tMedecine.ServiceUser.User GetUser(string login);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUser/AddUser", ReplyAction="http://tempuri.org/IServiceUser/AddUserResponse")]
-        bool AddUser(colle_tMedecineServices.ServiceUser.User user);
+        bool AddUser(colle_tMedecine.ServiceUser.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUser/DeleteUser", ReplyAction="http://tempuri.org/IServiceUser/DeleteUserResponse")]
         bool DeleteUser(string login);
@@ -181,12 +181,12 @@ namespace colle_tMedecineServices.ServiceUser {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IServiceUserChannel : colle_tMedecineServices.ServiceUser.IServiceUser, System.ServiceModel.IClientChannel {
+    public interface IServiceUserChannel : colle_tMedecine.ServiceUser.IServiceUser, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ServiceUserClient : System.ServiceModel.ClientBase<colle_tMedecineServices.ServiceUser.IServiceUser>, colle_tMedecineServices.ServiceUser.IServiceUser {
+    public partial class ServiceUserClient : System.ServiceModel.ClientBase<colle_tMedecine.ServiceUser.IServiceUser>, colle_tMedecine.ServiceUser.IServiceUser {
         
         public ServiceUserClient() {
         }
@@ -207,15 +207,15 @@ namespace colle_tMedecineServices.ServiceUser {
                 base(binding, remoteAddress) {
         }
         
-        public colle_tMedecineServices.ServiceUser.User[] GetListUser() {
+        public colle_tMedecine.ServiceUser.User[] GetListUser() {
             return base.Channel.GetListUser();
         }
         
-        public colle_tMedecineServices.ServiceUser.User GetUser(string login) {
+        public colle_tMedecine.ServiceUser.User GetUser(string login) {
             return base.Channel.GetUser(login);
         }
         
-        public bool AddUser(colle_tMedecineServices.ServiceUser.User user) {
+        public bool AddUser(colle_tMedecine.ServiceUser.User user) {
             return base.Channel.AddUser(user);
         }
         
