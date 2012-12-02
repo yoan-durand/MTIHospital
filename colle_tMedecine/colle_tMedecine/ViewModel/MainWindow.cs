@@ -35,14 +35,6 @@ namespace colle_tMedecine.ViewModel
             set { _logOut = value; }
         }
 
-        private ICommand _newUser;
-
-        public ICommand NewUser
-        {
-            get { return this._newUser; }
-            set { this._newUser = value; }
-        }
-
         private bool _menuIsActive;
 
         public bool MenuIsActive
@@ -69,7 +61,6 @@ namespace colle_tMedecine.ViewModel
         {
             _showPatientList = new RelayCommand(param => showPatients(), param => true);
             _showUserList = new RelayCommand(param => showUsers(), param => true);
-            _newUser = new RelayCommand(param => ShowNewUser(), param => true);
             _logOut = new RelayCommand(param => disconnect(), param => true);
             _menuIsActive = true;
 
@@ -109,17 +100,6 @@ namespace colle_tMedecine.ViewModel
             mainwindow.contentcontrol.Content = view;
         }
 
-
-        private void ShowNewUser()
-        {
-            View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow.DataContext;
-
-            View.Nouveau_Personnel view = new colle_tMedecine.View.Nouveau_Personnel();
-            ViewModel.Nouveau_PersonnelViewModel vm = new colle_tMedecine.ViewModel.Nouveau_PersonnelViewModel();
-            view.DataContext = vm;
-            mainwindow.contentcontrol.Content = view;
-        
-        }
 
         #endregion
     }

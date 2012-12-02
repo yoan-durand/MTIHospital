@@ -61,7 +61,7 @@ namespace colle_tMedecine.ViewModel
 
         public void ShowNewUser()
         {
-            View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow.DataContext;
+            View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
 
             View.Nouveau_Personnel view = new colle_tMedecine.View.Nouveau_Personnel();
             ViewModel.Nouveau_PersonnelViewModel vm = new colle_tMedecine.ViewModel.Nouveau_PersonnelViewModel();
