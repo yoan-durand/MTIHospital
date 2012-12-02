@@ -9,7 +9,8 @@ namespace colle_tMedecine.ViewModel
 {
     class MainWindow : BaseViewModel
     {
-         private ICommand _showPatientList;
+        #region Command
+        private ICommand _showPatientList;
 
         public ICommand ShowPatientList
         {
@@ -33,11 +34,20 @@ namespace colle_tMedecine.ViewModel
             set { _logOut = value; }
         }
 
+        private ICommand _newUser;
+
+        public ICommand NewUser
+        {
+            get { return this._newUser; }
+            set { this._newUser = value; }
+        }
+        #endregion
 
         public MainWindow ()
         {
             _showPatientList = new RelayCommand(param => showPatients(), param => true);
             _showUserList = new RelayCommand(param => showUsers(), param => true);
+            _newUser = new RelayCommand(param => ShowNewUser(), param => true);
 
         }
 
@@ -60,5 +70,17 @@ namespace colle_tMedecine.ViewModel
             view.DataContext = vm;
             mainwindow.contentcontrol.Content = view;
         }
+
+        private void ShowNewUser()
+        {
+            View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow.DataContext;
+
+            View.Nouveau_Personnel view = new colle_tMedecine.View.Nouveau_Personnel();
+            ViewModel.Nouveau_PersonnelViewModel vm = new colle_tMedecine.ViewModel.Nouveau_PersonnelViewModel();
+            view.DataContext = vm;
+            mainwindow.contentcontrol.Content = view;
+        
+        }
+
     }
 }

@@ -156,7 +156,9 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\colle_tMedecineServices\colle_tMedecineServices.csproj">
       <Project>{4E2ABC67-B335-4995-86B1-8AD1B6C64FFA}</Project>
