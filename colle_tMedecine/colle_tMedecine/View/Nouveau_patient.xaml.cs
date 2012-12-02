@@ -21,6 +21,7 @@ namespace colle_tMedecine.View
 		public Nouveau_patient()
 		{
 			this.InitializeComponent();
+             
 		}
 	}
 }

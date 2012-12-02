@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Input;
+using colle_tMedecineServices.ServiceUser;
 
 namespace colle_tMedecine.ViewModel
 {
@@ -45,15 +46,8 @@ namespace colle_tMedecine.ViewModel
         {
             bool isValid = true;
             //Call service
-         /*   colle_tMedecineServices.ServiceUser.ServiceUserClient clientService = new colle_tMedecineServices.ServiceUser.ServiceUserClient();
-            Model.User user = new Model.User();
-            user.Login = "ratus";
-            user.Password = "1234";
-            user.Role = "Medecin";
-            user.Name = "roux";
-            user.Firstname = "roger";
 
-            clientService.AddUser(user);
+          /* colle_tMedecineServices.ServiceUser.ServiceUserClient clientService = new colle_tMedecineServices.ServiceUser.ServiceUserClient();
             isValid = clientService.Connect(_loginInput, _passwordInput);*/
 
             if (isValid)
@@ -64,8 +58,8 @@ namespace colle_tMedecine.ViewModel
                 mainwindowVM.MenuIsActive = true;
                // mainwindowVM.ConnectedUser = 
 
-                View.Patients view = new colle_tMedecine.View.Patients();
-                ViewModel.PatientsViewModel vm = new colle_tMedecine.ViewModel.PatientsViewModel();
+                View.Nouveau_patient view = new View.Nouveau_patient();
+                ViewModel.Nouveau_patientViewModel vm = new colle_tMedecine.ViewModel.Nouveau_patientViewModel();
                 view.DataContext = vm;
                 mainwindow.contentcontrol.Content = view;
             }
