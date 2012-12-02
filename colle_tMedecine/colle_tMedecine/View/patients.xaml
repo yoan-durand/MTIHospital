@@ -1,9 +1,8 @@
 ﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:colle_tMedecine.View" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:pi="http://schemas.microsoft.com/prototyping/2010/interactivity" x:Name="patients"
-	x:Class="colle_tMedecine.View.Écran_1_1"
+	x:Class="colle_tMedecine.View.Patients"
 	Width="640" Height="480" mc:Ignorable="d">
 
 	<Grid x:Name="LayoutRoot" Background="White">
-		<local:Menu HorizontalAlignment="Left" VerticalAlignment="Top" d:IsPrototypingComposition="True" Height="64" Width="199.5"/>
 		<ListBox x:Name="Tab_patient" Margin="15,150.5,36,82.5">
 			<StackPanel Orientation="Horizontal" Height="28.5" Width="581">
 				<TextBlock Height="28" TextWrapping="Wrap" Width="151.5" HorizontalAlignment="Left"><Run Language="fr-fr" Text="Dupont"/></TextBlock>

@@ -8,7 +8,6 @@
 	Width="640" Height="480">
 
 	<Grid x:Name="LayoutRoot" Background="White">
-		<local:Menu HorizontalAlignment="Left" VerticalAlignment="Top" d:IsPrototypingComposition="True" Height="102"/>
 		<ListBox x:Name="Tab_personnel" Margin="15,150.5,36,82.5">
 			<StackPanel Orientation="Horizontal" Height="28.5" Width="581">
 				<TextBlock Height="28" TextWrapping="Wrap" Width="151.5" HorizontalAlignment="Left"><Run Language="fr-fr" Text="Dupont"/></TextBlock>

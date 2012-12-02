@@ -5,7 +5,7 @@ using System.Text;
 
 namespace colle_tMedecine.ViewModel
 {
-    class patientsViewModel : BaseViewModel
+    class PatientsViewModel : BaseViewModel
     {
     }
 }

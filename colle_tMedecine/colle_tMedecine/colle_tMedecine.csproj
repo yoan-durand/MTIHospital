@@ -60,7 +60,7 @@
     <Compile Include="ViewModel\MainWindow.cs" />
     <Compile Include="ViewModel\MenuViewModel.cs" />
     <Compile Include="ViewModel\PersonnelViewModel.cs" />
-    <Compile Include="ViewModel\patientsViewModel.cs" />
+    <Compile Include="ViewModel\PatientsViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\Nouveau_PersonnelViewModel.cs" />
@@ -85,8 +85,8 @@
     <Compile Include="View\Nouveau_Personnel.xaml.cs">
       <DependentUpon>Nouveau_Personnel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\patients.xaml.cs">
-      <DependentUpon>patients.xaml</DependentUpon>
+    <Compile Include="View\Patients.xaml.cs">
+      <DependentUpon>Patients.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Personnel.xaml.cs">
       <DependentUpon>Personnel.xaml</DependentUpon>
@@ -123,7 +123,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\patients.xaml">
+    <Page Include="View\Patients.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

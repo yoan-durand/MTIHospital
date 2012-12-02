@@ -16,16 +16,17 @@ namespace colle_tMedecine
         {
             base.OnStartup(e);
             View.MainWindow window = new colle_tMedecine.View.MainWindow();
+            window.DataContext = new ViewModel.MainWindow();
 
             View.Login log = new colle_tMedecine.View.Login();
             ViewModel.LoginViewModel vm = new colle_tMedecine.ViewModel.LoginViewModel();
             log.DataContext = vm;
             window.contentcontrol.Content = log;
 
-            View.Fiche_Patient menu = new colle_tMedecine.View.Fiche_Patient();
-            ViewModel.Fiche_PatientViewModel fm = new colle_tMedecine.ViewModel.Fiche_PatientViewModel();
+           /* View.Nouveau_Personnel menu = new colle_tMedecine.View.Nouveau_Personnel();
+            ViewModel.Nouveau_PersonnelViewModel fm = new colle_tMedecine.ViewModel.Nouveau_PersonnelViewModel();
             menu.DataContext = fm;
-            window.contentcontrol.Content = menu;
+            window.contentcontrol.Content = menu;*/
 
             window.Show();
             // Application.Current.MainWindow.DataContext;

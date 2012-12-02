@@ -8,7 +8,6 @@
 	Width="640" Height="480">
 
 	<Grid x:Name="LayoutRoot" Background="White">
-		<local:Menu HorizontalAlignment="Left" VerticalAlignment="Top" d:IsPrototypingComposition="True" Height="183.5"/>
 		<Button x:Name="Add_button" Content="Ajouter" Height="28.5" Margin="224,0,289,102"  VerticalAlignment="Bottom">
 		</Button>
 		<TextBox x:Name="Name_input" Height="22.5" Margin="280,187.5,192.5,0"  TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.203,-0.649"/>

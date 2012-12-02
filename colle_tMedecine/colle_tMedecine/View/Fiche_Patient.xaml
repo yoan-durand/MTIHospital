@@ -8,7 +8,6 @@
 	Width="640" Height="480">
 
 	<Grid x:Name="LayoutRoot" Background="White">
-		<local:Menu HorizontalAlignment="Left" VerticalAlignment="Top" d:IsPrototypingComposition="True" Height="84"/>
 		<ListBox x:Name="Observations" HorizontalAlignment="Left" Margin="8,130,0,87" Width="100">
 			<ListBoxItem>
 				<ListBoxItem Content="10/04/11"/>
