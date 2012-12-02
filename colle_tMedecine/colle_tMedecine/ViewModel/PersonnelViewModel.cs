@@ -42,7 +42,7 @@ namespace colle_tMedecine.ViewModel
         #endregion
         public void FillListUser()
         {
-            /*colle_tMedecineServices.ServiceUser.ServiceUserClient serviceUser = new colle_tMedecineServices.ServiceUser.ServiceUserClient();
+           colle_tMedecineServices.ServiceUser.ServiceUserClient serviceUser = new colle_tMedecineServices.ServiceUser.ServiceUserClient();
            colle_tMedecineServices.ServiceUser.User[] listUser = serviceUser.GetListUser();
             foreach(colle_tMedecineServices.ServiceUser.User user in listUser)
             {
@@ -56,7 +56,6 @@ namespace colle_tMedecine.ViewModel
                     Co = user.Connected};
                 ListUser.Add(userModel);
             }
-            */
         }
 
         public void ShowNewUser()

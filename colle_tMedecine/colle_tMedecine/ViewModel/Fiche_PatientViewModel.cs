@@ -10,6 +10,10 @@ namespace colle_tMedecine.ViewModel
         private colle_tMedecineServices.ServicePatient.Patient _patient;
         private colle_tMedecineServices.ServiceObservation.Observation _selectedObservation;
 
+        public Fiche_PatientViewModel()
+        {
+        }
+
         public Fiche_PatientViewModel(colle_tMedecineServices.ServicePatient.Patient patient)
         {
             SelectedObservation = null;
