@@ -4,18 +4,16 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:colle_tMedecine.View" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:pi="http://schemas.microsoft.com/prototyping/2010/interactivity" x:Name="nouveau_collaborateur"
 	mc:Ignorable="d"
-	x:Class="colle_tMedecine.View.Écran_1_2"
+	x:Class="colle_tMedecine.View.Nouveau_Personnel"
 	Width="640" Height="480">
 
 	<Grid x:Name="LayoutRoot" Background="White">
-		<local:Menu HorizontalAlignment="Left" VerticalAlignment="Top" d:IsPrototypingComposition="True" Height="120"/>
-		<local:Menu HorizontalAlignment="Left" VerticalAlignment="Top" Height="124"/>
 		<Button x:Name="Add_button" Content="Ajouter" Height="28.5" Margin="257,0,256,49.5" VerticalAlignment="Bottom">
 		</Button>
 		<TextBox x:Name="Name_input" Height="22.5" Margin="297,190.5,175.5,0"  TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.203,-0.649"/>
 		<TextBox x:Name="Firstname_input" Height="20.5" Margin="297,213,175.5,0"  TextWrapping="Wrap" VerticalAlignment="Top"/>
 		<Label Content="Nom" Height="22.5" Margin="174,190.5,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="101"/>
-		<Label Content="Prenom" Height="20.5" Margin="174,213,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="101"/>
+		<Label Content="Prenom" Height="21" Margin="174,213,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="101"/>
 		<TextBlock HorizontalAlignment="Left" Height="33" Margin="8,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" FontSize="21.333" FontWeight="Bold"><Run Language="fr-fr" Text="Ajouter un collaborateur"/></TextBlock>
 		<Label Content="Role" Margin="174,234.5,0,225" HorizontalAlignment="Left" Width="101"/>
 		<ComboBox x:Name="Role_liste" SelectedIndex="0" Margin="297,234.5,175.5,225">

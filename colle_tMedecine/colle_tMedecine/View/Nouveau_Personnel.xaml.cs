@@ -16,9 +16,9 @@ namespace colle_tMedecine.View
 	/// <summary>
 	/// Logique d'interaction pour Écran_1_2.xaml
 	/// </summary>
-	public partial class Écran_1_2 : UserControl
+	public partial class Nouveau_Personnel : UserControl
 	{
-		public Écran_1_2()
+        public Nouveau_Personnel()
 		{
 			this.InitializeComponent();
 		}
