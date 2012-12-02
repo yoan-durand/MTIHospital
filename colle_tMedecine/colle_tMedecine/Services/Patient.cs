@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace colle_tMedecineServices.Services
+namespace colle_tMedecine.Services
 {
     class Patient : ServicePatient.IServicePatient
     {

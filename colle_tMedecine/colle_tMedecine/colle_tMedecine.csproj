@@ -39,6 +39,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -59,6 +60,24 @@
     <Compile Include="Converter\BoolToVisibleOrHidden .cs" />
     <Compile Include="Helper\PasswordHelper.cs" />
     <Compile Include="RelayCommand.cs" />
+    <Compile Include="Service References\ServiceObservation\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServicePatient\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServiceUser\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Observation.cs" />
+    <Compile Include="Services\Patient.cs" />
+    <Compile Include="Services\User.cs" />
     <Compile Include="ViewModel\MainWindow.cs" />
     <Compile Include="ViewModel\MenuViewModel.cs" />
     <Compile Include="ViewModel\PersonnelViewModel.cs" />
@@ -152,20 +171,101 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\ServiceObservation\ServiceObservation.wsdl" />
+    <None Include="Service References\ServiceObservation\ServiceObservation.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceObservation\ServiceObservation1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceObservation\ServiceObservation2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceObservation\ServiceObservation3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicePatient\colle_tMedecine.ServicePatient.Patient.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServicePatient\ServicePatient.wsdl" />
+    <None Include="Service References\ServicePatient\ServicePatient.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicePatient\ServicePatient1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicePatient\ServicePatient2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicePatient\ServicePatient3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceUser\colle_tMedecine.ServiceUser.User.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceUser\ServiceUser.wsdl" />
+    <None Include="Service References\ServiceUser\ServiceUser.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceUser\ServiceUser1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceUser\ServiceUser2.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\colle_tMedecineServices\colle_tMedecineServices.csproj">
-      <Project>{4E2ABC67-B335-4995-86B1-8AD1B6C64FFA}</Project>
-      <Name>colle_tMedecineServices</Name>
-    </ProjectReference>
+    <WCFMetadataStorage Include="Service References\ServiceObservation\" />
+    <WCFMetadataStorage Include="Service References\ServicePatient\" />
+    <WCFMetadataStorage Include="Service References\ServiceUser\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServicePatient\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServicePatient\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServicePatient\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceObservation\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceObservation\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceObservation\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\DataSources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceUser\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceUser\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceUser\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

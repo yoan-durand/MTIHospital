@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="b41ce8dd-747e-44f1-a78c-7f3ae5524b59" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="6153f29e-d059-4187-84c9-2b0bfabeb85d" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <EnableDataBinding>true</EnableDataBinding>
@@ -21,10 +21,10 @@
     <MetadataSource Address="http://windows.kasiamac.com/Wcf-Medical_deploy/ServiceUser.svc?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ServiceUser.xsd" MetadataType="Schema" ID="87575616-fb74-4b41-b3db-35d759b1522d" SourceId="1" SourceUrl="http://windows.kasiamac.com/Wcf-Medical_deploy/ServiceUser.svc?xsd=xsd0" />
-    <MetadataFile FileName="ServiceUser1.xsd" MetadataType="Schema" ID="db4e02ef-1af4-429d-b8f6-410454689cca" SourceId="1" SourceUrl="http://windows.kasiamac.com/Wcf-Medical_deploy/ServiceUser.svc?xsd=xsd1" />
-    <MetadataFile FileName="ServiceUser.wsdl" MetadataType="Wsdl" ID="496b7f3b-4c39-46ae-a8f8-96a09cac3a99" SourceId="1" SourceUrl="http://windows.kasiamac.com/Wcf-Medical_deploy/ServiceUser.svc?wsdl" />
-    <MetadataFile FileName="ServiceUser2.xsd" MetadataType="Schema" ID="09c0400a-c845-4b94-b844-40b4d4f07aba" SourceId="1" SourceUrl="http://windows.kasiamac.com/Wcf-Medical_deploy/ServiceUser.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServiceUser.xsd" MetadataType="Schema" ID="f5ad109c-909c-49d8-ac4d-503e7be8e5b4" SourceId="1" SourceUrl="http://windows.kasiamac.com/Wcf-Medical_deploy/ServiceUser.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiceUser1.xsd" MetadataType="Schema" ID="61f9fd39-9551-4701-8b74-eef15a4c5b1d" SourceId="1" SourceUrl="http://windows.kasiamac.com/Wcf-Medical_deploy/ServiceUser.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServiceUser.wsdl" MetadataType="Wsdl" ID="e0f4e936-7ccd-4588-bded-ca9fc4c7bd5e" SourceId="1" SourceUrl="http://windows.kasiamac.com/Wcf-Medical_deploy/ServiceUser.svc?wsdl" />
+    <MetadataFile FileName="ServiceUser2.xsd" MetadataType="Schema" ID="4ade8995-70d0-4a37-98b1-3c4b474dc570" SourceId="1" SourceUrl="http://windows.kasiamac.com/Wcf-Medical_deploy/ServiceUser.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

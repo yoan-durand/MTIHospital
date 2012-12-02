@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace colle_tMedecineServices.Services
+namespace colle_tMedecine.Services
 {
     class User : ServiceUser.IServiceUser
+
     {
         public ServiceUser.User[] GetListUser()
         {

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace colle_tMedecineServices.ServiceObservation {
+namespace colle_tMedecine.ServiceObservation {
     using System.Runtime.Serialization;
     using System;
     
@@ -143,16 +143,16 @@ namespace colle_tMedecineServices.ServiceObservation {
     public interface IServiceObservation {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceObservation/AddObservation", ReplyAction="http://tempuri.org/IServiceObservation/AddObservationResponse")]
-        bool AddObservation(int idPatient, colle_tMedecineServices.ServiceObservation.Observation obs);
+        bool AddObservation(int idPatient, colle_tMedecine.ServiceObservation.Observation obs);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IServiceObservationChannel : colle_tMedecineServices.ServiceObservation.IServiceObservation, System.ServiceModel.IClientChannel {
+    public interface IServiceObservationChannel : colle_tMedecine.ServiceObservation.IServiceObservation, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ServiceObservationClient : System.ServiceModel.ClientBase<colle_tMedecineServices.ServiceObservation.IServiceObservation>, colle_tMedecineServices.ServiceObservation.IServiceObservation {
+    public partial class ServiceObservationClient : System.ServiceModel.ClientBase<colle_tMedecine.ServiceObservation.IServiceObservation>, colle_tMedecine.ServiceObservation.IServiceObservation {
         
         public ServiceObservationClient() {
         }
@@ -173,7 +173,7 @@ namespace colle_tMedecineServices.ServiceObservation {
                 base(binding, remoteAddress) {
         }
         
-        public bool AddObservation(int idPatient, colle_tMedecineServices.ServiceObservation.Observation obs) {
+        public bool AddObservation(int idPatient, colle_tMedecine.ServiceObservation.Observation obs) {
             return base.Channel.AddObservation(idPatient, obs);
         }
     }
