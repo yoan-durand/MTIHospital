@@ -13,6 +13,7 @@ namespace colle_tMedecine.Model
         private string _name;
         private string _firstname;
         private DateTime _birth;
+        private string _birthday;
         private List<Model.Observation> _obs;
         #endregion
 
@@ -29,6 +30,13 @@ namespace colle_tMedecine.Model
         {
             get { return _birth; }
             set { _birth = value; }
+        }
+
+        [DataMember]
+        public string Birthday
+        {
+            get { return _birthday; }
+            set { _birthday = value; }
         }
 
         [DataMember]

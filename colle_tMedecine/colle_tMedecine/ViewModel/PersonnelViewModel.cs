@@ -42,9 +42,11 @@ namespace colle_tMedecine.ViewModel
         #endregion
         public void FillListUser()
         {
-           colle_tMedecineServices.ServiceUser.ServiceUserClient serviceUser = new colle_tMedecineServices.ServiceUser.ServiceUserClient();
-           colle_tMedecineServices.ServiceUser.User[] listUser = serviceUser.GetListUser();
-            foreach(colle_tMedecineServices.ServiceUser.User user in listUser)
+            ServiceUser.ServiceUserClient service = new ServiceUser.ServiceUserClient();
+            ServiceUser.User[] listUser = service.GetListUser();
+            ObservableCollection<Model.User> listModel = new ObservableCollection<Model.User>();
+
+            foreach(ServiceUser.User user in listUser)
             {
                 Model.User userModel = new Model.User {
                     Login = user.Login,
@@ -54,8 +56,24 @@ namespace colle_tMedecine.ViewModel
                     Pic = user.Picture, 
                     Role = user.Role,
                     Co = user.Connected};
-                ListUser.Add(userModel);
+                userModel.Name = FirstUpper(userModel.Name);
+                userModel.Firstname = FirstUpper(userModel.Firstname);
+                userModel.Role = FirstUpper(userModel.Role);
+                listModel.Add(userModel);
             }
+            ListUser = listModel;
+        }
+
+        public string FirstUpper(string str)
+        {
+            string s = str[0].ToString();
+
+            s = s.ToUpper();
+            for (int i = 1; i < str.Length; i++)
+            {
+                s += str[i].ToString();
+            }
+            return s;
         }
 
         public void ShowNewUser()

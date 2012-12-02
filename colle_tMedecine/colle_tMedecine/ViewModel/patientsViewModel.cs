@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Input;
+using System.Collections.ObjectModel;
 
 namespace colle_tMedecine.ViewModel
 {
@@ -14,9 +15,15 @@ namespace colle_tMedecine.ViewModel
             private ICommand _patientSheet; 
         #endregion
 
+        #region Attributs
+
+            private ObservableCollection<Model.Patient> _listPatient;
+
+        #endregion
+
         #region Getter/setter
 
-        public ICommand NewPatient
+            public ICommand NewPatient
         {
             get { return this._newPatient; }
             set { this._newPatient = value; }
@@ -27,6 +34,12 @@ namespace colle_tMedecine.ViewModel
             get { return this._patientSheet; }
             set { this._patientSheet = value; }
         }
+
+        public ObservableCollection<Model.Patient> ListPatient
+        {
+            get { return this._listPatient; }
+            set { this._listPatient = value; }
+        }
         #endregion
 
         #region Construtor
@@ -34,9 +47,10 @@ namespace colle_tMedecine.ViewModel
         {
             _newPatient = new RelayCommand(param => ShowNewPatient(), param => true);
             _patientSheet = new RelayCommand(param => ShowPatientSheet(), param => true);
+            ObservableCollection<Model.Patient> _listPatient = new ObservableCollection<Model.Patient>();
+            FillListPatient();
         }
         #endregion
-       
 
         public void ShowNewPatient()
         {
@@ -56,6 +70,58 @@ namespace colle_tMedecine.ViewModel
             ViewModel.Fiche_PatientViewModel vm = new colle_tMedecine.ViewModel.Fiche_PatientViewModel();
             view.DataContext = vm;
             mainwindow.contentcontrol.Content = view;
+        }
+
+        public void FillListPatient()
+        {
+            ServicePatient.ServicePatientClient service = new ServicePatient.ServicePatientClient();
+            ServicePatient.Patient[] listPatient = service.GetListPatient();
+            ObservableCollection<Model.Patient> listModel = new ObservableCollection<Model.Patient>();
+            List<Model.Observation> listObs = new List<Model.Observation>();
+
+            foreach (ServicePatient.Patient pat in listPatient)
+            {
+                Model.Patient patient = new Model.Patient
+                {
+                    Birth = pat.Birthday,
+                    Firstname = pat.Firstname,
+                    Name = pat.Name,
+                };
+                
+                foreach (ServicePatient.Observation obs in pat.Observations)
+                {
+                    Model.Observation observation = new Model.Observation
+                    {
+                        Comments = obs.Comment,
+                        Date = obs.Date,
+                        Pic = obs.Pictures,
+                        Prescriptions = obs.Prescription.ToList(),
+                        Pressure = obs.BloodPressure,
+                        Weight = obs.Weight
+                    };
+                    listObs.Add(observation);
+                }
+                patient.Obs = listObs;
+
+                patient.Name = FirstUpper(patient.Name);
+                patient.Firstname = FirstUpper(patient.Firstname);
+                patient.Birthday = pat.Birthday.ToString("0:dd/MM/yyyy");
+
+                listModel.Add(patient);
+            }
+            ListPatient = listModel;
+        }
+
+        public string FirstUpper(string str)
+        {
+            string s = str[0].ToString();
+
+            s = s.ToUpper();
+            for (int i = 1; i < str.Length; i++)
+            {
+                s += str[i].ToString();
+            }
+            return s;
         }
     }
 }
