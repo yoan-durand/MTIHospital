@@ -15,6 +15,7 @@ namespace colle_tMedecine.Model
         private DateTime _birth;
         private string _birthday;
         private List<Model.Observation> _obs;
+        private int _id;
         #endregion
 
         #region Getter/Setter
@@ -51,6 +52,13 @@ namespace colle_tMedecine.Model
         {
             get { return _name; }
             set { _name = value; }
+        }
+
+        [DataMember]
+        public int Id
+        {
+            get { return _id; }
+            set { _id = value; }
         }
         #endregion
 

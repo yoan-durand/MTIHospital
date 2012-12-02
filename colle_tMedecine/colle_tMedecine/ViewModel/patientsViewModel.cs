@@ -12,7 +12,8 @@ namespace colle_tMedecine.ViewModel
     {
         #region Command
             private ICommand _newPatient;
-            private ICommand _patientSheet; 
+            private ICommand _patientSheet;
+            private ICommand _supprPatient;
         #endregion
 
         #region Attributs
@@ -35,6 +36,12 @@ namespace colle_tMedecine.ViewModel
             set { this._patientSheet = value; }
         }
 
+        public ICommand SupprPatient
+        {
+            get { return this._supprPatient; }
+            set { this._supprPatient = value; }
+        }
+        
         public ObservableCollection<Model.Patient> ListPatient
         {
             get { return this._listPatient; }
@@ -46,7 +53,8 @@ namespace colle_tMedecine.ViewModel
         public PatientsViewModel()
         {
             _newPatient = new RelayCommand(param => ShowNewPatient(), param => true);
-            _patientSheet = new RelayCommand(param => ShowPatientSheet(), param => true);
+            _patientSheet = new RelayCommand (ShowPatientSheet);
+            _supprPatient = new RelayCommand(DeletePatient);
             ObservableCollection<Model.Patient> _listPatient = new ObservableCollection<Model.Patient>();
             FillListPatient();
         }
@@ -62,14 +70,24 @@ namespace colle_tMedecine.ViewModel
             mainwindow.contentcontrol.Content = view;
         }
 
-        public void ShowPatientSheet()
+        public void ShowPatientSheet(object param)
         {
             View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
-
+            
+            Model.Patient pat = (Model.Patient) param;
+      
             View.Fiche_Patient view = new colle_tMedecine.View.Fiche_Patient();
-            ViewModel.Fiche_PatientViewModel vm = new colle_tMedecine.ViewModel.Fiche_PatientViewModel();
+            ViewModel.Fiche_PatientViewModel vm = new colle_tMedecine.ViewModel.Fiche_PatientViewModel(pat);
             view.DataContext = vm;
             mainwindow.contentcontrol.Content = view;
+        }
+
+        public void DeletePatient(object param)
+        {
+            Model.Patient patient = (Model.Patient)param;
+            ListPatient.Remove(patient);
+            ServicePatient.ServicePatientClient service = new ServicePatient.ServicePatientClient();
+            service.DeletePatient(patient.Id);
         }
 
         public void FillListPatient()
@@ -86,6 +104,7 @@ namespace colle_tMedecine.ViewModel
                     Birth = pat.Birthday,
                     Firstname = pat.Firstname,
                     Name = pat.Name,
+                    Id = pat.Id
                 };
                 
                 foreach (ServicePatient.Observation obs in pat.Observations)

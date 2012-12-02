@@ -7,9 +7,18 @@
                 <TextBlock Height="28" TextWrapping="Wrap" Width="151.5" HorizontalAlignment="Left"><Run Language="fr-fr" Text="{Binding Path=Name}"/></TextBlock>
                 <TextBlock TextWrapping="Wrap" Width="144" Margin="0,0,0,6"><Run Language="fr-fr" Text="{Binding Path=Firstname}"/></TextBlock>
                 <TextBlock TextWrapping="Wrap" Width="78" Margin="0,0,0,3"><Run Language="fr-fr" Text="{Binding Path=Birthday}"/></TextBlock>
-                <Button Command="{Binding PatientSheet}" Content="Consulter la fiche" Width="108" Margin="0,0,0,4.5">
+                <Button Command="{Binding Path=DataContext.PatientSheet, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}"
+                        CommandParameter="{Binding}"
+                        Content="Consulter la fiche" 
+                        Width="108" 
+                        Margin="0,0,0,4.5">
                 </Button>
-                <Button Content="Supprimer" Width="91.5" Margin="0,0,0,4.5"/>
+                <Button Content="Supprimer"
+                        Width="91.5" 
+                        Margin="0,0,0,4.5"
+                        Command="{Binding Path=DataContext.SupprPatient, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}"
+                        CommandParameter="{Binding}"/>
+                    
             </StackPanel>
         </DataTemplate>
     </UserControl.Resources>

@@ -12,7 +12,11 @@
                 <TextBlock Height="28" TextWrapping="Wrap" Width="151.5" HorizontalAlignment="Left"><Run Language="fr-fr" Text="{Binding Path=Name}"/></TextBlock>
                 <TextBlock TextWrapping="Wrap" Width="144" Margin="0,0,0,6"><Run Language="fr-fr" Text="{Binding Path=Firstname}"/></TextBlock>
                 <TextBlock TextWrapping="Wrap" Width="78" Margin="0,0,0,3"><Run Language="fr-fr" Text="{Binding Path=Role}"/></TextBlock>
-                <Button Content="Supprimer" Width="108" Margin="0,0,0,4.5"/>    
+                <Button Content="Supprimer" 
+                        Command="{Binding Path=DataContext.SupprUser, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}"
+                        CommandParameter="{Binding}"
+                        Width="108" 
+                        Margin="0,0,0,4.5"/>    
             </StackPanel>
         </DataTemplate>
     </UserControl.Resources>

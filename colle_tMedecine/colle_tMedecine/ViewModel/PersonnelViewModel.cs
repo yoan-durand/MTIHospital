@@ -16,6 +16,7 @@ namespace colle_tMedecine.ViewModel
 
         #region Command
         public ICommand _newUser;
+        public ICommand _supprUser;
         #endregion
 
         #region Getter/setter
@@ -30,12 +31,19 @@ namespace colle_tMedecine.ViewModel
             get { return this._newUser; }
             set { this._newUser = value; }
         }
+
+        public ICommand SupprUser
+        {
+            get { return this._supprUser; }
+            set { this._supprUser = value; }
+        }
         #endregion
 
         #region Construtor
         public PersonnelViewModel()
         {
             _newUser = new RelayCommand(param => ShowNewUser(), param => true);
+            _supprUser = new RelayCommand(DeleteUser);
             ObservableCollection<Model.User> _listUser = new ObservableCollection<Model.User>();
             FillListUser();
         }
@@ -84,6 +92,15 @@ namespace colle_tMedecine.ViewModel
             ViewModel.Nouveau_PersonnelViewModel vm = new colle_tMedecine.ViewModel.Nouveau_PersonnelViewModel();
             view.DataContext = vm;
             mainwindow.contentcontrol.Content = view;
+        }
+
+        public void DeleteUser(object param)
+        {
+            ServiceUser.ServiceUserClient service = new ServiceUser.ServiceUserClient();
+            Model.User user = (Model.User)param;
+            ListUser.Remove(user);
+            service.DeleteUser(user.Login);
+
         }
     }
 }
