@@ -9,7 +9,8 @@ namespace colle_tMedecine.ViewModel
 {
     class MainWindow : BaseViewModel
     {
-         private ICommand _showPatientList;
+        #region Attributs
+        private ICommand _showPatientList;
 
         public ICommand ShowPatientList
         {
@@ -33,14 +34,50 @@ namespace colle_tMedecine.ViewModel
             set { _logOut = value; }
         }
 
+        private bool _menuIsActive;
+
+        public bool MenuIsActive
+        {
+            get { return _menuIsActive; }
+            set {
+                _menuIsActive = value;
+                OnPropertyChanged("MenuIsActive");
+            }
+        }
+
+        private Model.User _connectedUser;
+
+        public Model.User ConnectedUser
+        {
+            get { return _connectedUser; }
+            set { _connectedUser = value; }
+        }
+        
+        #endregion
+
 
         public MainWindow ()
         {
             _showPatientList = new RelayCommand(param => showPatients(), param => true);
             _showUserList = new RelayCommand(param => showUsers(), param => true);
+            _logOut = new RelayCommand(param => disconnect(), param => true);
+            _menuIsActive = true;
 
         }
 
+        private void disconnect()
+        {
+            View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
+
+            ViewModel.MainWindow mainwindowVM = (ViewModel.MainWindow) mainwindow.DataContext;
+            mainwindowVM.MenuIsActive = false;
+            View.Login view = new colle_tMedecine.View.Login();
+            ViewModel.LoginViewModel vm = new colle_tMedecine.ViewModel.LoginViewModel();
+            view.DataContext = vm;
+            mainwindow.contentcontrol.Content = view;
+        }
+
+        #region Commandes
         private void showPatients()
         {
             View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
@@ -60,5 +97,6 @@ namespace colle_tMedecine.ViewModel
             view.DataContext = vm;
             mainwindow.contentcontrol.Content = view;
         }
+        #endregion
     }
 }
