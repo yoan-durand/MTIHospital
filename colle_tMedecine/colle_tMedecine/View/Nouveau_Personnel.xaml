@@ -4,23 +4,33 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:colle_tMedecine.View" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:pi="http://schemas.microsoft.com/prototyping/2010/interactivity" x:Name="nouveau_collaborateur"
 	mc:Ignorable="d"
+    xmlns:ff="clr-namespace:colle_tMedecine.Helper"
 	x:Class="colle_tMedecine.View.Nouveau_Personnel"
 	Width="640" Height="480">
 
 	<Grid x:Name="LayoutRoot" Background="White">
-		<Button x:Name="Add_button" Content="Ajouter" Height="28.5" Margin="257,0,256,49.5" VerticalAlignment="Bottom">
+		<Button x:Name="Add_button" Content="Ajouter" Height="29" Margin="254,0,259,19" VerticalAlignment="Bottom">
 		</Button>
-		<TextBox x:Name="Name_input" Height="22.5" Margin="297,190.5,175.5,0"  TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.203,-0.649"/>
-		<TextBox x:Name="Firstname_input" Height="20.5" Margin="297,213,175.5,0"  TextWrapping="Wrap" VerticalAlignment="Top"/>
-		<Label Content="Nom" Height="22.5" Margin="174,190.5,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="101"/>
-		<Label Content="Prenom" Height="21" Margin="174,213,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="101"/>
+        <TextBox x:Name="Name_input" Text="{Binding NameInput}" Height="29" Margin="297,173,157,0"  TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.203,-0.649"/>
+        <TextBox x:Name="Firstname_input" Text="{Binding FirstnameInput}" Height="28" Margin="297,202,157,0"  TextWrapping="Wrap" VerticalAlignment="Top"/>
+		<Label Content="Nom *" Height="28" Margin="174,173,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="101"/>
+		<Label Content="Prenom *" Height="29" Margin="174,201,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="101"/>
 		<TextBlock HorizontalAlignment="Left" Height="33" Margin="8,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" FontSize="21.333" FontWeight="Bold"><Run Language="fr-fr" Text="Ajouter un collaborateur"/></TextBlock>
-		<Label Content="Role" Margin="174,234.5,0,225" HorizontalAlignment="Left" Width="101"/>
-		<ComboBox x:Name="Role_liste" SelectedIndex="0" Margin="297,234.5,175.5,225">
+		<Label Content="Role *" Margin="174,230,0,220" HorizontalAlignment="Left" Width="101"/>
+		<ComboBox x:Name="Role_liste" SelectedIndex="0" Margin="297,234,157,225">
 			<ComboBoxItem Content="Medecin"/>
 			<ComboBoxItem Content="infirmier(e)"/>
 		</ComboBox>
-		<Image x:Name="Avatar" Height="100" Margin="269,0,271,82" VerticalAlignment="Bottom"/>
-		<TextBlock Height="25" Margin="269,0,271,186" TextWrapping="Wrap" VerticalAlignment="Bottom"><Run Language="fr-fr" Text="Photo de profil"/></TextBlock>
-	</Grid>
+        <Label Content="Login *" HorizontalAlignment="Left" Margin="174,265,0,0" VerticalAlignment="Top" Width="100"/>
+        <TextBox x:Name="Login_text" Text="{Binding LoginInput}" TextWrapping="Wrap" VerticalAlignment="Top" Margin="297,260,157,0" Height="30"/>
+        <Label Content="Mot de passe*" HorizontalAlignment="Left" Margin="174,296,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.249,0.149" Width="100"/>
+        <PasswordBox x:Name="Password" ff:PasswordHelper.Attach="True"  ff:PasswordHelper.Password="{Binding PasswordInput, Mode=TwoWay}" Margin="297,295,157,0" VerticalAlignment="Top" Height="27"/>
+        <Label Content="Confirmation Mdp*" HorizontalAlignment="Left" Margin="174,327,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.249,0.149" Width="119"/>
+        <PasswordBox x:Name="Password_confirm" ff:PasswordHelper.Attach="True"  ff:PasswordHelper.Password="{Binding PasswordConfirmInput, Mode=TwoWay}" Margin="298,327,157,0" VerticalAlignment="Top" Height="27"/>
+        <TextBlock Height="25" Margin="175,0,365,71" TextWrapping="Wrap" VerticalAlignment="Bottom" RenderTransformOrigin="1.412,-0.271"><Run Language="fr-fr" Text="Photo de profil"/></TextBlock>
+        <TextBox HorizontalAlignment="Left" Height="46" Margin="297,372,0,0" TextWrapping="Wrap" Text="Glisser-déposer votre image ici" VerticalAlignment="Top" Width="186"/>
+
+
+
+    </Grid>
 </UserControl>

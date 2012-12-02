@@ -58,8 +58,8 @@ namespace colle_tMedecine.ViewModel
                 mainwindowVM.MenuIsActive = true;
                // mainwindowVM.ConnectedUser = 
 
-                View.Nouveau_patient view = new View.Nouveau_patient();
-                ViewModel.Nouveau_patientViewModel vm = new colle_tMedecine.ViewModel.Nouveau_patientViewModel();
+                View.Patients view = new View.Patients ();
+                ViewModel.PatientsViewModel vm = new colle_tMedecine.ViewModel.PatientsViewModel();
                 view.DataContext = vm;
                 mainwindow.contentcontrol.Content = view;
             }
