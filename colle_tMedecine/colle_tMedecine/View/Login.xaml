@@ -9,27 +9,34 @@
 	Width="992" Height="580">
 
 	<Grid x:Name="LayoutRoot">
-		<Rectangle Fill="#FFC9DBE7" Margin="98,70" Stroke="Black" RadiusX="20" RadiusY="20"/>
-        <Button x:Name="Connection" Command="{Binding Connect}" Content="Se connecter" Margin="458.705,0,458.868,237.333" VerticalAlignment="Bottom" d:LayoutOverrides="Width">
+		<Rectangle Margin="98,70" Stroke="Black" RadiusX="20" RadiusY="20">
+			<Rectangle.Fill>
+				<SolidColorBrush Color="#FFC9DBE7" Opacity="0.65"/>
+			</Rectangle.Fill>
+		</Rectangle>
+        <Button x:Name="Connection" Command="{Binding Connect}" Content="Se connecter" Margin="438.705,0,446.163,228.333" VerticalAlignment="Bottom" Foreground="#FFF3F3F3" Height="35.96">
         	<Button.Background>
         		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
         			<GradientStop Color="#FF3F7398" Offset="0"/>
-        			<GradientStop Color="#FF195077" Offset="1"/>
+        			<GradientStop Color="{DynamicResource Blue_Button}" Offset="1"/>
         		</LinearGradientBrush>
         	</Button.Background>
         </Button>
-		<Label Content="Veuillez vous connectez" Margin="407,157.04,411.333,0" VerticalAlignment="Top" FontWeight="Bold" HorizontalAlignment="Center"/>
-		<StackPanel Margin="339.666,213,339.666,0" Background="#FFC9DBE7" Height="64.666" VerticalAlignment="Top" d:LayoutOverrides="Width">
+		<Label Content="Veuillez vous connectez" Margin="423.33,166.04,424.663,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FF004D83" d:LayoutOverrides="Width"/>
+		<StackPanel Margin="339.666,213,339.666,0" Height="64.666" VerticalAlignment="Top" d:LayoutOverrides="Width">
 			<StackPanel Margin="0,0,58,0" Orientation="Horizontal" Height="28">
-				<TextBlock x:Name="Idendifiant" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" Width="87" Margin="0"><Run Language="fr-fr" Text="Identifiant :"/></TextBlock>
+				<TextBlock x:Name="Idendifiant" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" Width="87" Margin="0">
+					<TextBlock.Foreground>
+						<SolidColorBrush Color="{DynamicResource BlueTextColor}"/>
+					</TextBlock.Foreground><Run Language="fr-fr" Text="Identifiant :"/></TextBlock>
 				<TextBox x:Name="Login_text" Text="{Binding LoginInput}" Margin="0,1.5" TextWrapping="Wrap" Height="25" Width="169"/>
 			</StackPanel>
 			<StackPanel Margin="0,10,58,0" Orientation="Horizontal" Height="26" VerticalAlignment="Center" HorizontalAlignment="Center">
-				<TextBlock x:Name="MDP" Margin="0" TextWrapping="Wrap" Width="87" Height="25" VerticalAlignment="Top"><Run Language="fr-fr" Text="Mot de passe :"/></TextBlock>
+				<TextBlock x:Name="MDP" Margin="0" TextWrapping="Wrap" Width="87" Height="25" VerticalAlignment="Top" Foreground="#FF035C93"><Run Language="fr-fr" Text="Mot de passe :"/></TextBlock>
 				<PasswordBox x:Name="Password" ff:PasswordHelper.Attach="True"  ff:PasswordHelper.Password="{Binding PasswordInput, Mode=TwoWay}" Width="167.554" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0"/>
 			</StackPanel>
 		</StackPanel>
-		<TextBlock Height="39" Margin="258.458,18,260.458,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="26.667" FontWeight="Bold" d:LayoutOverrides="Width"><Run Language="fr-fr" Text="Bienvenue sur l'Application Medecine"/></TextBlock>
+		<TextBlock Height="39" Margin="258.458,18,260.458,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="26.667" FontWeight="Bold" d:LayoutOverrides="Width" Foreground="White"><Run Language="fr-fr" Text="Bienvenue sur l'Application Medecine"/></TextBlock>
 		
 		
 	</Grid>

@@ -95,7 +95,7 @@ namespace colle_tMedecine.ViewModel
         public void ShowPatientSheet(object param)
         {
             View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
-            
+           
             Model.Patient pat = (Model.Patient) param;
       
             View.Fiche_Patient view = new colle_tMedecine.View.Fiche_Patient();
