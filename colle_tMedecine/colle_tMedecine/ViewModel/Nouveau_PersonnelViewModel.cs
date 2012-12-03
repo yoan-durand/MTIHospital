@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using colle_tMedecine.ServiceUser;
+using System.Windows;
 
 namespace colle_tMedecine.ViewModel
 {
@@ -73,6 +74,7 @@ namespace colle_tMedecine.ViewModel
 
         private void addUser()
         {
+            ServiceUserClient service = new ServiceUserClient();
             User new_user = new User();
             new_user.Connected = false;
             new_user.Firstname = _firstNameInput;
@@ -81,6 +83,18 @@ namespace colle_tMedecine.ViewModel
             new_user.Pwd = _passwordInput;
             new_user.Login = _loginInput;
             //picture
+            if (service.AddUser(new_user))
+            {
+                View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
+
+                View.Personnel view = new colle_tMedecine.View.Personnel();
+                ViewModel.PersonnelViewModel vm = new colle_tMedecine.ViewModel.PersonnelViewModel();
+                view.DataContext = vm;
+                mainwindow.contentcontrol.Content = view;
+            }
+            
+
+
         }
         
         

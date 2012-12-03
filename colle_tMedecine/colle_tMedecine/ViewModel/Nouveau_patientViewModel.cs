@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using colle_tMedecine.ServicePatient;
+using System.Windows;
 
 namespace colle_tMedecine.ViewModel
 {
@@ -53,7 +54,17 @@ namespace colle_tMedecine.ViewModel
             patient.Name = _nameInput;
             patient.Observations = null;
 
-            //call add service
+            ServicePatientClient service = new ServicePatientClient();
+
+            if (service.AddPatient(patient))
+            {
+                View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
+
+                View.Patients view = new colle_tMedecine.View.Patients();
+                ViewModel.PatientsViewModel vm = new colle_tMedecine.ViewModel.PatientsViewModel();
+                view.DataContext = vm;
+                mainwindow.contentcontrol.Content = view;
+            }
 
         }
         

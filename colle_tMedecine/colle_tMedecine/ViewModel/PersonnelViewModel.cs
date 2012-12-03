@@ -11,21 +11,34 @@ namespace colle_tMedecine.ViewModel
     class PersonnelViewModel : BaseViewModel
     {
         #region Attribut
+        private List<Model.User> _allUser;
         private ObservableCollection<Model.User> _listUser;
         private string _search;
         #endregion
 
         #region Command
-        public ICommand _newUser;
-        public ICommand _supprUser;
-        public ICommand _searchUser;
+        private ICommand _newUser;
+        private ICommand _supprUser;
+        private ICommand _searchUser;
         #endregion
 
         #region Getter/setter
         public ObservableCollection<Model.User> ListUser
         {
             get { return this._listUser; }
-            set { this._listUser = value; }
+            set {
+                    if (this._listUser != value)
+                    {
+                        this._listUser = value;
+                        OnPropertyChanged("ListUser");
+                    }
+                }
+        }
+
+        public List<Model.User> AllUser
+        {
+            get { return this._allUser; }
+            set { this._allUser = value; }
         }
 
         public string Search
@@ -59,7 +72,7 @@ namespace colle_tMedecine.ViewModel
             _newUser = new RelayCommand(param => ShowNewUser(), param => true);
             _supprUser = new RelayCommand(DeleteUser);
             _searchUser = new RelayCommand(param => SearchUserAction(), param => true);
-            ObservableCollection<Model.User> _listUser = new ObservableCollection<Model.User>();
+            
             FillListUser();
         }
 
@@ -68,7 +81,8 @@ namespace colle_tMedecine.ViewModel
         {
             ServiceUser.ServiceUserClient service = new ServiceUser.ServiceUserClient();
             ServiceUser.User[] listUser = service.GetListUser();
-            ObservableCollection<Model.User> listModel = new ObservableCollection<Model.User>();
+            _allUser = new List<Model.User>();
+           
 
             foreach(ServiceUser.User user in listUser)
             {
@@ -83,9 +97,9 @@ namespace colle_tMedecine.ViewModel
                 userModel.Name = FirstUpper(userModel.Name);
                 userModel.Firstname = FirstUpper(userModel.Firstname);
                 userModel.Role = FirstUpper(userModel.Role);
-                listModel.Add(userModel);
+                this._allUser.Add(userModel);
             }
-            ListUser = listModel;
+            ListUser = new ObservableCollection<Model.User>(_allUser);
         }
 
         public string FirstUpper(string str)
@@ -114,8 +128,11 @@ namespace colle_tMedecine.ViewModel
         {
             ServiceUser.ServiceUserClient service = new ServiceUser.ServiceUserClient();
             Model.User user = (Model.User)param;
-            ListUser.Remove(user);
-            service.DeleteUser(user.Login);
+            this._allUser.Remove(user);
+            if (service.DeleteUser(user.Login))
+            {
+                ListUser = new ObservableCollection<Model.User>(this._allUser);
+            }
 
         }
 
@@ -123,23 +140,26 @@ namespace colle_tMedecine.ViewModel
         {
             if (string.IsNullOrEmpty(this._search))
             {
-                FillListUser();
+                ListUser = new ObservableCollection<Model.User>(this._allUser);
                 return;
             }
-            string[] tabStr = this._search.Split(' ');
-            ObservableCollection<Model.User> userList = new ObservableCollection<Model.User>();
+            string[] tabStr = this._search.ToLower().Split(' ');
+           List<Model.User> userList = new List<Model.User>();
 
-            foreach (Model.User user in this._listUser)
+            foreach (Model.User user in this._allUser)
             {
                 foreach (string s in tabStr)
                 {
-                    if (user.Name.ToLower().Equals(s) || user.Firstname.ToLower().Equals(s))
+                    if (user.Name.ToLower().Contains(s) || user.Firstname.ToLower().Contains(s) || user.Role.ToLower().Contains(s))
                     {
                         userList.Add(user);
+                        break;
                     }
                 }
             }
-            ListUser = userList;           
+            ListUser = new ObservableCollection<Model.User>(userList);
+            
+                       
         }
 
     }

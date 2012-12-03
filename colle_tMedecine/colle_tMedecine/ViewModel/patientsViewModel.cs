@@ -18,7 +18,7 @@ namespace colle_tMedecine.ViewModel
         #endregion
 
         #region Attributs
-
+            private List<Model.Patient> _allPatient;
             private ObservableCollection<Model.Patient> _listPatient;
             private string _search;
 
@@ -53,7 +53,14 @@ namespace colle_tMedecine.ViewModel
         public ObservableCollection<Model.Patient> ListPatient
         {
             get { return this._listPatient; }
-            set { this._listPatient = value; }
+            set
+            {
+                if (this._listPatient != value)
+                {
+                    this._listPatient = value;
+                    OnPropertyChanged("ListPatient");
+                }
+            }
         }
 
         public string Search
@@ -69,7 +76,8 @@ namespace colle_tMedecine.ViewModel
             _newPatient = new RelayCommand(param => ShowNewPatient(), param => true);
             _patientSheet = new RelayCommand (ShowPatientSheet);
             _supprPatient = new RelayCommand(DeletePatient);
-            ObservableCollection<Model.Patient> _listPatient = new ObservableCollection<Model.Patient>();
+            _searchPatient = new RelayCommand(param => SearchPatientAction(), param => true );
+            
             FillListPatient();
         }
         #endregion
@@ -100,16 +108,19 @@ namespace colle_tMedecine.ViewModel
         public void DeletePatient(object param)
         {
             Model.Patient patient = (Model.Patient)param;
-            ListPatient.Remove(patient);
+            this._allPatient.Remove(patient);
             ServicePatient.ServicePatientClient service = new ServicePatient.ServicePatientClient();
-            service.DeletePatient(patient.Id);
+            if (service.DeletePatient(patient.Id))
+            {
+                ListPatient = new ObservableCollection<Model.Patient>(_allPatient);
+            }
         }
 
         public void FillListPatient()
         {
             ServicePatient.ServicePatientClient service = new ServicePatient.ServicePatientClient();
             ServicePatient.Patient[] listPatient = service.GetListPatient();
-            ObservableCollection<Model.Patient> listModel = new ObservableCollection<Model.Patient>();
+            _allPatient = new List<Model.Patient>();
             List<Model.Observation> listObs = new List<Model.Observation>();
 
             foreach (ServicePatient.Patient pat in listPatient)
@@ -121,29 +132,32 @@ namespace colle_tMedecine.ViewModel
                     Name = pat.Name,
                     Id = pat.Id
                 };
-                
-                foreach (ServicePatient.Observation obs in pat.Observations)
+
+                if (pat.Observations != null)
                 {
-                    Model.Observation observation = new Model.Observation
+                    foreach (ServicePatient.Observation obs in pat.Observations)
                     {
-                        Comments = obs.Comment,
-                        Date = obs.Date,
-                        Pic = obs.Pictures,
-                        Prescriptions = obs.Prescription.ToList(),
-                        Pressure = obs.BloodPressure,
-                        Weight = obs.Weight
-                    };
-                    listObs.Add(observation);
+                        Model.Observation observation = new Model.Observation
+                        {
+                            Comments = obs.Comment,
+                            Date = obs.Date,
+                            Pic = obs.Pictures,
+                            Prescriptions = obs.Prescription.ToList(),
+                            Pressure = obs.BloodPressure,
+                            Weight = obs.Weight
+                        };
+                        listObs.Add(observation);
+                    }
+                    patient.Obs = listObs;
                 }
-                patient.Obs = listObs;
 
                 patient.Name = FirstUpper(patient.Name);
                 patient.Firstname = FirstUpper(patient.Firstname);
-                patient.Birthday = pat.Birthday.ToString("0:dd/MM/yyyy");
+                patient.Birthday = pat.Birthday.ToString("dd/MM/yyyy");
 
-                listModel.Add(patient);
+                this._allPatient.Add(patient);
             }
-            ListPatient = listModel;
+            ListPatient = new ObservableCollection<Model.Patient>(this._allPatient);
         }
 
         public string FirstUpper(string str)
@@ -156,6 +170,31 @@ namespace colle_tMedecine.ViewModel
                 s += str[i].ToString();
             }
             return s;
+        }
+
+        public void SearchPatientAction()
+        {
+            if (string.IsNullOrEmpty(this._search))
+            {
+                ListPatient = new ObservableCollection<Model.Patient>(this._allPatient);
+                return;
+            }
+            string[] tabstr = this._search.ToLower().Split(' ');
+            List<Model.Patient> patientList = new List<Model.Patient>();
+
+            foreach (Model.Patient pat in this._allPatient)
+            {
+                foreach (string s in tabstr)
+                {
+                    if (pat.Name.ToLower().Contains(s) || pat.Firstname.ToLower().Contains(s) || pat.Birthday.ToLower().Contains(s))
+                    {
+                        patientList.Add(pat);
+                        break;
+                    }
+                }
+            }
+            ListPatient = new ObservableCollection<Model.Patient>(patientList);
+
         }
     }
 }
