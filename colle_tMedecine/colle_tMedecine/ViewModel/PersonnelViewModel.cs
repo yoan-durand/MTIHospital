@@ -12,11 +12,13 @@ namespace colle_tMedecine.ViewModel
     {
         #region Attribut
         private ObservableCollection<Model.User> _listUser;
+        private string _search;
         #endregion
 
         #region Command
         public ICommand _newUser;
         public ICommand _supprUser;
+        public ICommand _searchUser;
         #endregion
 
         #region Getter/setter
@@ -24,6 +26,12 @@ namespace colle_tMedecine.ViewModel
         {
             get { return this._listUser; }
             set { this._listUser = value; }
+        }
+
+        public string Search
+        {
+            get { return this._search; }
+            set { this._search = value; }
         }
 
         public ICommand NewUser
@@ -37,6 +45,12 @@ namespace colle_tMedecine.ViewModel
             get { return this._supprUser; }
             set { this._supprUser = value; }
         }
+
+        public ICommand SearchUser
+        {
+            get { return this._searchUser; }
+            set { this._searchUser = value; }
+        }
         #endregion
 
         #region Construtor
@@ -44,6 +58,7 @@ namespace colle_tMedecine.ViewModel
         {
             _newUser = new RelayCommand(param => ShowNewUser(), param => true);
             _supprUser = new RelayCommand(DeleteUser);
+            _searchUser = new RelayCommand(SearchUserAction);
             ObservableCollection<Model.User> _listUser = new ObservableCollection<Model.User>();
             FillListUser();
         }
@@ -102,5 +117,28 @@ namespace colle_tMedecine.ViewModel
             service.DeleteUser(user.Login);
 
         }
+
+        public void SearchUserAction()
+        {
+            if (string.IsNullOrEmpty(this._search))
+            {
+                return;
+            }
+            string[] tabStr = this._search.Split(' ');
+            ObservableCollection<Model.User> userList = new ObservableCollection<Model.User>();
+
+            foreach (Model.User user in ListUser)
+            {
+                foreach (string s in tabStr)
+                {
+                    if (user.Name.Equals(s) || user.Firstname.Equals(s))
+                    {
+                        userList.Add(user);
+                    }
+                }
+            }
+            ListUser = userList;           
+        }
+
     }
 }
