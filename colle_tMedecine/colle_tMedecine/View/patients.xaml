@@ -22,28 +22,29 @@
             </StackPanel>
         </DataTemplate>
     </UserControl.Resources>
-    <Grid x:Name="LayoutRoot">
-    	<Rectangle Margin="8,1,8,48" Stroke="Black" RadiusX="20" RadiusY="20">
+    <Grid x:Name="LayoutRoot">	
+    	<Rectangle Margin="8,-0.5,8,49.5" Stroke="Black" RadiusX="20" RadiusY="20">
 			<Rectangle.Fill>
 				<SolidColorBrush Color="#FFC9DBE7" Opacity="0.7"/>
 			</Rectangle.Fill>
 		</Rectangle>
-		<ListBox x:Name="ListPatient" ItemsSource="{Binding ListPatient}" ItemTemplate="{DynamicResource listPatient}" Margin="72.5,134.5,72,98.5" Background="#FFE2ECF5" >
-					
-		</ListBox>
-		<TextBox x:Name="Search_bar"  Text="{Binding Search}" Height="27.5" Margin="72.5,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="207" FontStyle="Italic"/>
-		<Button x:Name="search_button" Command="{Binding SearchPatient}" Content="Rechercher" HorizontalAlignment="Left" Height="27.5" Margin="290.708,103,0,0" VerticalAlignment="Top" Width="99.5" Foreground="White">
-			<Button.Background>
-				<SolidColorBrush Color="{DynamicResource Blue_Button}"/>
-			</Button.Background>
-		</Button>
-		<Button x:Name="new_patient_button" Command="{Binding NewPatient}" Content="Ajouter un patient" HorizontalAlignment="Right" Height="36.5" Margin="0,94,72,0" VerticalAlignment="Top" Width="131.5" Foreground="White">
-			<Button.Background>
-				<SolidColorBrush Color="{DynamicResource Blue_Button}"/>
-			</Button.Background>
-		</Button>
-		<TextBlock HorizontalAlignment="Left" Height="33" Margin="9.333,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="380.875" FontSize="21.333" FontWeight="Bold" TextAlignment="Center" Foreground="#FFF3F3F3"><TextBlock.Effect>
-				<DropShadowEffect/>
+        <DataGrid x:Name="ListPatient" ItemsSource="{Binding ListUser}" Margin="76.5,107,68,126" Background="#FFE2ECF5">
+    		<DataGrid.Foreground>
+    			<SolidColorBrush Color="{DynamicResource Blue_Button}"/>
+    		</DataGrid.Foreground>
+    		<DataGrid.Columns>
+    			<DataGridTextColumn Header="Nom" Width="*" Binding="{Binding Path=Name}" Foreground="Black" />
+                <DataGridTextColumn Header="Prenom" Width="*" Binding="{Binding Path=Firstname}" />
+                <DataGridTextColumn Header="Date de naissance" Width="*" Binding="{Binding Path=Birthday}" />
+                <DataGridTextColumn Header="Consulter" Width="100" />
+                <DataGridTextColumn Header="Supprimer" Width="70" />
+    		</DataGrid.Columns>
+    	</DataGrid>
+		<TextBox x:Name="Search_bar"  Text="{Binding Search}" Height="27.5" Margin="76.5,75.5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="207" FontStyle="Italic"/>
+        <Button x:Name="search_button" Command="{Binding SearchPatient}" Content="Rechercher" HorizontalAlignment="Left" Height="27.5" Margin="294.708,75.5,0,0" VerticalAlignment="Top" Width="99.5" Style="{DynamicResource SimpleButton}" />
+        <Button x:Name="new_patient_button" Command="{Binding NewPatient}" Content="Ajouter un patient" HorizontalAlignment="Right" Height="36.5" Margin="0,66.5,68,0" VerticalAlignment="Top" Width="131.5" Style="{DynamicResource SimpleButton}" />
+		<TextBlock HorizontalAlignment="Left" Height="33" Margin="9.333,29.5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="380.875" FontSize="21.333" FontWeight="Bold" TextAlignment="Center" Foreground="#FFF3F3F3"><TextBlock.Effect>
+				<DropShadowEffect ShadowDepth="6" RenderingBias="Quality"/>
 			</TextBlock.Effect><TextBlock.Background>
 				<SolidColorBrush Color="{DynamicResource BlueTitleBg}"/>
 			</TextBlock.Background><Run Language="fr-fr" Text="Gestion des patients"/></TextBlock>

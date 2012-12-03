@@ -6,6 +6,36 @@
     	<Color x:Key="BlueTextColor">#FF035C93</Color>
     	<Color x:Key="Blue_Button">#FF195077</Color>
     	<Color x:Key="BlueTitleBg">#FF3A7198</Color>
-         
+        <SolidColorBrush x:Key="SimpleButtonBackground" Color="{DynamicResource Blue_Button}"/>
+        <SolidColorBrush x:Key="BlueText" Color="{DynamicResource BlueTextColor}"/>
+        <LinearGradientBrush x:Key="navButtonBackground" EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF94C6E9" Offset="1"/>
+            <GradientStop Color="#FF195077"/>
+        </LinearGradientBrush>
+        <Style x:Key="SimpleButton">
+            <Style.Triggers>
+                <Trigger Property="Button.IsMouseOver" Value="True">
+                    <Setter Property="Button.FontWeight" Value="Bold"/>
+                </Trigger>
+            </Style.Triggers>
+            <Setter Property="Button.Foreground" Value="White" />
+            <Setter Property="Button.Background" Value="{DynamicResource SimpleButtonBackground}" />
+
+        </Style>
+        <Style x:Key="ActiveMenuButton">
+            <Setter Property="Button.Foreground" Value="White" />
+            <Setter Property="Button.Background" Value="#FF3A7198" />
+        </Style>
+        <Style x:Key="MenuButton">
+            <Setter Property="Button.Foreground" Value="{DynamicResource BlueText}" />
+            <Setter Property="Button.Background" Value="#FF9EBBCF" />
+        </Style>
+        <Style x:Key="navButton">
+            <Setter Property="Button.Foreground" Value="White" />
+            <Setter Property="Button.Background" Value="{StaticResource navButtonBackground}" />
+        </Style>
+        <Style x:Key="blueText">
+            <Setter Property="Button.Foreground" Value="{StaticResource BlueText}" />
+        </Style>
     </Application.Resources>
 </Application>

@@ -21,24 +21,16 @@
         </DataTemplate>
     </UserControl.Resources>
 	<Grid x:Name="LayoutRoot">
-		<Rectangle Margin="8,41,8,8" Stroke="Black" RadiusX="20" RadiusY="20">
+		<Rectangle Margin="8,-0.25,8,49.25" Stroke="Black" RadiusX="20" RadiusY="20">
 			<Rectangle.Fill>
 				<SolidColorBrush Color="#FFC9DBE7" Opacity="0.7"/>
 			</Rectangle.Fill>
 		</Rectangle>
-        <ListBox x:Name="ListUser" Margin="72.5,150.5,72,82.5" ItemsSource="{Binding ListUser}" ItemTemplate="{DynamicResource listUser}" Height="347" Background="#FFE2ECF5" />
-		<TextBox x:Name="Search_bar" Text="{Binding Search}"  Height="27.5" Margin="72.5,119,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="189" FontStyle="Italic"/>
-		<Button x:Name="Search_button" Command="{Binding SearchUser}" Content="Rechercher" HorizontalAlignment="Left" Height="27.5" Margin="277,119,0,0"  VerticalAlignment="Top" Width="99.5" Foreground="White">
-			<Button.Background>
-				<SolidColorBrush Color="{DynamicResource Blue_Button}"/>
-			</Button.Background>
-		</Button>
-		<Button x:Name="new_account" Command="{Binding NewUser}" Content="Créer un compte" HorizontalAlignment="Right" Height="36.5" Margin="0,110,72,0"  VerticalAlignment="Top" Width="148.5" Foreground="White">
-			<Button.Background>
-				<SolidColorBrush Color="{DynamicResource Blue_Button}"/>
-			</Button.Background>
-		</Button>
-		<TextBlock HorizontalAlignment="Left" Height="33" Margin="9.333,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="380.875" FontSize="21.333" FontWeight="Bold" TextAlignment="Center" Foreground="#FFF3F3F3"><TextBlock.Effect>
+        <ListBox x:Name="ListUser" Margin="72.5,109.25,72,123.75" ItemsSource="{Binding ListUser}" ItemTemplate="{DynamicResource listUser}" Height="347" Background="#FFE2ECF5" />
+		<TextBox x:Name="Search_bar" Text="{Binding Search}"  Height="27.5" Margin="72.5,77.75,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="189" FontStyle="Italic"/>
+        <Button x:Name="Search_button" Command="{Binding SearchUser}" Content="Rechercher" HorizontalAlignment="Left" Height="27.5" Margin="277,77.75,0,0"  VerticalAlignment="Top" Width="99.5" Foreground="White" Style="{DynamicResource SimpleButton}" />
+        <Button x:Name="new_account" Command="{Binding NewUser}" Content="Créer un compte" HorizontalAlignment="Right" Height="36.5" Margin="0,68.75,72,0"  VerticalAlignment="Top" Width="148.5" Foreground="White" Style="{DynamicResource SimpleButton}" />
+		<TextBlock HorizontalAlignment="Left" Height="33" Margin="9.333,29.75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="380.875" FontSize="21.333" FontWeight="Bold" TextAlignment="Center" Foreground="#FFF3F3F3"><TextBlock.Effect>
 				<DropShadowEffect/>
 			</TextBlock.Effect><TextBlock.Background>
 				<SolidColorBrush Color="{DynamicResource BlueTitleBg}"/>
