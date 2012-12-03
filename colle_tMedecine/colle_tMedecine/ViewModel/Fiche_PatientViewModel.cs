@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Documents;
 
 namespace colle_tMedecine.ViewModel
 {
@@ -9,6 +10,7 @@ namespace colle_tMedecine.ViewModel
     {
         private Model.Patient _patient;
         private Model.Observation _selectedObservation;
+        
 
         public Fiche_PatientViewModel(Model.Patient patient)
         {
