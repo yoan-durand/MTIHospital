@@ -58,10 +58,11 @@ namespace colle_tMedecine.ViewModel
         {
             _newUser = new RelayCommand(param => ShowNewUser(), param => true);
             _supprUser = new RelayCommand(DeleteUser);
-            _searchUser = new RelayCommand(SearchUserAction);
+            _searchUser = new RelayCommand(param => SearchUserAction(), param => true);
             ObservableCollection<Model.User> _listUser = new ObservableCollection<Model.User>();
             FillListUser();
         }
+
         #endregion
         public void FillListUser()
         {
@@ -122,16 +123,17 @@ namespace colle_tMedecine.ViewModel
         {
             if (string.IsNullOrEmpty(this._search))
             {
+                FillListUser();
                 return;
             }
             string[] tabStr = this._search.Split(' ');
             ObservableCollection<Model.User> userList = new ObservableCollection<Model.User>();
 
-            foreach (Model.User user in ListUser)
+            foreach (Model.User user in this._listUser)
             {
                 foreach (string s in tabStr)
                 {
-                    if (user.Name.Equals(s) || user.Firstname.Equals(s))
+                    if (user.Name.ToLower().Equals(s) || user.Firstname.ToLower().Equals(s))
                     {
                         userList.Add(user);
                     }

@@ -21,7 +21,7 @@
         </DataTemplate>
     </UserControl.Resources>
 	<Grid x:Name="LayoutRoot" Background="White">
-        <ListBox x:Name="ListUser" Margin="15,150.5,36,82.5" ItemsSource="{Binding ListUser}" ItemTemplate="{StaticResource listUser}" />
+        <ListBox x:Name="ListUser" Margin="15,150.5,36,82.5" ItemsSource="{Binding ListUser}" ItemTemplate="{DynamicResource listUser}" />
 		<TextBox x:Name="Search_bar" Text="{Binding Search}"  Height="27.5" Margin="15,119,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="189" FontStyle="Italic"/>
 		<Button x:Name="Search_button" Command="{Binding SearchUser}" Content="Rechercher" HorizontalAlignment="Left" Height="23.5" Margin="208,119,0,0"  VerticalAlignment="Top" Width="99.5"/>
 		<Button x:Name="new_account" Command="{Binding NewUser}" Content="Créer un compte" HorizontalAlignment="Right" Height="23.5" Margin="0,119,36,0"  VerticalAlignment="Top" Width="184.5"/>
