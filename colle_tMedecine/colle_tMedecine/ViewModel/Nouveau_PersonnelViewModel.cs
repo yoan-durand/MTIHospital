@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
+using System.IO;
 using colle_tMedecine.ServiceUser;
 using System.Windows;
 
@@ -67,9 +68,27 @@ namespace colle_tMedecine.ViewModel
             set { _passwordConfirmInput = value; }
         }
 
+        private ICommand _addImage;
+
+        public ICommand AddImage
+        {
+            get { return this._addImage; }
+            set { this._addImage = value; }
+        }
+
+        private byte[] _pict;
+
+        public byte[] Pict
+        {
+            get {return _pict;}
+            set {_pict = value;}
+        }
+
         public Nouveau_PersonnelViewModel()
         {
             _addCommand = new RelayCommand(param => addUser(), param => true);
+            _addImage = new RelayCommand (param => AddImageAction(), param => true);
+            Pict = new byte[0];
         }
 
         private void addUser()
@@ -84,6 +103,7 @@ namespace colle_tMedecine.ViewModel
             new_user.Role = roleTab[roleTab.Length - 1];
             new_user.Pwd = _passwordInput;
             new_user.Login = _loginInput;
+            new_user.Picture = Pict;
             //picture
             if (service.AddUser(new_user))
             {
@@ -98,6 +118,24 @@ namespace colle_tMedecine.ViewModel
 
 
         }
+
+        public void AddImageAction()
+        {
+            System.Windows.Forms.OpenFileDialog dlg = new System.Windows.Forms.OpenFileDialog();
+            dlg.Filter = "Images|*.png;*.gif;*.jpg";
+
+            if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string[] filePath = dlg.FileNames;
+                FileStream fs = new FileStream(filePath[0], FileMode.Open, FileAccess.Read);
+                Pict = new byte[fs.Length];
+                fs.Read(Pict, 0, System.Convert.ToInt32(fs.Length));
+                fs.Close();
+            }
+            dlg.Dispose();
+        }
+        
+
         
         
     }
