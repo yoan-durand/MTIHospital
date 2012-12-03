@@ -1,29 +1,12 @@
 ﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:colle_tMedecine.View" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:pi="http://schemas.microsoft.com/prototyping/2010/interactivity" x:Name="patients"
 	x:Class="colle_tMedecine.View.Patients"
 	Width="992" Height="580" mc:Ignorable="d">
-    <UserControl.Resources>
-        <DataTemplate x:Key="listPatient">
-            <StackPanel Orientation="Horizontal" Height="28.5" Width="581">
-                <TextBlock Height="28" TextWrapping="Wrap" Width="151.5" HorizontalAlignment="Left"><Run Language="fr-fr" Text="{Binding Path=Name}"/></TextBlock>
-                <TextBlock TextWrapping="Wrap" Width="144" Margin="0,0,0,6"><Run Language="fr-fr" Text="{Binding Path=Firstname}"/></TextBlock>
-                <TextBlock TextWrapping="Wrap" Width="78" Margin="0,0,0,3"><Run Language="fr-fr" Text="{Binding Path=Birthday}"/></TextBlock>
-                <Button Command="{Binding Path=DataContext.PatientSheet, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}"
-                        CommandParameter="{Binding}"
-                        Content="Consulter la fiche" 
-                        Width="108" 
-                        Margin="0,0,0,4.5">
-                </Button>
-                <Button Content="Supprimer"
-                        Width="91.5" 
-                        Margin="0,0,0,4.5"
-                        Command="{Binding Path=DataContext.SupprPatient, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}"
-                        CommandParameter="{Binding}"/>
-                    
-            </StackPanel>
-        </DataTemplate>
-    </UserControl.Resources>
-    <Grid x:Name="LayoutRoot">	
-    	<Rectangle Margin="8,-0.5,8,49.5" Stroke="Black" RadiusX="20" RadiusY="20">
+  
+    <Grid x:Name="LayoutRoot">
+        <Grid.Resources>
+            <BooleanToVisibilityConverter x:Key="BoolToVisConverter"/>
+        </Grid.Resources>
+        <Rectangle Margin="8,-0.5,8,49.5" Stroke="Black" RadiusX="20" RadiusY="20">
 			<Rectangle.Fill>
 				<SolidColorBrush Color="#FFC9DBE7" Opacity="0.7"/>
 			</Rectangle.Fill>
@@ -40,10 +23,10 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Command="{Binding Path=DataContext.PatientSheet, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
-                        CommandParameter="{Binding}"
-                        Content="Consulter la fiche" 
-                        Width="108" 
-                        Margin="0,0,0,4.5"/>
+                                    CommandParameter="{Binding}"
+                                    Content="Consulter la fiche" 
+                                    Width="108" 
+                                    Margin="0,0,0,4.5"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -51,15 +34,15 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Supprimer"
-                        Width="91.5" 
-                        Margin="0,0,0,4.5"
-                        Command="{Binding Path=DataContext.SupprPatient, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
-                        CommandParameter="{Binding}"/>
+                            Width="91.5" 
+                            Margin="0,0,0,4.5"
+                            Command="{Binding Path=DataContext.SupprPatient, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
+                            CommandParameter="{Binding}"
+                            Visibility="{Binding IsAdmin, Mode=TwoWay, Converter={StaticResource BoolToVisConverter}}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-            </DataGrid.Columns>
-            
+            </DataGrid.Columns>          
     	</DataGrid>
 		<TextBox x:Name="Search_bar"  Text="{Binding Search}" Height="27.5" Margin="76.5,75.5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="207" FontStyle="Italic"/>
         <Button x:Name="search_button" Command="{Binding SearchPatient}" Content="Rechercher" HorizontalAlignment="Left" Height="27.5" Margin="294.708,75.5,0,0" VerticalAlignment="Top" Width="99.5" Style="{DynamicResource SimpleButton}" />
