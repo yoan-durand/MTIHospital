@@ -16,7 +16,7 @@
         </Rectangle>
 
 		<ListBox x:Name="Observations" HorizontalAlignment="Left" Margin="18.333,81,0,58" Width="118" ItemsSource="{Binding Patient.Obs}" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True"
-                 Background="#FFDEEBF3" SelectedItem="{Binding DataContext.SelectedObservation, ElementName=LayoutRoot, Mode=TwoWay}">
+                 Background="#FFDEEBF3" SelectedItem="{Binding SelectedObservation, Mode=TwoWay}">
         </ListBox>
 		<TextBlock x:Name="Patient_title" HorizontalAlignment="Left" Height="33" Margin="9.333,29.5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="380.875" FontSize="21.333" FontWeight="Bold" TextAlignment="Center" Foreground="#FFF3F3F3"><TextBlock.Effect>
 				<DropShadowEffect ShadowDepth="6" RenderingBias="Quality"/>
@@ -54,18 +54,18 @@
 				</StackPanel>
             </StackPanel>
                 
-            <StackPanel Orientation="Horizontal" x:Name="Name_info_Copy2" Height="34" VerticalAlignment="Top" Margin="0,127,0,0">
-					<TextBlock TextWrapping="Wrap" Margin="4,0,0,0" Width="65.517" VerticalAlignment="Top"><Run Language="fr-fr" Text="Poids : " Style="{DynamicResource blueText}"/></TextBlock>
-                <TextBlock x:Name="Poids" TextWrapping="Wrap" Margin="0" Width="32.503" VerticalAlignment="Top"><Run Language="fr-fr" Text="{Binding SelectedObservation.Weight}" Style="{DynamicResource blueText}"/></TextBlock>
+            <StackPanel Orientation="Horizontal" x:Name="Name_info_Copy2" Height="34" VerticalAlignment="Top" Margin="0,127,139,0" Grid.ColumnSpan="3">
+					<TextBlock TextWrapping="Wrap" Margin="4,0,0,0" Width="59" VerticalAlignment="Top" Height="24"><Run Language="fr-fr" Text="Poids : " Style="{DynamicResource blueText}"/></TextBlock>
+                <TextBlock x:Name="Poids" TextWrapping="Wrap" Margin="0" Width="59" VerticalAlignment="Top" Height="24"><Run Language="fr-fr" Text="{Binding Path=SelectedObservation.Weight, Mode=TwoWay}" Style="{DynamicResource blueText}"/></TextBlock>
 				</StackPanel>
-				<StackPanel Orientation="Horizontal" x:Name="Name_info_Copy3" Height="25" Margin="0,104,0,0" VerticalAlignment="Top">
+				<StackPanel Orientation="Horizontal" x:Name="Name_info_Copy3" Height="25" Margin="0,104,43,0" VerticalAlignment="Top" Grid.ColumnSpan="3">
 					<TextBlock TextWrapping="Wrap" Margin="4,0,0,9.04" Width="111.517" VerticalAlignment="Bottom"><Run Language="fr-fr" Text="Pression sanguine :" Style="{DynamicResource blueText}"/></TextBlock>
                 <TextBlock x:Name="Cardio" TextWrapping="Wrap" Margin="0" Width="40.503" VerticalAlignment="Top"><Run Language="fr-fr" Text="{Binding Path=SelectedObservation.Pressure}" Style="{DynamicResource blueText}"/></TextBlock>
 					<TextBlock TextWrapping="Wrap" Margin="177,0,0,0" Width="80.517" VerticalAlignment="Top"><Run Language="fr-fr" Text="Température" Style="{DynamicResource blueText}"/></TextBlock>
 					<TextBlock x:Name="Temperature" TextWrapping="Wrap" Margin="0" Width="41.503" VerticalAlignment="Top"><Run Language="fr-fr" Text="37,5" Style="{DynamicResource blueText}"/></TextBlock>
 				</StackPanel>
 
-            <ListView x:Name="Prescriptions" ToolTip="Prescriptions" Grid.Column="3" Margin="-8.173,0,0,81.217" Grid.ColumnSpan="2" ItemsSource="{Binding SelectedObservation.Prescriptions, ElementName=Content}">
+            <ListView x:Name="Prescriptions" ToolTip="Prescriptions" Grid.Column="3" Margin="-8.173,0,0,81.217" Grid.ColumnSpan="2" ItemsSource="{Binding SelectedObservation.Prescriptions}">
 				<ListView.View>
 					<GridView>
 						<GridViewColumn/>
@@ -105,7 +105,7 @@
                         
                     </Style>
                 </ScrollViewer.Resources>
-                <ListBox Height="150" ItemsSource="{Binding DataContext.ListImages, ElementName=LayoutRoot, Mode=Default}" VerticalAlignment="Top" />
+                <ListBox Height="150" ItemsSource="{Binding ListImages, Mode=TwoWay}" VerticalAlignment="Top" />
             </ScrollViewer>
             <Button x:Name="Graph_live" Content="Graphiques" Grid.Column="4" Height="30" Margin="46.665,0,97.848,47.217" VerticalAlignment="Bottom" Style="{DynamicResource SimpleButton}"/>
 		</Grid>

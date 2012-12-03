@@ -15,11 +15,13 @@ namespace colle_tMedecine.ViewModel
         private Model.Patient _patient;
         private Model.Observation _selectedObservation;
         private List<Image> _listImages;
-
+        
         public List<Image> ListImages
         {
             get { return _listImages; }
-            set { _listImages = value; }
+            set { _listImages = value;
+            OnPropertyChanged("ListImages");
+            }
         }
 
         public Model.Observation SelectedObservation
@@ -30,6 +32,7 @@ namespace colle_tMedecine.ViewModel
                 {
                     _selectedObservation = value;
                     UpdateImagesList(value);
+                    OnPropertyChanged("SelectedObservation");
                 }
             }
         }
