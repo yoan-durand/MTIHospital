@@ -43,19 +43,34 @@ namespace colle_tMedecine.ViewModel
 
         private void Connecting()
         {
-            bool isValid = true;
+            bool isValid = false;
             //Call service
 
-          /* colle_tMedecineServices.ServiceUser.ServiceUserClient clientService = new colle_tMedecineServices.ServiceUser.ServiceUserClient();
-            isValid = clientService.Connect(_loginInput, _passwordInput);*/
+            ServiceUser.ServiceUserClient clientService = new ServiceUser.ServiceUserClient();
+            
+            isValid = clientService.Connect(_loginInput, _passwordInput);
 
             if (isValid)
             {
+                ServiceUser.User user = new ServiceUser.User();
+                user = clientService.GetUser(this._loginInput);
                 View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
 
                 ViewModel.MainWindow mainwindowVM = (ViewModel.MainWindow)mainwindow.DataContext;
                 mainwindowVM.MenuIsActive = true;
-               // mainwindowVM.ConnectedUser = 
+
+                mainwindowVM.ConnectedUser = new Model.User {   
+                    Firstname = user.Firstname,
+                    Name = user.Firstname,
+                    Login = user.Login,
+                    Password = user.Pwd,
+                    Pic = user.Picture,
+                    Role = user.Role,
+                    Connected = true,
+                    Co = true,
+                    ExtensionData = user.ExtensionData
+                };
+                
 
                 View.Patients view = new View.Patients ();
                 ViewModel.PatientsViewModel vm = new colle_tMedecine.ViewModel.PatientsViewModel();
@@ -64,7 +79,7 @@ namespace colle_tMedecine.ViewModel
             }
             else
             {
-
+               
             }
         }
         

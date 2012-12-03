@@ -14,6 +14,7 @@ namespace colle_tMedecine.ViewModel
         private List<Model.User> _allUser;
         private ObservableCollection<Model.User> _listUser;
         private string _search;
+        private bool _isAdmin;
         #endregion
 
         #region Command
@@ -39,6 +40,19 @@ namespace colle_tMedecine.ViewModel
         {
             get { return this._allUser; }
             set { this._allUser = value; }
+        }
+
+        public bool IsAdmin
+        {
+            get { return this._isAdmin; }
+            set 
+            {
+                if (this._isAdmin != value)
+                {
+                    this._isAdmin = value;
+                    OnPropertyChanged("IsAdmin");
+                }
+            }
         }
 
         public string Search
@@ -72,7 +86,19 @@ namespace colle_tMedecine.ViewModel
             _newUser = new RelayCommand(param => ShowNewUser(), param => true);
             _supprUser = new RelayCommand(DeleteUser);
             _searchUser = new RelayCommand(param => SearchUserAction(), param => true);
+             View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
+             object datacontext = mainwindow.DataContext;
             
+            ViewModel.MainWindow main = (ViewModel.MainWindow) datacontext;
+            if (main.ConnectedUser.Role.Equals("Medecin"))
+            {
+                this._isAdmin = true;
+            }
+            else
+            {
+                this._isAdmin = false;
+            }
+
             FillListUser();
         }
 

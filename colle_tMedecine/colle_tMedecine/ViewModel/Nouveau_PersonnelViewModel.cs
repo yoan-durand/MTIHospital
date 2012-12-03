@@ -76,10 +76,12 @@ namespace colle_tMedecine.ViewModel
         {
             ServiceUserClient service = new ServiceUserClient();
             User new_user = new User();
+            string[] roleTab = this._roleInput.Split(' ');
+
             new_user.Connected = false;
             new_user.Firstname = _firstNameInput;
             new_user.Name = _nameInput;
-            new_user.Role = _roleInput;
+            new_user.Role = roleTab[roleTab.Length - 1];
             new_user.Pwd = _passwordInput;
             new_user.Login = _loginInput;
             //picture

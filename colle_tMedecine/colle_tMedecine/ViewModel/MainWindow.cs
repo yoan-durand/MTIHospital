@@ -63,10 +63,27 @@ namespace colle_tMedecine.ViewModel
             _showUserList = new RelayCommand(param => showUsers(), param => true);
             _logOut = new RelayCommand(param => disconnect(), param => true);
             _menuIsActive = true;
-
+            //AddAdmin();
 
         }
 
+        private void AddAdmin()
+        {
+            ServiceUser.ServiceUserClient clientService = new ServiceUser.ServiceUserClient();
+            if (clientService.GetUser("admin") == null)
+            {
+                ServiceUser.User admin = new ServiceUser.User
+                {
+                    Firstname = "Admin",
+                    Name = "Admin",
+                    Pwd = "admin",
+                    Login = "admin",
+                    Role = "Medecin",
+                    Connected = false
+                };
+                clientService.AddUser(admin);
+            }
+        }
         private void disconnect()
         {
             View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
@@ -78,6 +95,8 @@ namespace colle_tMedecine.ViewModel
             view.DataContext = vm;
             mainwindow.contentcontrol.Content = view;
         }
+
+       
 
         #region Commandes
         private void showPatients()

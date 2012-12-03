@@ -35,7 +35,7 @@ namespace colle_tMedecine.Services
                 {
                     ServiceUser.User user = client.GetUser(login);
                     if (user == null)
-                        throw new ArgumentNullException();
+                        return null;
                     else
                         return user;
                 }
