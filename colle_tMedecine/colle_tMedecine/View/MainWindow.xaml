@@ -27,24 +27,35 @@
 		</Grid.Background>
 		<Ellipse Fill="#FF3A7198" Margin="-685,-114,8,-142.5" Stroke="#FF3A7198" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
 		<Ellipse Grid.Column="2" Fill="#FF3A7198" Margin="184.448,-74.5,-18,0" Stroke="#FF3A7198" Height="196.5" VerticalAlignment="Top"/>
-		<ContentControl Visibility="{Binding MenuIsActive, Converter={StaticResource BoolToVisConverter}}" x:Name="Menucontrol" Grid.ColumnSpan="3" Height="94" VerticalAlignment="Top">
+		<ContentControl Visibility="{Binding MenuIsActive, Converter={StaticResource BoolToVisConverter}}" x:Name="Menucontrol" Grid.ColumnSpan="3" Height="122" VerticalAlignment="Top">
 			<ContentControl.Background>
 				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 					<GradientStop Color="Black" Offset="0"/>
 					<GradientStop Color="White" Offset="1"/>
 				</LinearGradientBrush>
 			</ContentControl.Background>
-			<Grid Height="90" Margin="8,8,0,0" VerticalAlignment="Top">
-				<Button Command="{Binding ShowPatientList}" x:Name="patient_nav_item" Content="Patients" Width="103" Margin="15,36.5,0,8" HorizontalAlignment="Left"/>
-				<Button Command="{Binding ShowUserList}" x:Name="personnel_nav_item" Content="Personnel Medical" Width="121" HorizontalAlignment="Left" Margin="122,36.5,0,8">
+			<Grid Height="114" Margin="8,8,0,0" VerticalAlignment="Top">
+				<Button Content="Back" HorizontalAlignment="Left" Height="30" Margin="9,8,0,0" VerticalAlignment="Top" Width="105" Foreground="White">
 					<Button.Background>
-						<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-							<GradientStop Color="#FFEEEEEE" Offset="0"/>
-							<GradientStop Color="#FFCCCCCC" Offset="1"/>
+						<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+							<GradientStop Color="#FF94C6E9" Offset="1"/>
+							<GradientStop Color="#FF195077"/>
 						</LinearGradientBrush>
 					</Button.Background>
 				</Button>
-				<StackPanel x:Name="Compte"  Margin="0,8,8,5.5" Width="114.5" HorizontalAlignment="Right" d:LayoutOverrides="HorizontalAlignment">
+		
+
+				<Button Command="{Binding ShowPatientList}" x:Name="patient_nav_item" Content="Patients" Width="103" Margin="9,0,0,-0.5" HorizontalAlignment="Left" Height="33.5" VerticalAlignment="Bottom" Background="#FF3A7198">
+					<Button.Foreground>
+						<SolidColorBrush Color="White"/>
+					</Button.Foreground>
+				</Button>
+				<Button Command="{Binding ShowUserList}" x:Name="personnel_nav_item" Content="Personnel Medical" Width="121" HorizontalAlignment="Left" Margin="112,0,0,-0.5" Height="33.5" VerticalAlignment="Bottom" Background="#FF9EBBCF">
+					<Button.Foreground>
+						<SolidColorBrush Color="{DynamicResource BlueTextColor}"/>
+					</Button.Foreground>
+				</Button>
+				<StackPanel x:Name="Compte"  Margin="0,8,8,29.5" Width="114.5" HorizontalAlignment="Right" d:LayoutOverrides="HorizontalAlignment">
 					<TextBlock x:Name="Login_info" Margin="0" TextWrapping="Wrap" Width="114.417" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="White" TextAlignment="Center" Height="24.96"><Run Language="fr-fr" Text=" Roger Henri"/></TextBlock>
 					<TextBlock x:Name="Role_info" Height="25" TextWrapping="Wrap" HorizontalAlignment="Left" Foreground="White" Width="114.458" TextAlignment="Center"><Run Language="fr-fr" Text="Medecin"/></TextBlock>
 					<Button x:Name="Deconnexion" Command="{Binding LogOut}" Content="Deconnexion"  Width="80.5" HorizontalAlignment="Center" Margin="0" Height="24.083" Foreground="White">
@@ -53,12 +64,20 @@
 						</Button.Background>
 					</Button>
 				</StackPanel>
-				<Image x:Name="Avatar"  Margin="0,8,126.5,5.5" Width="88.5" HorizontalAlignment="Right" d:LayoutOverrides="HorizontalAlignment"/>
-				<Button Content="Ajouter un patient" Margin="250.667,36.5,0,8" HorizontalAlignment="Left" Width="109"/>
-				<Button Content="Ajouter un collaborateur" Margin="363.667,36.5,496.333,8"/>
+				<Image x:Name="Avatar"  Margin="0,8,126.5,29.5" Width="88.5" HorizontalAlignment="Right" d:LayoutOverrides="HorizontalAlignment"/>
+				<Button Content="Ajouter un patient" Margin="233,0,0,-0.5" HorizontalAlignment="Left" Width="109" Height="33.5" VerticalAlignment="Bottom" Background="#FF9EBBCF">
+					<Button.Foreground>
+						<SolidColorBrush Color="{DynamicResource BlueTextColor}"/>
+					</Button.Foreground>
+				</Button>
+				<Button Content="Ajouter un collaborateur" Margin="342,0,0,-0.5" HorizontalAlignment="Left" Width="140" Height="33.5" VerticalAlignment="Bottom" Background="#FF9EBBCF">
+					<Button.Foreground>
+						<SolidColorBrush Color="{DynamicResource BlueTextColor}"/>
+					</Button.Foreground>
+				</Button>
 			</Grid>
 		</ContentControl>
-		<ContentControl x:Name="contentcontrol" Margin="-5.104,98,8,8" Background="#FF437495" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+		<ContentControl x:Name="contentcontrol" Margin="-5.104,122,8,12" Background="#FF437495" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
 		
 
 	</Grid>
