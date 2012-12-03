@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace colle_tMedecine.ViewModel
@@ -35,6 +36,16 @@ namespace colle_tMedecine.ViewModel
             set { _logOut = value; }
         }
 
+        private ICommand _backCommand;
+
+        public ICommand BackCommand
+        {
+            get { return _backCommand; }
+            set { _backCommand = value; }
+        }
+
+        public List<UserControl> ViewStack;
+
         private bool _menuIsActive;
 
         public bool MenuIsActive
@@ -62,10 +73,14 @@ namespace colle_tMedecine.ViewModel
             _showPatientList = new RelayCommand(param => showPatients(), param => true);
             _showUserList = new RelayCommand(param => showUsers(), param => true);
             _logOut = new RelayCommand(param => disconnect(), param => true);
+            _backCommand = new RelayCommand(param => backView(), param => true);
             _menuIsActive = true;
+            ViewStack = new List<UserControl>();
             //AddAdmin();
 
         }
+
+
 
         private void AddAdmin()
         {
@@ -102,7 +117,7 @@ namespace colle_tMedecine.ViewModel
         private void showPatients()
         {
             View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
-
+            ViewStack.Add((UserControl)mainwindow.contentcontrol.Content);
             View.Patients view = new colle_tMedecine.View.Patients();
             ViewModel.PatientsViewModel vm = new colle_tMedecine.ViewModel.PatientsViewModel();
             view.DataContext = vm;
@@ -112,11 +127,22 @@ namespace colle_tMedecine.ViewModel
         private void showUsers()
         {
             View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
-
+            ViewStack.Add((UserControl)mainwindow.contentcontrol.Content);
             View.Personnel view = new colle_tMedecine.View.Personnel();
             ViewModel.PersonnelViewModel vm = new colle_tMedecine.ViewModel.PersonnelViewModel();
             view.DataContext = vm;
             mainwindow.contentcontrol.Content = view;
+        }
+
+        private void backView()
+        {
+            if (ViewStack.Count > 0)
+            {
+                View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
+                UserControl last_view = ViewStack.Last<UserControl>();
+                ViewStack.RemoveAt(ViewStack.Count -1);
+                mainwindow.contentcontrol.Content = last_view;
+            }
         }
 
 
