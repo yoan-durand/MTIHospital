@@ -28,7 +28,7 @@
 				<SolidColorBrush Color="#FFC9DBE7" Opacity="0.7"/>
 			</Rectangle.Fill>
 		</Rectangle>
-        <DataGrid x:Name="ListPatient" ItemsSource="{Binding ListUser}" Margin="76.5,107,68,126" Background="#FFE2ECF5">
+        <DataGrid x:Name="ListPatient" ItemsSource="{Binding ListPatient}" Margin="76.5,107,68,126" Background="#FFE2ECF5" AutoGenerateColumns="False">
     		<DataGrid.Foreground>
     			<SolidColorBrush Color="{DynamicResource Blue_Button}"/>
     		</DataGrid.Foreground>
@@ -36,9 +36,30 @@
     			<DataGridTextColumn Header="Nom" Width="*" Binding="{Binding Path=Name}" Foreground="Black" />
                 <DataGridTextColumn Header="Prenom" Width="*" Binding="{Binding Path=Firstname}" />
                 <DataGridTextColumn Header="Date de naissance" Width="*" Binding="{Binding Path=Birthday}" />
-                <DataGridTextColumn Header="Consulter" Width="100" />
-                <DataGridTextColumn Header="Supprimer" Width="70" />
-    		</DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Command="{Binding Path=DataContext.PatientSheet, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
+                        CommandParameter="{Binding}"
+                        Content="Consulter la fiche" 
+                        Width="108" 
+                        Margin="0,0,0,4.5"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Supprimer"
+                        Width="91.5" 
+                        Margin="0,0,0,4.5"
+                        Command="{Binding Path=DataContext.SupprPatient, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
+                        CommandParameter="{Binding}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+            
     	</DataGrid>
 		<TextBox x:Name="Search_bar"  Text="{Binding Search}" Height="27.5" Margin="76.5,75.5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="207" FontStyle="Italic"/>
         <Button x:Name="search_button" Command="{Binding SearchPatient}" Content="Rechercher" HorizontalAlignment="Left" Height="27.5" Margin="294.708,75.5,0,0" VerticalAlignment="Top" Width="99.5" Style="{DynamicResource SimpleButton}" />
