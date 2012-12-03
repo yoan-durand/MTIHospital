@@ -6,16 +6,22 @@
 	mc:Ignorable="d"
 	x:Class="colle_tMedecine.View.Personnel"
 	Width="640" Height="480">
-
+    <UserControl.Resources>
+        <DataTemplate x:Key="listUser">
+            <StackPanel Orientation="Horizontal" Height="28.5" Width="581">
+                <TextBlock Height="28" TextWrapping="Wrap" Width="151.5" HorizontalAlignment="Left"><Run Language="fr-fr" Text="{Binding Path=Name}"/></TextBlock>
+                <TextBlock TextWrapping="Wrap" Width="144" Margin="0,0,0,6"><Run Language="fr-fr" Text="{Binding Path=Firstname}"/></TextBlock>
+                <TextBlock TextWrapping="Wrap" Width="78" Margin="0,0,0,3"><Run Language="fr-fr" Text="{Binding Path=Role}"/></TextBlock>
+                <Button Content="Supprimer" 
+                        Command="{Binding Path=DataContext.SupprUser, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}"
+                        CommandParameter="{Binding}"
+                        Width="108" 
+                        Margin="0,0,0,4.5"/>    
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
 	<Grid x:Name="LayoutRoot" Background="White">
-		<ListBox x:Name="Tab_personnel" Margin="15,150.5,36,82.5" ItemsSource="{Binding ListUser}">
-			<StackPanel Orientation="Horizontal" Height="28.5" Width="581">
-				<TextBlock Height="28" TextWrapping="Wrap" Width="151.5" HorizontalAlignment="Left"><Run Language="fr-fr" Text="Dupont"/></TextBlock>
-				<TextBlock TextWrapping="Wrap" Width="144" Margin="0,0,0,6"><Run Language="fr-fr" Text="Michel"/></TextBlock>
-				<TextBlock Margin="0,0,0,3.5" TextWrapping="Wrap" Width="110"><Run Language="fr-fr" Text="Medecin"/></TextBlock>
-				<Button Content="Supprimer" Width="91.5" Margin="0,0,0,4.5"/>
-			</StackPanel>
-		</ListBox>
+        <ListBox x:Name="ListUser" Margin="15,150.5,36,82.5" ItemsSource="{Binding ListUser}" ItemTemplate="{StaticResource listUser}" />
 		<TextBox x:Name="Search_bar" Height="27.5" Margin="15,119,0,0"  TextWrapping="Wrap" Text="Recherche" VerticalAlignment="Top" HorizontalAlignment="Left" Width="189" FontStyle="Italic"/>
 		<Button x:Name="Search_button" Content="Rechercher" HorizontalAlignment="Left" Height="23.5" Margin="208,119,0,0"  VerticalAlignment="Top" Width="99.5"/>
 		<Button x:Name="new_account" Command="{Binding NewUser}" Content="Créer un compte" HorizontalAlignment="Right" Height="23.5" Margin="0,119,36,0"  VerticalAlignment="Top" Width="184.5"/>

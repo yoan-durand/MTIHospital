@@ -16,6 +16,7 @@ namespace colle_tMedecine.ViewModel
 
         #region Command
         public ICommand _newUser;
+        public ICommand _supprUser;
         #endregion
 
         #region Getter/setter
@@ -30,21 +31,30 @@ namespace colle_tMedecine.ViewModel
             get { return this._newUser; }
             set { this._newUser = value; }
         }
+
+        public ICommand SupprUser
+        {
+            get { return this._supprUser; }
+            set { this._supprUser = value; }
+        }
         #endregion
 
         #region Construtor
         public PersonnelViewModel()
         {
             _newUser = new RelayCommand(param => ShowNewUser(), param => true);
+            _supprUser = new RelayCommand(DeleteUser);
             ObservableCollection<Model.User> _listUser = new ObservableCollection<Model.User>();
             FillListUser();
         }
         #endregion
         public void FillListUser()
         {
-            /*colle_tMedecineServices.ServiceUser.ServiceUserClient serviceUser = new colle_tMedecineServices.ServiceUser.ServiceUserClient();
-           colle_tMedecineServices.ServiceUser.User[] listUser = serviceUser.GetListUser();
-            foreach(colle_tMedecineServices.ServiceUser.User user in listUser)
+            ServiceUser.ServiceUserClient service = new ServiceUser.ServiceUserClient();
+            ServiceUser.User[] listUser = service.GetListUser();
+            ObservableCollection<Model.User> listModel = new ObservableCollection<Model.User>();
+
+            foreach(ServiceUser.User user in listUser)
             {
                 Model.User userModel = new Model.User {
                     Login = user.Login,
@@ -54,9 +64,24 @@ namespace colle_tMedecine.ViewModel
                     Pic = user.Picture, 
                     Role = user.Role,
                     Co = user.Connected};
-                ListUser.Add(userModel);
+                userModel.Name = FirstUpper(userModel.Name);
+                userModel.Firstname = FirstUpper(userModel.Firstname);
+                userModel.Role = FirstUpper(userModel.Role);
+                listModel.Add(userModel);
             }
-            */
+            ListUser = listModel;
+        }
+
+        public string FirstUpper(string str)
+        {
+            string s = str[0].ToString();
+
+            s = s.ToUpper();
+            for (int i = 1; i < str.Length; i++)
+            {
+                s += str[i].ToString();
+            }
+            return s;
         }
 
         public void ShowNewUser()
@@ -67,6 +92,15 @@ namespace colle_tMedecine.ViewModel
             ViewModel.Nouveau_PersonnelViewModel vm = new colle_tMedecine.ViewModel.Nouveau_PersonnelViewModel();
             view.DataContext = vm;
             mainwindow.contentcontrol.Content = view;
+        }
+
+        public void DeleteUser(object param)
+        {
+            ServiceUser.ServiceUserClient service = new ServiceUser.ServiceUserClient();
+            Model.User user = (Model.User)param;
+            ListUser.Remove(user);
+            service.DeleteUser(user.Login);
+
         }
     }
 }
