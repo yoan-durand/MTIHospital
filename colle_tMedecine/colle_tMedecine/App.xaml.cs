@@ -25,7 +25,7 @@ namespace colle_tMedecine
             ViewModel.LoginViewModel vm = new colle_tMedecine.ViewModel.LoginViewModel();
             login_view.DataContext = vm;
             window.contentcontrol.Content = login_view;
-
+            
             ServiceUserClient clientService = new ServiceUserClient();
 
            /* User user = clientService.GetUser("root");
