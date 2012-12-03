@@ -35,8 +35,8 @@
 				</LinearGradientBrush>
 			</ContentControl.Background>
 			<Grid Height="90" Margin="8,8,0,0" VerticalAlignment="Top">
-				<Button Command="{Binding ShowPatientList}" x:Name="patient_nav_item" Content="Patients" Height="40" VerticalAlignment="Bottom" Width="103" Margin="15,0,0,0" HorizontalAlignment="Left"/>
-				<Button Command="{Binding ShowUserList}" x:Name="personnel_nav_item" Content="Personnel Medical" Height="40" VerticalAlignment="Bottom" Width="121" HorizontalAlignment="Left" Margin="118,0,0,0">
+				<Button Command="{Binding ShowPatientList}" x:Name="patient_nav_item" Content="Patients" Width="103" Margin="15,36.5,0,8" HorizontalAlignment="Left"/>
+				<Button Command="{Binding ShowUserList}" x:Name="personnel_nav_item" Content="Personnel Medical" Width="121" HorizontalAlignment="Left" Margin="122,36.5,0,8">
 					<Button.Background>
 						<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
 							<GradientStop Color="#FFEEEEEE" Offset="0"/>
@@ -44,12 +44,18 @@
 						</LinearGradientBrush>
 					</Button.Background>
 				</Button>
-				<StackPanel x:Name="Compte"  Margin="0,8,101,5.5" Width="103.5" HorizontalAlignment="Right" d:LayoutOverrides="HorizontalAlignment">
-					<TextBlock x:Name="Login_info" Margin="0" TextWrapping="Wrap" Width="71.25" VerticalAlignment="Center" HorizontalAlignment="Center"><Run Language="fr-fr" Text=" Roger Henri"/></TextBlock>
-					<TextBlock x:Name="Role_info" Height="23" Margin="0,0,8,0" TextWrapping="Wrap" HorizontalAlignment="Center"><Run Language="fr-fr" Text="Medecin"/></TextBlock>
-					<Button x:Name="Deconnexion" Command="{Binding LogOut}" Content="Deconnexion"  Width="80.5" HorizontalAlignment="Center" Margin="0" Height="20.75"/>
+				<StackPanel x:Name="Compte"  Margin="0,8,8,5.5" Width="114.5" HorizontalAlignment="Right" d:LayoutOverrides="HorizontalAlignment">
+					<TextBlock x:Name="Login_info" Margin="0" TextWrapping="Wrap" Width="114.417" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="White" TextAlignment="Center" Height="24.96"><Run Language="fr-fr" Text=" Roger Henri"/></TextBlock>
+					<TextBlock x:Name="Role_info" Height="25" TextWrapping="Wrap" HorizontalAlignment="Left" Foreground="White" Width="114.458" TextAlignment="Center"><Run Language="fr-fr" Text="Medecin"/></TextBlock>
+					<Button x:Name="Deconnexion" Command="{Binding LogOut}" Content="Deconnexion"  Width="80.5" HorizontalAlignment="Center" Margin="0" Height="24.083" Foreground="White">
+						<Button.Background>
+							<SolidColorBrush Color="{DynamicResource BlueTextColor}"/>
+						</Button.Background>
+					</Button>
 				</StackPanel>
-				<Image x:Name="Avatar"  Margin="0,8,8.5,5.5" Width="88.5" HorizontalAlignment="Right" d:LayoutOverrides="HorizontalAlignment"/>
+				<Image x:Name="Avatar"  Margin="0,8,126.5,5.5" Width="88.5" HorizontalAlignment="Right" d:LayoutOverrides="HorizontalAlignment"/>
+				<Button Content="Ajouter un patient" Margin="250.667,36.5,0,8" HorizontalAlignment="Left" Width="109"/>
+				<Button Content="Ajouter un collaborateur" Margin="363.667,36.5,496.333,8"/>
 			</Grid>
 		</ContentControl>
 		<ContentControl x:Name="contentcontrol" Margin="-5.104,98,8,8" Background="#FF437495" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
