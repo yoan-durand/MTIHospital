@@ -14,11 +14,13 @@ namespace colle_tMedecine.ViewModel
             private ICommand _newPatient;
             private ICommand _patientSheet;
             private ICommand _supprPatient;
+            private ICommand _searchUser;
         #endregion
 
         #region Attributs
 
             private ObservableCollection<Model.Patient> _listPatient;
+            private string _search;
 
         #endregion
 
