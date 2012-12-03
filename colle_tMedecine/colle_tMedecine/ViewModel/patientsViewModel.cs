@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
+using System.Windows.Controls;
 
 namespace colle_tMedecine.ViewModel
 {
@@ -106,7 +107,8 @@ namespace colle_tMedecine.ViewModel
         public void ShowNewPatient()
         {
             View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
-
+            ViewModel.MainWindow mainwindowVM = (ViewModel.MainWindow) mainwindow.DataContext;
+            mainwindowVM.ViewStack.Add((UserControl)mainwindow.contentcontrol.Content);
             View.Nouveau_patient view = new colle_tMedecine.View.Nouveau_patient();
             ViewModel.Nouveau_patientViewModel vm = new colle_tMedecine.ViewModel.Nouveau_patientViewModel();
             view.DataContext = vm;

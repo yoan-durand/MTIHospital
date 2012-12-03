@@ -37,7 +37,7 @@
 				</LinearGradientBrush>
 			</ContentControl.Background>
 			<Grid Height="114" Margin="8,8,0,0" VerticalAlignment="Top">
-                <Button Content="Back" HorizontalAlignment="Left" Style="{DynamicResource navButton}" Height="30" Margin="24,8,0,0" VerticalAlignment="Top" Width="105" />
+                <Button Content="Back" Command="{Binding BackCommand}" HorizontalAlignment="Left" Style="{DynamicResource navButton}" Height="30" Margin="24,8,0,0" VerticalAlignment="Top" Width="105" />
                 <Button Command="{Binding ShowPatientList}" x:Name="patient_nav_item" Content="Patients" Style="{DynamicResource ActiveMenuButton}" Width="103" Margin="24,0,0,0" HorizontalAlignment="Left" Height="33.5" VerticalAlignment="Bottom" />
                 <Button Command="{Binding ShowUserList}" x:Name="personnel_nav_item" Content="Personnel Medical" Style="{DynamicResource MenuButton}" Width="121" HorizontalAlignment="Left" Margin="127,0,0,0" Height="33.5" VerticalAlignment="Bottom" />
 				<StackPanel x:Name="Compte"  Margin="0,8,8,29.5" Width="114.5" HorizontalAlignment="Right" d:LayoutOverrides="HorizontalAlignment">
