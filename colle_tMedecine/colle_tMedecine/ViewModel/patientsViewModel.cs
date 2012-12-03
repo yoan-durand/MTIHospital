@@ -14,7 +14,7 @@ namespace colle_tMedecine.ViewModel
             private ICommand _newPatient;
             private ICommand _patientSheet;
             private ICommand _supprPatient;
-            private ICommand _searchUser;
+            private ICommand _searchPatient;
         #endregion
 
         #region Attributs
@@ -43,11 +43,23 @@ namespace colle_tMedecine.ViewModel
             get { return this._supprPatient; }
             set { this._supprPatient = value; }
         }
-        
+
+        public ICommand SearchPatient
+        {
+            get { return this._searchPatient; }
+            set { this._searchPatient = value; }
+        }
+
         public ObservableCollection<Model.Patient> ListPatient
         {
             get { return this._listPatient; }
             set { this._listPatient = value; }
+        }
+
+        public string Search
+        {
+            get { return this._search; }
+            set { this._search = value; }
         }
         #endregion
 

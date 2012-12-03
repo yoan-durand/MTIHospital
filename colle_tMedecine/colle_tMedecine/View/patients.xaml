@@ -23,7 +23,7 @@
         </DataTemplate>
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot" Background="White">
-		<ListBox x:Name="ListPatient" ItemsSource="{Binding ListPatient}" ItemTemplate="{StaticResource listPatient}" Margin="15,150.5,36,82.5" >
+		<ListBox x:Name="ListPatient" ItemsSource="{Binding ListPatient}" ItemTemplate="{DynamicResource listPatient}" Margin="15,150.5,36,82.5" >
 					
 		</ListBox>
 		<TextBox x:Name="Search_bar"  Text="{Binding Search}" Height="27.5" Margin="15,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="189" FontStyle="Italic"/>
