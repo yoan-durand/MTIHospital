@@ -45,15 +45,8 @@ namespace colle_tMedecine.ViewModel
         {
             bool isValid = true;
             //Call service
-         /*   colle_tMedecineServices.ServiceUser.ServiceUserClient clientService = new colle_tMedecineServices.ServiceUser.ServiceUserClient();
-            Model.User user = new Model.User();
-            user.Login = "ratus";
-            user.Password = "1234";
-            user.Role = "Medecin";
-            user.Name = "roux";
-            user.Firstname = "roger";
 
-            clientService.AddUser(user);
+          /* colle_tMedecineServices.ServiceUser.ServiceUserClient clientService = new colle_tMedecineServices.ServiceUser.ServiceUserClient();
             isValid = clientService.Connect(_loginInput, _passwordInput);*/
 
             if (isValid)
@@ -64,7 +57,7 @@ namespace colle_tMedecine.ViewModel
                 mainwindowVM.MenuIsActive = true;
                // mainwindowVM.ConnectedUser = 
 
-                View.Patients view = new colle_tMedecine.View.Patients();
+                View.Patients view = new View.Patients ();
                 ViewModel.PatientsViewModel vm = new colle_tMedecine.ViewModel.PatientsViewModel();
                 view.DataContext = vm;
                 mainwindow.contentcontrol.Content = view;

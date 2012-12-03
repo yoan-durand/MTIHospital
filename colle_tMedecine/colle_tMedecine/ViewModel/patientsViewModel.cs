@@ -77,6 +77,7 @@ namespace colle_tMedecine.ViewModel
             Model.Patient pat = (Model.Patient) param;
       
             View.Fiche_Patient view = new colle_tMedecine.View.Fiche_Patient();
+
             ViewModel.Fiche_PatientViewModel vm = new colle_tMedecine.ViewModel.Fiche_PatientViewModel(pat);
             view.DataContext = vm;
             mainwindow.contentcontrol.Content = view;

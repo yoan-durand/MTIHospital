@@ -6,15 +6,31 @@
 	xmlns:ff="clr-namespace:colle_tMedecine.Helper"
     mc:Ignorable="d"
 	x:Class="colle_tMedecine.View.Login"
-	Width="640" Height="480">
+	Width="992" Height="580">
 
-	<Grid x:Name="LayoutRoot" Background="White">
-        <TextBox x:Name="Login_text" Text="{Binding LoginInput}" Margin="249,176,191.446,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <PasswordBox x:Name="Password" ff:PasswordHelper.Attach="True"  ff:PasswordHelper.Password="{Binding PasswordInput, Mode=TwoWay}" Margin="249,211,191.446,0" VerticalAlignment="Top"/>
-        <Button x:Name="Connection" Command="{Binding Connect}" Content="Se connecter" Margin="300,0,248,182" VerticalAlignment="Bottom" Background="{x:Null}">
-		</Button>
-		<Label Content="Veuillez vous connecter" HorizontalAlignment="Right" Margin="0,146.04,223.672,0" VerticalAlignment="Top"/>
-		<TextBlock x:Name="Idendifiant" HorizontalAlignment="Left" Height="21.96" Margin="158,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87"><Run Language="fr-fr" Text="Identifiant"/></TextBlock>
-		<TextBlock x:Name="MDP" HorizontalAlignment="Left" Height="21.96" Margin="158,208.84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87"><Run Language="fr-fr" Text="Mot de passe"/></TextBlock>
+	<Grid x:Name="LayoutRoot">
+		<Rectangle Fill="#FFC9DBE7" Margin="98,70" Stroke="Black" RadiusX="20" RadiusY="20"/>
+        <Button x:Name="Connection" Command="{Binding Connect}" Content="Se connecter" Margin="458.705,0,458.868,237.333" VerticalAlignment="Bottom" d:LayoutOverrides="Width">
+        	<Button.Background>
+        		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+        			<GradientStop Color="#FF3F7398" Offset="0"/>
+        			<GradientStop Color="#FF195077" Offset="1"/>
+        		</LinearGradientBrush>
+        	</Button.Background>
+        </Button>
+		<Label Content="Veuillez vous connectez" Margin="407,157.04,411.333,0" VerticalAlignment="Top" FontWeight="Bold" HorizontalAlignment="Center"/>
+		<StackPanel Margin="339.666,213,339.666,0" Background="#FFC9DBE7" Height="64.666" VerticalAlignment="Top" d:LayoutOverrides="Width">
+			<StackPanel Margin="0,0,58,0" Orientation="Horizontal" Height="28">
+				<TextBlock x:Name="Idendifiant" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" Width="87" Margin="0"><Run Language="fr-fr" Text="Identifiant :"/></TextBlock>
+				<TextBox x:Name="Login_text" Text="{Binding LoginInput}" Margin="0,1.5" TextWrapping="Wrap" Height="25" Width="169"/>
+			</StackPanel>
+			<StackPanel Margin="0,10,58,0" Orientation="Horizontal" Height="26" VerticalAlignment="Center" HorizontalAlignment="Center">
+				<TextBlock x:Name="MDP" Margin="0" TextWrapping="Wrap" Width="87" Height="25" VerticalAlignment="Top"><Run Language="fr-fr" Text="Mot de passe :"/></TextBlock>
+				<PasswordBox x:Name="Password" ff:PasswordHelper.Attach="True"  ff:PasswordHelper.Password="{Binding PasswordInput, Mode=TwoWay}" Width="167.554" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0"/>
+			</StackPanel>
+		</StackPanel>
+		<TextBlock Height="39" Margin="258.458,18,260.458,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="26.667" FontWeight="Bold" d:LayoutOverrides="Width"><Run Language="fr-fr" Text="Bienvenue sur l'Application Medecine"/></TextBlock>
+		
+		
 	</Grid>
 </UserControl>
