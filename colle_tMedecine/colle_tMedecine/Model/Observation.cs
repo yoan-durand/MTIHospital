@@ -62,5 +62,9 @@ namespace colle_tMedecine.Model
         }
         #endregion
 
+        public override string ToString()
+        {
+            return String.Format("{0}", Date);
+        }
     }
 }
