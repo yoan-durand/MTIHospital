@@ -9,65 +9,37 @@
 	Width="992" Height="580">
 
 	<Grid x:Name="LayoutRoot">
-		<Rectangle Margin="106,41,98,50" Stroke="Black" RadiusX="20" RadiusY="20">
+		<Rectangle Margin="8,0.007,8,90.993" Stroke="Black" RadiusX="20" RadiusY="20">
         	<Rectangle.Fill>
         		<SolidColorBrush Color="#FFC9DBE7" Opacity="0.7"/>
         	</Rectangle.Fill>
         </Rectangle>
-        <Button x:Name="Add_button" Command="{Binding AddCommand}" Content="Ajouter" Height="35.667" Margin="485.334,0,409.666,113.5" VerticalAlignment="Bottom" Foreground="White">
-        	<Button.Background>
-        		<SolidColorBrush Color="{DynamicResource Blue_Button}"/>
-        	</Button.Background>
-        </Button>
-        <TextBox x:Name="Name_input" Text="{Binding NameInput}" Height="29" Margin="428,163.5,329,0"  TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.203,-0.649"/>
-        <TextBox x:Name="Firstname_input" Text="{Binding FirstnameInput}" Height="28" Margin="429,196.5,329,0"  TextWrapping="Wrap" VerticalAlignment="Top"/>
-		<Label Content="Nom *" Height="28" Margin="305,163.5,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="101">
-			<Label.Foreground>
-				<SolidColorBrush Color="{DynamicResource BlueTextColor}"/>
-			</Label.Foreground>
-		</Label>
-		<Label Content="Prenom *" Height="29" Margin="304,195.5,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="101">
-			<Label.Foreground>
-				<SolidColorBrush Color="{DynamicResource BlueTextColor}"/>
-			</Label.Foreground>
-		</Label>
-		<Label Content="Role *" Margin="304,229.54,0,0" HorizontalAlignment="Left" Width="101" Height="25.96" VerticalAlignment="Top">
-			<Label.Foreground>
-				<SolidColorBrush Color="{DynamicResource BlueTextColor}"/>
-			</Label.Foreground>
-		</Label>
-        <ComboBox x:Name="Role_liste" SelectedValue="{Binding RoleInput}" SelectedIndex="0" Margin="427,231.54,329,0" Height="26" VerticalAlignment="Top">
+        <Button x:Name="Add_button" Command="{Binding AddCommand}" Content="Ajouter" Height="35.667" Margin="485.334,0,409.666,154.493" VerticalAlignment="Bottom" Style="{DynamicResource SimpleButton}" />
+        <TextBox x:Name="Name_input" Text="{Binding NameInput}" Height="29" Margin="428,122.507,329,0"  TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.203,-0.649"/>
+        <TextBox x:Name="Firstname_input" Text="{Binding FirstnameInput}" Height="28" Margin="429,155.507,329,0"  TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Label Content="Nom *" Height="28" Margin="305,122.507,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="101"  Style="{DynamicResource blueText}" />
+        <Label Content="Prenom *" Height="29" Margin="304,154.507,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="101" Style="{DynamicResource blueText}" />
+        <Label Content="Role *" Margin="304,188.547,0,0" HorizontalAlignment="Left" Width="101" Height="25.96" VerticalAlignment="Top" Style="{DynamicResource blueText}" />
+        <ComboBox x:Name="Role_liste" SelectedValue="{Binding RoleInput}" SelectedIndex="0" Margin="427,190.547,329,0" Height="26" VerticalAlignment="Top">
 			<ComboBoxItem Content="Medecin"/>
 			<ComboBoxItem Content="infirmier(e)"/>
 		</ComboBox>
-        <Label Content="Login *" HorizontalAlignment="Left" Margin="304,263.54,0,0" VerticalAlignment="Top" Width="100" d:LayoutOverrides="VerticalAlignment">
-        	<Label.Foreground>
-        		<SolidColorBrush Color="{DynamicResource BlueTextColor}"/>
-        	</Label.Foreground>
-        </Label>
-        <TextBox x:Name="Login_text" Text="{Binding LoginInput}" TextWrapping="Wrap" Margin="429,259.5,329,0" Height="30" VerticalAlignment="Top"/>
-        <Label Content="Mot de passe*" HorizontalAlignment="Left" Margin="305,294.54,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.249,0.149" Width="100">
-        	<Label.Foreground>
-        		<SolidColorBrush Color="{DynamicResource BlueTextColor}"/>
-        	</Label.Foreground>
-        </Label>
-        <PasswordBox x:Name="Password" ff:PasswordHelper.Attach="True"  ff:PasswordHelper.Password="{Binding PasswordInput, Mode=TwoWay}" Margin="429,293.5,329,0" VerticalAlignment="Top" Height="27"/>
-        <Label Content="Confirmation Mdp*" HorizontalAlignment="Left" Margin="305,325.54,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.249,0.149" Width="114.333">
-        	<Label.Foreground>
-        		<SolidColorBrush Color="{DynamicResource BlueTextColor}"/>
-        	</Label.Foreground>
-        </Label>
-        <PasswordBox x:Name="Password_confirm" ff:PasswordHelper.Attach="True"  ff:PasswordHelper.Password="{Binding PasswordConfirmInput, Mode=TwoWay}" Margin="430,324.5,329,0" VerticalAlignment="Top" Height="27"/>
-        <TextBlock Height="25" Margin="310,0,0,179.5" TextWrapping="Wrap" VerticalAlignment="Bottom" RenderTransformOrigin="1.412,-0.271" HorizontalAlignment="Left" Width="96">
-        	<TextBlock.Foreground>
-        		<SolidColorBrush Color="{DynamicResource BlueTextColor}"/>
-        	</TextBlock.Foreground><Run Language="fr-fr" Text="Photo de profil"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Height="33" Margin="107.125,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="380.875" FontSize="21.333" FontWeight="Bold" TextAlignment="Center" Foreground="#FFF3F3F3"><TextBlock.Effect>
+        <Label Content="Login *" HorizontalAlignment="Left" Margin="304,222.525,0,0" VerticalAlignment="Top" Width="100" d:LayoutOverrides="VerticalAlignment" Style="{DynamicResource blueText}" />
+        <TextBox x:Name="Login_text" Text="{Binding LoginInput}" TextWrapping="Wrap" Margin="429,218.507,329,0" Height="30" VerticalAlignment="Top"/>
+        <Label Content="Mot de passe*" HorizontalAlignment="Left" Margin="305,253.525,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.249,0.149" Width="100" d:LayoutOverrides="VerticalAlignment" Style="{DynamicResource blueText}" />
+        <PasswordBox x:Name="Password" ff:PasswordHelper.Attach="True"  ff:PasswordHelper.Password="{Binding PasswordInput, Mode=TwoWay}" Margin="429,252.507,329,0" VerticalAlignment="Top" Height="27" d:LayoutOverrides="VerticalAlignment"/>
+        <Label Content="Confirmation Mdp*" HorizontalAlignment="Left" Margin="305,284.525,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.249,0.149" Width="114.333" Style="{DynamicResource blueText}" />
+        <PasswordBox x:Name="Password_confirm" ff:PasswordHelper.Attach="True"  ff:PasswordHelper.Password="{Binding PasswordConfirmInput, Mode=TwoWay}" Margin="430,283.507,329,0" VerticalAlignment="Top" Height="27"/>
+        <TextBlock Height="25" Margin="310,0,0,220.493" TextWrapping="Wrap" VerticalAlignment="Bottom" RenderTransformOrigin="1.412,-0.271" HorizontalAlignment="Left" Width="96" Style="{DynamicResource blueText}">
+            <Run Language="fr-fr" Text="Photo de profil"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="33" Margin="9.334,43.007,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="380.875" FontSize="21.333" FontWeight="Bold" TextAlignment="Center" Foreground="#FFF3F3F3">
+            <TextBlock.Effect>
         		<DropShadowEffect/>
-        	</TextBlock.Effect><TextBlock.Background>
+        	</TextBlock.Effect>
+            <TextBlock.Background>
         		<SolidColorBrush Color="{DynamicResource BlueTitleBg}"/>
         	</TextBlock.Background><Run Language="fr-fr" Text="Ajouter un collaborateur"/></TextBlock>
-        <TextBlock Height="49.5" Margin="430,0,329,165" TextWrapping="Wrap" Text="Glisser-déposer votre image ici" VerticalAlignment="Bottom" TextAlignment="Center" Foreground="#FF1B1B1B">
+        <TextBlock Height="49.5" Margin="430,0,329,205.993" TextWrapping="Wrap" Text="Glisser-déposer votre image ici" VerticalAlignment="Bottom" TextAlignment="Center" Foreground="#FF1B1B1B">
         	<TextBlock.Background>
         		<SolidColorBrush Color="#FF4795B6" Opacity="0.435"/>
         	</TextBlock.Background>

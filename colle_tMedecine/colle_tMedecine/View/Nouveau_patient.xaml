@@ -9,22 +9,15 @@
 	Width="992" Height="580">
 
 	<Grid x:Name="LayoutRoot">
-		<Rectangle Margin="106,-0.09,98,91.09" Stroke="Black" RadiusX="20" RadiusY="20">
+		<Rectangle Margin="8,-0.09,8,91.09" Stroke="Black" RadiusX="20" RadiusY="20">
 			<Rectangle.Fill>
 				<SolidColorBrush Color="#FFC9DBE7" Opacity="0.7"/>
 			</Rectangle.Fill>
 		</Rectangle>
-        <Button x:Name="Add_button" Command="{Binding AddCommand}" Content="Ajouter" Height="34" Margin="445,0,431,251.756"  VerticalAlignment="Bottom" Foreground="#FFF3F3F3" BorderBrush="#FF898989">
-        	<Button.Background>
-        		<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-        			<GradientStop Color="#FF427090"/>
-        			<GradientStop Color="#FF12476E" Offset="1"/>
-        		</LinearGradientBrush>
-        	</Button.Background>
-		</Button>
+        <Button x:Name="Add_button" Command="{Binding AddCommand}" Content="Ajouter" Height="34" Margin="474,0,402,254"  VerticalAlignment="Bottom" Style="{DynamicResource SimpleButton}" />
         <TextBox x:Name="Name_input" Text="{Binding NameInput}" Height="27" Margin="445,145.91,347,0"  TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.203,-0.649"/>
         <TextBox x:Name="Firstname_input" Text="{Binding FirstnameInput}" Height="26" Margin="445,187.91,347,0"  TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <DatePicker x:Name="Birthdate" SelectedDate="{Binding Path=DateInput}" Margin="445,226.91,347,0" Background="#00000000" Height="23" VerticalAlignment="Top">
+        <DatePicker x:Name="Birthdate" SelectedDate="{Binding Path=DateInput}" Margin="445,228,347,0" Background="White" Height="23" VerticalAlignment="Top">
         	<DatePicker.BorderBrush>
         		<LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
         			<GradientStop Color="#FFA3AEB9" Offset="0"/>
@@ -33,10 +26,10 @@
         		</LinearGradientBrush>
         	</DatePicker.BorderBrush>
         </DatePicker>
-        <Label Content="Nom" Height="27" Margin="322,145.91,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="111" Background="Transparent" Foreground="#FF035C93"/>
-		<Label Content="Prenom" Height="26" Margin="322,187.91,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="111" Foreground="#FF035C93"/>
-		<Label Content="Date de naissance" HorizontalAlignment="Left" Margin="322,226.91,0,0" Width="111" Foreground="#FF035C93" Height="23" VerticalAlignment="Top"/>
-		<TextBlock HorizontalAlignment="Left" Height="33" Margin="107.125,42.91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="380.875" FontSize="21.333" FontWeight="Bold" TextAlignment="Center" Foreground="#FFF3F3F3">
+        <Label Content="Nom" Height="27" Margin="322,145.91,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="111" Background="Transparent"  Style="{DynamicResource blueText}"/>
+		<Label Content="Prenom" Height="26" Margin="322,187.91,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="111"  Style="{DynamicResource blueText}"/>
+        <Label Content="Date de naissance" HorizontalAlignment="Left" Margin="322,226.91,0,0" Width="111"  Style="{DynamicResource blueText}" Height="23" VerticalAlignment="Top"/>
+		<TextBlock HorizontalAlignment="Left" Height="33" Margin="9.31,42.91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="380.875" FontSize="21.333" FontWeight="Bold" TextAlignment="Center" Foreground="#FFF3F3F3">
 			<TextBlock.Effect>
 				<DropShadowEffect/>
 			</TextBlock.Effect>
