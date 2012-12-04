@@ -6,8 +6,9 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Controls;
 using System.IO;
+using System.Windows.Controls;
+
 
 namespace colle_tMedecine.ViewModel
 {
@@ -15,6 +16,13 @@ namespace colle_tMedecine.ViewModel
     {
         private ICommand _addCommand;
         private ICommand _addPresc;
+        private ICommand _addImage;
+
+        public ICommand AddImage
+        {
+            get { return this._addImage; }
+            set { this._addImage = value; }
+        }
 
         public ICommand AddPresc
         {
@@ -32,7 +40,7 @@ namespace colle_tMedecine.ViewModel
         private string _comment;
         private int _bloodPressure;
         private List<string> _prescriptions;
-        private List<BitmapImage> _pictures;
+        private List<Image> _pictures;
         private string _patientName;
         private Model.Patient _patient;
         private DateTime _date;
@@ -64,7 +72,7 @@ namespace colle_tMedecine.ViewModel
             set { _patientName = value; }
         }
 
-        public List<BitmapImage> Pictures
+        public List<Image> Pictures
         {
             get { return _pictures; }
             set { _pictures = value;
@@ -102,9 +110,10 @@ namespace colle_tMedecine.ViewModel
         {
             _addCommand = new RelayCommand(param => AddObservation(), param => true);
             _addPresc = new RelayCommand(param => AddPrescription(), param => true);
+            _addImage = new RelayCommand(param => AddImageAction(), param => true);
             PatientName = String.Format("{0} {1}", patient.Name, patient.Firstname);
             Patient = patient;
-            Pictures = new List<BitmapImage>();
+            Pictures = new List<Image>();
             Date = DateTime.Now;
             Prescriptions = new List<string>();
         }
@@ -134,12 +143,20 @@ namespace colle_tMedecine.ViewModel
         private List<byte[]> ConverttobyteArray()
         {
             List<byte[]> newlistimg = new List<byte[]>();
-            foreach (BitmapImage img in Pictures)
+            
+
+            foreach (Image img in Pictures)
             {
-                int stride = img.PixelWidth * ((img.Format.BitsPerPixel + 7) / 8);
-                byte[] bmpPixels = new byte[img.PixelHeight * stride];
-                img.CopyPixels(bmpPixels, stride, 0);
-                newlistimg.Add(bmpPixels);
+                ImageSource imgsrc = img.Source;
+                BitmapImage biimg = (BitmapImage)imgsrc;
+                
+                JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(biimg));
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    encoder.Save(ms);
+                    newlistimg.Add(ms.ToArray());
+                }
             }
             return newlistimg;
         }
@@ -157,7 +174,7 @@ namespace colle_tMedecine.ViewModel
             Prescriptions = listpres;
         }
 
-        private void image_DragEnter(object sender, DragEventArgs e)
+  /*      private void Image_DragEnter(object sender, DragEventArgs e)
         {
 
             if (e.Data.GetDataPresent(DataFormats.Text))
@@ -166,7 +183,7 @@ namespace colle_tMedecine.ViewModel
                 e.Effects = DragDropEffects.None;
         }
 
-        private void image_Drop(object sender, DragEventArgs e)
+        private void Image_Drop(object sender, DragEventArgs e)
         {
             List<BitmapImage> listimage = new List<BitmapImage>();
             foreach (BitmapImage img in Pictures)
@@ -179,6 +196,42 @@ namespace colle_tMedecine.ViewModel
             listimage.Add(tmpImage);
             Pictures = listimage;
 
+        } */
+
+        public void AddImageAction()
+        {
+            System.Windows.Forms.OpenFileDialog dlg = new System.Windows.Forms.OpenFileDialog();
+            dlg.Filter = "Images|*.png;*.gif;*.jpg";
+
+            if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string[] filePath = dlg.FileNames;
+                StreamReader sr = new StreamReader(filePath[0]);
+                BinaryReader read = new BinaryReader(sr.BaseStream);
+                byte[] Pict = read.ReadBytes((int)sr.BaseStream.Length);
+
+                MemoryStream stream = new MemoryStream(Pict);
+                stream.Position = 0;
+                BitmapImage bi = new BitmapImage();
+                bi.BeginInit();
+                bi.StreamSource = stream;
+                bi.EndInit();
+
+                ImageSource imgsrc = bi;
+                Image newimg = new Image();
+                newimg.Source = imgsrc;
+
+                List<Image> listimage = new List<Image>();
+                foreach (Image img in Pictures)
+                {
+                    listimage.Add(img);
+                }
+
+
+                listimage.Add(newimg);
+                Pictures = listimage;
+            }
+            dlg.Dispose();
         }
     }
 }
