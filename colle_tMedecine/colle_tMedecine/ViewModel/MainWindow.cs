@@ -111,27 +111,45 @@ namespace colle_tMedecine.ViewModel
             mainwindow.contentcontrol.Content = view;
         }
 
+        public void navigate(UserControl fromView, UserControl destView)
+        {
+            ViewStack.Add((UserControl)fromView);
+            View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
+            string destType = destView.GetType().Name;
+            if (destType == "Patients")
+                mainwindow.patient_nav_item.Style = (Style)Application.Current.FindResource("ActiveMenuButton");
+            else
+                mainwindow.patient_nav_item.Style = (Style)Application.Current.FindResource("MenuButton");
+            if (destType == "Personnel")
+                mainwindow.personnel_nav_item.Style = (Style)Application.Current.FindResource("ActiveMenuButton");
+            else
+                mainwindow.personnel_nav_item.Style = (Style)Application.Current.FindResource("MenuButton");
+            
+            mainwindow.contentcontrol.Content = destView;
+        }
        
 
         #region Commandes
         private void showPatients()
         {
             View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
-            ViewStack.Add((UserControl)mainwindow.contentcontrol.Content);
+
             View.Patients view = new colle_tMedecine.View.Patients();
             ViewModel.PatientsViewModel vm = new colle_tMedecine.ViewModel.PatientsViewModel();
             view.DataContext = vm;
-            mainwindow.contentcontrol.Content = view;
+
+            navigate((UserControl)mainwindow.contentcontrol.Content, view);
         }
 
         private void showUsers()
         {
             View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
-            ViewStack.Add((UserControl)mainwindow.contentcontrol.Content);
+
             View.Personnel view = new colle_tMedecine.View.Personnel();
             ViewModel.PersonnelViewModel vm = new colle_tMedecine.ViewModel.PersonnelViewModel();
             view.DataContext = vm;
-            mainwindow.contentcontrol.Content = view;
+            navigate((UserControl)mainwindow.contentcontrol.Content, view);
+
         }
 
         private void backView()
@@ -140,8 +158,18 @@ namespace colle_tMedecine.ViewModel
             {
                 View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
                 UserControl last_view = ViewStack.Last<UserControl>();
+                string destType = last_view.GetType().Name;
+                if (destType == "Patients")
+                    mainwindow.patient_nav_item.Style = (Style)Application.Current.FindResource("ActiveMenuButton");
+                else
+                    mainwindow.patient_nav_item.Style = (Style)Application.Current.FindResource("MenuButton");
+                if (destType == "Personnel")
+                    mainwindow.personnel_nav_item.Style = (Style)Application.Current.FindResource("ActiveMenuButton");
+                else
+                    mainwindow.personnel_nav_item.Style = (Style)Application.Current.FindResource("MenuButton");
                 ViewStack.RemoveAt(ViewStack.Count -1);
                 mainwindow.contentcontrol.Content = last_view;
+
             }
         }
 

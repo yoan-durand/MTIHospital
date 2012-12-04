@@ -87,24 +87,27 @@ namespace colle_tMedecine.ViewModel
         {
             View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
             ViewModel.MainWindow mainwindowVM = (ViewModel.MainWindow) mainwindow.DataContext;
-            mainwindowVM.ViewStack.Add((UserControl)mainwindow.contentcontrol.Content);
+
             View.Nouveau_patient view = new colle_tMedecine.View.Nouveau_patient();
             ViewModel.Nouveau_patientViewModel vm = new colle_tMedecine.ViewModel.Nouveau_patientViewModel();
             view.DataContext = vm;
-            mainwindow.contentcontrol.Content = view;
+
+            mainwindowVM.navigate((UserControl)mainwindow.contentcontrol.Content, view);
         }
 
         public void ShowPatientSheet(object param)
         {
             View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
-           
+            ViewModel.MainWindow mainwindowVM = (ViewModel.MainWindow)mainwindow.DataContext;
+
             Model.Patient pat = (Model.Patient) param;
       
             View.Fiche_Patient view = new colle_tMedecine.View.Fiche_Patient();
 
             ViewModel.Fiche_PatientViewModel vm = new colle_tMedecine.ViewModel.Fiche_PatientViewModel(pat);
             view.DataContext = vm;
-            mainwindow.contentcontrol.Content = view;
+
+            mainwindowVM.navigate((UserControl)mainwindow.contentcontrol.Content, view);
         }
 
         public void DeletePatient(object param)
