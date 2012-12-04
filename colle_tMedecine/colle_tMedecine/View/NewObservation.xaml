@@ -42,7 +42,8 @@
     	</ListView>
     	<TextBox Text="{Binding Prescription}" Grid.Column="1" HorizontalAlignment="Right" Height="21" Margin="0,0,86,244" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="152" RenderTransformOrigin="0.507,2.19" d:LayoutOverrides="VerticalAlignment"/>
         <Button Content="Ajouter" Command="{Binding AddPresc}" Style="{DynamicResource SimpleButton}" Grid.Column="1" HorizontalAlignment="Right" Height="21" Margin="0,0,27,244" VerticalAlignment="Bottom" Width="55" d:LayoutOverrides="VerticalAlignment"/>
-    	<ListBox Grid.Column="1" Margin="40,349,26,95" Background="White"/>
+        <Image Grid.Column="1" Margin="41,349,746,95" AllowDrop="True" Drop="Image_Drop" DragEnter="Image_DragEnter"/>
+        <ListBox Grid.Column="1" Margin="226,349,26,95" Background="White" ItemsSource="{Binding Pictures}"/>
         <Button Content="Ajouter" Command="{Binding AddCommand}" Style="{DynamicResource SimpleButton}" Grid.Column="1" HorizontalAlignment="Right" Height="21" Margin="0,0,403,68" VerticalAlignment="Bottom" Width="146" d:LayoutOverrides="VerticalAlignment"/> 
         
     </Grid>

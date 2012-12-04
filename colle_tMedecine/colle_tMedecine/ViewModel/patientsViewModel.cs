@@ -169,8 +169,8 @@ namespace colle_tMedecine.ViewModel
                         {
                             Comments = obs.Comment,
                             Date = obs.Date,
-                            Pic = obs.Pictures,
-                            Prescriptions = obs.Prescription.ToList(),
+                            Pic = new List<byte[]>().ToArray() ?? obs.Pictures,
+                            Prescriptions = new List<string>() ?? obs.Prescription.ToList(),
                             Pressure = obs.BloodPressure,
                             Weight = obs.Weight
                         };
