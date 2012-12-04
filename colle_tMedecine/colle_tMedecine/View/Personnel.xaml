@@ -7,13 +7,14 @@
 	x:Class="colle_tMedecine.View.Personnel"
 	Width="992" Height="580">
     <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisConverter"/>
         <DataTemplate x:Key="listUser">
             <StackPanel Orientation="Horizontal" Height="28.5" Width="581">
                 <TextBlock Height="28" TextWrapping="Wrap" Width="151.5" HorizontalAlignment="Left"><Run Language="fr-fr" Text="{Binding Path=Name}"/></TextBlock>
                 <TextBlock TextWrapping="Wrap" Width="144" Margin="0,0,0,6"><Run Language="fr-fr" Text="{Binding Path=Firstname}"/></TextBlock>
                 <TextBlock TextWrapping="Wrap" Width="78" Margin="0,0,0,3"><Run Language="fr-fr" Text="{Binding Path=Role}"/></TextBlock>
                 <Button Content="Supprimer" 
-                      
+                        Visibility="{Binding Path=DataContext.IsAdmin, Mode=TwoWay, Converter={StaticResource BoolToVisConverter}, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}"
                         Command="{Binding Path=DataContext.SupprUser, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}"
                         CommandParameter="{Binding}"
                         Width="108" 
@@ -30,7 +31,7 @@
         <ListBox x:Name="ListUser" Margin="72.5,109.25,72,123.75" ItemsSource="{Binding ListUser}" ItemTemplate="{DynamicResource listUser}" Height="347" Background="#FFE2ECF5" />
 		<TextBox x:Name="Search_bar" Text="{Binding Search}"  Height="27.5" Margin="72.5,77.75,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="189" FontStyle="Italic"/>
         <Button x:Name="Search_button" Command="{Binding SearchUser}" Content="Rechercher" HorizontalAlignment="Left" Height="27.5" Margin="277,77.75,0,0"  VerticalAlignment="Top" Width="99.5" Foreground="White" Style="{DynamicResource SimpleButton}" />
-        <Button x:Name="new_account" Command="{Binding NewUser}" Content="Créer un compte" HorizontalAlignment="Right" Height="36.5" Margin="0,68.75,72,0"  VerticalAlignment="Top" Width="148.5" Foreground="White" Style="{DynamicResource SimpleButton}" />
+        <Button x:Name="new_account" Command="{Binding NewUser}" Visibility="{Binding IsAdmin, Mode=TwoWay, Converter={StaticResource BoolToVisConverter}}" Content="Créer un compte" HorizontalAlignment="Right" Height="36.5" Margin="0,68.75,72,0"  VerticalAlignment="Top" Width="148.5" Foreground="White" Style="{DynamicResource SimpleButton}" />
 		<TextBlock HorizontalAlignment="Left" Height="33" Margin="9.333,29.75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="380.875" FontSize="21.333" FontWeight="Bold" TextAlignment="Center" Foreground="#FFF3F3F3"><TextBlock.Effect>
 				<DropShadowEffect/>
 			</TextBlock.Effect><TextBlock.Background>
