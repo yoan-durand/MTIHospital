@@ -48,8 +48,6 @@
 				<Image x:Name="Avatar"  Margin="0,8,126.5,29.5" Width="88.5" HorizontalAlignment="Right" d:LayoutOverrides="HorizontalAlignment"/>
 			</Grid>
 		</ContentControl>
-		<ContentControl x:Name="contentcontrol" Margin="-5.104,122,8,12" Background="#FF437495" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-		
-
-	</Grid>
+		 <ContentControl x:Name="contentcontrol" Margin="-5.104,122,8,12" Background="#FF437495" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+    </Grid>
 </Window>
