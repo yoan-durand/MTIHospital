@@ -6,6 +6,9 @@ using System.Windows.Input;
 using System.IO;
 using colle_tMedecine.ServiceUser;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
+using System.Windows.Media;
 
 namespace colle_tMedecine.ViewModel
 {
@@ -84,11 +87,24 @@ namespace colle_tMedecine.ViewModel
             set {_pict = value;}
         }
 
+        private Image _picture;
+
+        public Image Picture
+        {
+            get { return _picture; }
+            set { 
+                    _picture = value;
+                    OnPropertyChanged("Picture");
+                }
+        }
+
         public Nouveau_PersonnelViewModel()
         {
+            Pict = new byte[0];
+            Picture = new Image();
             _addCommand = new RelayCommand(param => addUser(), param => true);
             _addImage = new RelayCommand (param => AddImageAction(), param => true);
-            Pict = new byte[0];
+            
         }
 
         private void addUser()
@@ -104,7 +120,7 @@ namespace colle_tMedecine.ViewModel
             new_user.Pwd = _passwordInput;
             new_user.Login = _loginInput;
             new_user.Picture = Pict;
-            //picture
+            
             if (service.AddUser(new_user))
             {
                 View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
@@ -127,12 +143,24 @@ namespace colle_tMedecine.ViewModel
             if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 string[] filePath = dlg.FileNames;
-                FileStream fs = new FileStream(filePath[0], FileMode.Open, FileAccess.Read);
-                Pict = new byte[fs.Length];
-                fs.Read(Pict, 0, System.Convert.ToInt32(fs.Length));
-                fs.Close();
+                StreamReader  sr = new StreamReader(filePath[0]);
+                BinaryReader read = new BinaryReader(sr.BaseStream);
+                Pict = read.ReadBytes((int)sr.BaseStream.Length);
+                
+                
             }
             dlg.Dispose();
+
+            MemoryStream stream = new MemoryStream(Pict);
+            stream.Position = 0;
+            BitmapImage bi = new BitmapImage();
+            bi.BeginInit();
+            bi.StreamSource = stream;
+            bi.EndInit();
+
+            ImageSource imgsrc = bi;
+            Picture = new Image();
+            Picture.Source = imgsrc;
         }
         
 
