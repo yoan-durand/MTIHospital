@@ -11,7 +11,7 @@
 			</Rectangle.Fill>
 		</Rectangle>
         <DataGrid x:Name="ListPatient" ItemsSource="{Binding ListPatient}"  GridLinesVisibility="Horizontal" Margin="76.5,107,68,126" Background="#FFE2ECF5" 
-		AutoGenerateColumns="False" AlternationCount="2" OpacityMask="#FFBCBCBC" HorizontalGridLinesBrush="{StaticResource BlueGridLine}">
+		AutoGenerateColumns="False" AlternationCount="2" OpacityMask="#FFBCBCBC" HorizontalGridLinesBrush="{StaticResource BlueGridLine}" CanUserAddRows="False">
     		<DataGrid.Foreground>
     			<SolidColorBrush Color="{DynamicResource Blue_Button}"/>
     		</DataGrid.Foreground>

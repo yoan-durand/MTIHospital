@@ -30,8 +30,8 @@
 			</Rectangle.Fill>
 		</Rectangle>
         <ListBox x:Name="ListUser" Margin="72.5,109.25,72,123.75" ItemsSource="{Binding ListUser}" ItemTemplate="{DynamicResource listUser}" Height="347" Background="#FFE2ECF5" />
-        <!--<DataGrid x:Name="ListPatient" ItemsSource="{Binding ListPatient}"  GridLinesVisibility="Horizontal" Margin="76.5,107,68,126" Background="#FFE2ECF5" 
-		AutoGenerateColumns="False" AlternationCount="2" OpacityMask="#FFBCBCBC" HorizontalGridLinesBrush="{StaticResource BlueGridLine}">
+        <DataGrid x:Name="ListPatient" ItemsSource="{Binding ListUser}"  GridLinesVisibility="Horizontal" Margin="76.5,107,68,126" Background="#FFE2ECF5" 
+		AutoGenerateColumns="False" AlternationCount="2" OpacityMask="#FFBCBCBC" HorizontalGridLinesBrush="{StaticResource BlueGridLine}" CanUserAddRows="False">
     		<DataGrid.Foreground>
     			<SolidColorBrush Color="{DynamicResource Blue_Button}"/>
     		</DataGrid.Foreground>
@@ -52,7 +52,7 @@
     		<DataGrid.Columns>
     			<DataGridTextColumn Header="Nom" Width="*" Binding="{Binding Path=Name}" Foreground="Black" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Prenom" Width="*" Binding="{Binding Path=Firstname}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Date de naissance" Width="*" Binding="{Binding Path=Birthday}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Role" Width="*" Binding="{Binding Path=Role}" IsReadOnly="True"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -79,7 +79,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>          
-    	</DataGrid>-->
+    	</DataGrid>
 		<TextBox x:Name="Search_bar" Text="{Binding Search}"  Height="27.5" Margin="72.5,77.75,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="189" FontStyle="Italic"/>
         <Button x:Name="Search_button" Command="{Binding SearchUser}" Content="Rechercher" HorizontalAlignment="Left" Height="27.5" Margin="277,77.75,0,0"  VerticalAlignment="Top" Width="99.5" Foreground="White" Style="{DynamicResource SimpleButton}" />
         <Button x:Name="new_account" Command="{Binding NewUser}" Visibility="{Binding IsAdmin, Mode=TwoWay, Converter={StaticResource BoolToVisConverter}}" Content="Créer un compte" HorizontalAlignment="Right" Height="36.5" Margin="0,68.75,72,0"  VerticalAlignment="Top" Width="148.5" Foreground="White" Style="{DynamicResource SimpleButton}" />
