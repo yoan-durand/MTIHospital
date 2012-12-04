@@ -84,24 +84,16 @@ namespace colle_tMedecine.ViewModel
         public byte[] Pict
         {
             get {return _pict;}
-            set {_pict = value;}
-        }
-
-        private Image _picture;
-
-        public Image Picture
-        {
-            get { return _picture; }
-            set { 
-                    _picture = value;
-                    OnPropertyChanged("Picture");
-                }
+            set
+            {
+                    _pict = value;
+                    OnPropertyChanged("Pict");
+            }
         }
 
         public Nouveau_PersonnelViewModel()
         {
             Pict = new byte[0];
-            Picture = new Image();
             _addCommand = new RelayCommand(param => addUser(), param => true);
             _addImage = new RelayCommand (param => AddImageAction(), param => true);
             
@@ -146,21 +138,9 @@ namespace colle_tMedecine.ViewModel
                 StreamReader  sr = new StreamReader(filePath[0]);
                 BinaryReader read = new BinaryReader(sr.BaseStream);
                 Pict = read.ReadBytes((int)sr.BaseStream.Length);
-                
-                
+ 
             }
             dlg.Dispose();
-
-            MemoryStream stream = new MemoryStream(Pict);
-            stream.Position = 0;
-            BitmapImage bi = new BitmapImage();
-            bi.BeginInit();
-            bi.StreamSource = stream;
-            bi.EndInit();
-
-            ImageSource imgsrc = bi;
-            Picture = new Image();
-            Picture.Source = imgsrc;
         }
         
 

@@ -62,7 +62,23 @@ namespace colle_tMedecine.ViewModel
         public Model.User ConnectedUser
         {
             get { return _connectedUser; }
-            set { _connectedUser = value; }
+            set 
+            { 
+                    _connectedUser = value;
+                    OnPropertyChanged("ConnectedUser");
+            }
+        }
+
+        private string _userIdentity;
+
+        public string UserIdentity
+        {
+            get { return _userIdentity; }
+            set
+            {
+                _userIdentity = value;
+                OnPropertyChanged("UserIdentity");
+            }
         }
         
         #endregion
@@ -76,6 +92,8 @@ namespace colle_tMedecine.ViewModel
             _backCommand = new RelayCommand(param => backView(), param => true);
             _menuIsActive = true;
             ViewStack = new List<UserControl>();
+            ConnectedUser = new Model.User();
+            UserIdentity = ConnectedUser.Name + " " + ConnectedUser.Firstname;
             //AddAdmin();
 
         }

@@ -70,8 +70,8 @@ namespace colle_tMedecine.ViewModel
                     Co = true,
                     ExtensionData = user.ExtensionData
                 };
-                
 
+                mainwindowVM.UserIdentity = user.Name + " " + user.Firstname;
                 View.Patients view = new View.Patients ();
                 ViewModel.PatientsViewModel vm = new colle_tMedecine.ViewModel.PatientsViewModel();
                 view.DataContext = vm;
