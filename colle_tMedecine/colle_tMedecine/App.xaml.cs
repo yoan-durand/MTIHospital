@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Windows;
+using System.Windows.Media.Imaging;
 using colle_tMedecine.ServiceUser;
 
 namespace colle_tMedecine
@@ -18,6 +19,7 @@ namespace colle_tMedecine
             base.OnStartup(e);
             View.MainWindow window = new colle_tMedecine.View.MainWindow();
             ViewModel.MainWindow windowVM = new ViewModel.MainWindow();
+
             windowVM.MenuIsActive = false;
             window.DataContext = windowVM;
 
@@ -26,20 +28,6 @@ namespace colle_tMedecine
             login_view.DataContext = vm;
             window.contentcontrol.Content = login_view;
             
-            ServiceUserClient clientService = new ServiceUserClient();
-
-           /* User user = clientService.GetUser("root");
-            if (user == null)
-            {
-                user = new User();
-                user.Login = "root";
-                user.Pwd = "1234";
-                user.Role = "Medecin";
-                user.Name = "Toto";
-                user.Firstname = "Roberto";
-                clientService.AddUser(user);
-            }*/
-
             
 
            /* View.Nouveau_Personnel menu = new colle_tMedecine.View.Nouveau_Personnel();

@@ -4,23 +4,11 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:colle_tMedecine.View" x:Name="personnel"
 	mc:Ignorable="d"
+	xmlns:mylocal="clr-namespace:colle_tMedecine.Helper"
 	x:Class="colle_tMedecine.View.Personnel"
 	Width="992" Height="580">
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisConverter"/>
-        <DataTemplate x:Key="listUser">
-            <StackPanel Orientation="Horizontal" Height="28.5" Width="581">
-                <TextBlock Height="28" TextWrapping="Wrap" Width="151.5" HorizontalAlignment="Left"><Run Language="fr-fr" Text="{Binding Path=Name}"/></TextBlock>
-                <TextBlock TextWrapping="Wrap" Width="144" Margin="0,0,0,6"><Run Language="fr-fr" Text="{Binding Path=Firstname}"/></TextBlock>
-                <TextBlock TextWrapping="Wrap" Width="78" Margin="0,0,0,3"><Run Language="fr-fr" Text="{Binding Path=Role}"/></TextBlock>
-                <Button Content="Supprimer" 
-                        Visibility="{Binding Path=DataContext.IsAdmin, Mode=TwoWay, Converter={StaticResource BoolToVisConverter}, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}"
-                        Command="{Binding Path=DataContext.SupprUser, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}"
-                        CommandParameter="{Binding}"
-                        Width="108" 
-                        Margin="0,0,0,4.5"/>    
-            </StackPanel>
-        </DataTemplate>
     </UserControl.Resources>
 	<Grid x:Name="LayoutRoot">
 		<Rectangle Margin="8,-0.25,8,49.25" Stroke="Black" RadiusX="20" RadiusY="20">
@@ -28,8 +16,49 @@
 				<SolidColorBrush Color="#FFC9DBE7" Opacity="0.7"/>
 			</Rectangle.Fill>
 		</Rectangle>
-        <ListBox x:Name="ListUser" Margin="72.5,109.25,72,123.75" ItemsSource="{Binding ListUser}" ItemTemplate="{DynamicResource listUser}" Height="347" Background="#FFE2ECF5" />
-		<TextBox x:Name="Search_bar" Text="{Binding Search}"  Height="27.5" Margin="72.5,77.75,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="189" FontStyle="Italic"/>
+        <DataGrid x:Name="ListUser" ItemsSource="{Binding ListUser}"  GridLinesVisibility="Horizontal" Margin="72.833,107,71.667,126" Background="#FFE2ECF5" 
+		AutoGenerateColumns="False" AlternationCount="2" OpacityMask="#FFBCBCBC" HorizontalGridLinesBrush="{StaticResource BlueGridLine}" CanUserAddRows="False">
+    		<DataGrid.Foreground>
+    			<SolidColorBrush Color="{DynamicResource Blue_Button}"/>
+    		</DataGrid.Foreground>
+            <DataGrid.Resources>
+                <BooleanToVisibilityConverter x:Key="BoolToVisConverter"/>
+                <mylocal:BindingHelper x:Key="ColumnBinding" Data="{Binding}"/>
+				<Style TargetType="{x:Type DataGridRow}">
+				    <Style.Triggers>
+				        <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+				            <Setter Property="Background" Value="#FFCFDDE8"></Setter>
+				        </Trigger>
+				        <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+				            <Setter Property="Background" Value="White"></Setter>
+				        </Trigger>
+	    			</Style.Triggers>
+				</Style>
+           	</DataGrid.Resources>
+    		<DataGrid.Columns>
+    			<DataGridTextColumn Header="Nom" Width="*" Binding="{Binding Path=Name}" Foreground="Black" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Prenom" Width="*" Binding="{Binding Path=Firstname}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Role" Width="*" Binding="{Binding Path=Role}" IsReadOnly="True"/>
+                <DataGridTemplateColumn>
+                    
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn  Visibility="{Binding Data.IsAdmin,
+                        Converter={StaticResource BoolToVisConverter},
+                        Source={StaticResource ColumnBinding}}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Supprimer"
+                             Width="91.5" 
+                            Margin="0,0,0,0"
+                            Command="{Binding Path=DataContext.SupprUser, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
+                            CommandParameter="{Binding}" Style="{DynamicResource SimpleButton}"
+                            />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>          
+    	</DataGrid>
+        <TextBox x:Name="Search_bar" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}"  Height="27.5" Margin="72.5,77.75,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="189" FontStyle="Italic"/>
         <Button x:Name="Search_button" Command="{Binding SearchUser}" Content="Rechercher" HorizontalAlignment="Left" Height="27.5" Margin="277,77.75,0,0"  VerticalAlignment="Top" Width="99.5" Foreground="White" Style="{DynamicResource SimpleButton}" />
         <Button x:Name="new_account" Command="{Binding NewUser}" Visibility="{Binding IsAdmin, Mode=TwoWay, Converter={StaticResource BoolToVisConverter}}" Content="Créer un compte" HorizontalAlignment="Right" Height="36.5" Margin="0,68.75,72,0"  VerticalAlignment="Top" Width="148.5" Foreground="White" Style="{DynamicResource SimpleButton}" />
 		<TextBlock HorizontalAlignment="Left" Height="33" Margin="9.333,29.75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="380.875" FontSize="21.333" FontWeight="Bold" TextAlignment="Center" Foreground="#FFF3F3F3"><TextBlock.Effect>

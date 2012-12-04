@@ -80,6 +80,17 @@ namespace colle_tMedecine.ViewModel
                 OnPropertyChanged("UserIdentity");
             }
         }
+
+        private bool _fadeOut;
+
+        public bool FadeOut
+        {
+            get { return _fadeOut; }
+            set { _fadeOut = value;
+            OnPropertyChanged("FadeOut");
+            }
+        }
+        
         
         #endregion
 
@@ -94,39 +105,60 @@ namespace colle_tMedecine.ViewModel
             ViewStack = new List<UserControl>();
             ConnectedUser = new Model.User();
             UserIdentity = ConnectedUser.Name + " " + ConnectedUser.Firstname;
-            //AddAdmin();
+            _fadeOut = false;
+            AddAdmin();
 
         }
 
 
-
+        /*Create the first acount*/
         private void AddAdmin()
         {
             ServiceUser.ServiceUserClient clientService = new ServiceUser.ServiceUserClient();
-            if (clientService.GetUser("admin") == null)
+            try
             {
-                ServiceUser.User admin = new ServiceUser.User
+                ServiceUser.User user = clientService.GetUser("admin");
+            }
+            catch
+            {
+                try
                 {
-                    Firstname = "Admin",
-                    Name = "Admin",
-                    Pwd = "admin",
-                    Login = "admin",
-                    Role = "Medecin",
-                    Connected = false
-                };
-                clientService.AddUser(admin);
+                    ServiceUser.User admin = new ServiceUser.User
+                    {
+                        Firstname = "admin",
+                        Name = "admin",
+                        Pwd = "admin",
+                        Login = "admin",
+                        Role = "Medecin",
+                        Connected = false
+                    };
+                    clientService.AddUser(admin);
+                }
+                catch
+                {
+                }
             }
         }
         private void disconnect()
         {
-            View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
+            try
+            {
+                View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
 
-            ViewModel.MainWindow mainwindowVM = (ViewModel.MainWindow) mainwindow.DataContext;
-            mainwindowVM.MenuIsActive = false;
-            View.Login view = new colle_tMedecine.View.Login();
-            ViewModel.LoginViewModel vm = new colle_tMedecine.ViewModel.LoginViewModel();
-            view.DataContext = vm;
-            mainwindow.contentcontrol.Content = view;
+                ServiceUser.ServiceUserClient clientService = new ServiceUser.ServiceUserClient();
+                clientService.Disconnect(ConnectedUser.Login);
+
+                ViewModel.MainWindow mainwindowVM = (ViewModel.MainWindow)mainwindow.DataContext;
+                ConnectedUser = null;
+                mainwindowVM.MenuIsActive = false;
+                View.Login view = new colle_tMedecine.View.Login();
+                ViewModel.LoginViewModel vm = new colle_tMedecine.ViewModel.LoginViewModel();
+                view.DataContext = vm;
+                mainwindow.contentcontrol.Content = view;
+            }
+            catch (Exception)
+            {
+            }
         }
 
         public void navigate(UserControl fromView, UserControl destView)
@@ -142,8 +174,9 @@ namespace colle_tMedecine.ViewModel
                 mainwindow.personnel_nav_item.Style = (Style)Application.Current.FindResource("ActiveMenuButton");
             else
                 mainwindow.personnel_nav_item.Style = (Style)Application.Current.FindResource("MenuButton");
-            
+            FadeOut = true;
             mainwindow.contentcontrol.Content = destView;
+            FadeOut = false;
         }
        
 
@@ -186,7 +219,9 @@ namespace colle_tMedecine.ViewModel
                 else
                     mainwindow.personnel_nav_item.Style = (Style)Application.Current.FindResource("MenuButton");
                 ViewStack.RemoveAt(ViewStack.Count -1);
+                FadeOut = true;
                 mainwindow.contentcontrol.Content = last_view;
+                FadeOut = false;
 
             }
         }

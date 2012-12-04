@@ -5,12 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         mc:Ignorable="d" x:Class="colle_tMedecine.View.MainWindow"
         xmlns:local="clr-namespace:colle_tMedecine.Converter"
-        Title="Medecine" Height="720" Width="1024" MaxHeight="720" MaxWidth="1024" MinHeight="720" MinWidth="1024" Background="#FF11476D">
+        Title="Medecine" Height="720" Width="1024" MaxHeight="720" MaxWidth="1024" MinHeight="720" MinWidth="1024" Background="#FF11476D"
+		Icon="../iconMedecine.jpg">
     <Window.Resources>
         <local:ConvertByteArrayToImage x:Key="ConvertImage"/>
 
     </Window.Resources>
-	<Grid>
+    
+    <Grid>
+
+
+
 		<Grid.Resources>
 			<BooleanToVisibilityConverter x:Key="BoolToVisConverter"/>
             
@@ -35,7 +40,8 @@
 		<Ellipse Fill="#FF3A7198" Margin="-685,-114,8,-142.5" Stroke="#FF3A7198" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
 		<Ellipse Grid.Column="2" Fill="#FF3A7198" Margin="183.448,-74.5,-17,0" Stroke="#FF3A7198" Height="196.5" VerticalAlignment="Top"/>
         <ContentControl Visibility="{Binding MenuIsActive, Converter={StaticResource BoolToVisConverter}}" x:Name="Menucontrol" Grid.ColumnSpan="3" Height="122" VerticalAlignment="Top">
-			<ContentControl.Background>
+            
+            <ContentControl.Background>
 				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 					<GradientStop Color="Black" Offset="0"/>
 					<GradientStop Color="White" Offset="1"/>
@@ -55,8 +61,31 @@
 				<Image x:Name="Avatar" Source="{Binding ConnectedUser.Pic, Converter={StaticResource ConvertImage}}" Margin="0,8,126.5,29.5" Width="88.5" HorizontalAlignment="Right" d:LayoutOverrides="HorizontalAlignment"/>
 			</Grid>
 		</ContentControl>
-		<ContentControl x:Name="contentcontrol" Margin="-5.104,122,8,12" Background="#FF437495" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-		
-
-	</Grid>
+        <ContentControl x:Name="contentcontrol" Margin="-5.104,122,8,12" Background="#FF437495" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <ContentControl.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=FadeOut}" Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard >
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="00:00:2" From="1" To="0.5" Storyboard.TargetProperty="Opacity"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=FadeOut}" Value="False">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard >
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="00:00:1" From="0.2" To="1" Storyboard.TargetProperty="Opacity"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ContentControl.Style>
+        </ContentControl>
+    </Grid>
 </Window>
