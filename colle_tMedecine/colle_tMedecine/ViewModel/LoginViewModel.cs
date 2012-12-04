@@ -33,11 +33,33 @@ namespace colle_tMedecine.ViewModel
             get { return _passwordInput; }
             set { _passwordInput = value; }
         }
+        private float _showConnectError;
 
+        public float ShowConnectError
+        {
+            get { return _showConnectError; }
+            set { _showConnectError = value;
+            OnPropertyChanged("ShowConnectError");
+            }
+        }
+
+        private String _errorMessage;
+
+        public String ErrorMessage
+        {
+            get { return _errorMessage; }
+            set { _errorMessage = value;
+            OnPropertyChanged("ErrorMessage");
+            }
+        }
+        
+        
+#endregion
 
         public LoginViewModel()
         {
             _connect = new RelayCommand(param => Connecting(), param => true);
+            ShowConnectError = 0;
 
         }
 
@@ -52,39 +74,46 @@ namespace colle_tMedecine.ViewModel
 
             if (isValid)
             {
-                ServiceUser.User user = new ServiceUser.User();
-                user = clientService.GetUser(this._loginInput);
-                View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
+                try
+                {
+                    ServiceUser.User user = new ServiceUser.User();
+                    user = clientService.GetUser(this._loginInput);
+                    View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
 
-                ViewModel.MainWindow mainwindowVM = (ViewModel.MainWindow)mainwindow.DataContext;
-                mainwindowVM.MenuIsActive = true;
-
-                mainwindowVM.ConnectedUser = new Model.User {   
-                    Firstname = user.Firstname,
-                    Name = user.Firstname,
-                    Login = user.Login,
-                    Password = user.Pwd,
-                    Pic = user.Picture,
-                    Role = user.Role,
-                    Connected = true,
-                    Co = true,
-                    ExtensionData = user.ExtensionData
-                };
-
-                mainwindowVM.UserIdentity = user.Name + " " + user.Firstname;
-                View.Patients view = new View.Patients ();
-                ViewModel.PatientsViewModel vm = new colle_tMedecine.ViewModel.PatientsViewModel();
-                view.DataContext = vm;
-                mainwindow.contentcontrol.Content = view;
+                    ViewModel.MainWindow mainwindowVM = (ViewModel.MainWindow)mainwindow.DataContext;
+                    mainwindowVM.MenuIsActive = true;
+                    mainwindowVM.FadeOut = false;
+                    mainwindowVM.ConnectedUser = new Model.User
+                    {
+                        Firstname = user.Firstname,
+                        Name = user.Firstname,
+                        Login = user.Login,
+                        Password = user.Pwd,
+                        Pic = user.Picture,
+                        Role = user.Role,
+                        Connected = true,
+                        Co = true,
+                        ExtensionData = user.ExtensionData
+                    };
+                    mainwindowVM.UserIdentity = user.Name + " " + user.Firstname;
+                    View.Patients view = new View.Patients();
+                    ViewModel.PatientsViewModel vm = new colle_tMedecine.ViewModel.PatientsViewModel();
+                    view.DataContext = vm;
+                    mainwindow.contentcontrol.Content = view;
+                }
+                catch (Exception e)
+                {
+                    ErrorMessage = "La connexion a échouée, réessayez plus tard";
+                    ShowConnectError = 1;
+                    ShowConnectError = 0;
+                }
             }
-            else
-            {
-               
+            else{
+                ErrorMessage = "Identifiant ou mot de passe incorrect";
+                ShowConnectError = 1;
+                ShowConnectError = 0;
             }
         }
         
-        
-        
-        #endregion
     }
 }

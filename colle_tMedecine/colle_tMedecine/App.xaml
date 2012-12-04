@@ -37,5 +37,9 @@
         <Style x:Key="blueText">
             <Setter Property="Button.Foreground" Value="{StaticResource BlueText}" />
         </Style>
+        <Style x:Key="errorMessageText">
+            <Setter Property="Button.Foreground" Value="#FFFF3131" />
+            <Setter Property="Button.FontWeight" Value="Bold"/>
+        </Style>
     </Application.Resources>
 </Application>
