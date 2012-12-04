@@ -7,11 +7,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Controls;
 using System.IO;
 using System.Windows.Media;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows;
 
 namespace colle_tMedecine.ViewModel
 {
     class Fiche_PatientViewModel : BaseViewModel
     {
+        private ICommand _addObservation;
+
+        public ICommand AddObservation
+        {
+            get { return _addObservation; }
+            set { _addObservation = value; }
+        }
+        
         private Model.Patient _patient;
         private Model.Observation _selectedObservation;
         private List<Image> _listImages;
@@ -46,31 +57,45 @@ namespace colle_tMedecine.ViewModel
             }
             else
             {
-                foreach (byte[] img in value.Pic)
+                if (value.Pic != null)
                 {
-                    if (img == null)
-                        continue;
-                    MemoryStream stream = new MemoryStream(img);
-                    stream.Position = 0;
-                    BitmapImage bi = new BitmapImage();
-                    bi.BeginInit();
-                    bi.StreamSource = stream;
-                    bi.EndInit();
+                    foreach (byte[] img in value.Pic)
+                    {
+                        if (img == null)
+                            continue;
+                        MemoryStream stream = new MemoryStream(img);
+                        stream.Position = 0;
+                        BitmapImage bi = new BitmapImage();
+                        bi.BeginInit();
+                        bi.StreamSource = stream;
+                        bi.EndInit();
 
-                    ImageSource imgsrc = bi;
-                    Image tmp = new Image();
-                    tmp.Source = imgsrc;
-                    limages.Add(tmp);
+                        ImageSource imgsrc = bi;
+                        Image tmp = new Image();
+                        tmp.Source = imgsrc;
+                        limages.Add(tmp);
+                    }
+                    ListImages = limages;
                 }
-                ListImages = limages;
             }
         }
         
         public Fiche_PatientViewModel(Model.Patient patient)
         {
+            _addObservation = new RelayCommand(param => AddObs(), param => true);
             Patient = patient;
             SelectedObservation = null;
             ListImages = null;
+        }
+
+        private void AddObs()
+        {
+            View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
+            View.NewObservation view = new colle_tMedecine.View.NewObservation();
+
+            ViewModel.NewObservationViewModel vm = new colle_tMedecine.ViewModel.NewObservationViewModel(Patient);
+            view.DataContext = vm;
+            mainwindow.contentcontrol.Content = view;
         }
 
         public Model.Patient Patient

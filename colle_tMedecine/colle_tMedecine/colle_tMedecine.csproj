@@ -80,6 +80,7 @@
     <Compile Include="Services\User.cs" />
     <Compile Include="ViewModel\MainWindow.cs" />
     <Compile Include="ViewModel\MenuViewModel.cs" />
+    <Compile Include="ViewModel\NewObservationViewModel.cs" />
     <Compile Include="ViewModel\PersonnelViewModel.cs" />
     <Compile Include="ViewModel\PatientsViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
