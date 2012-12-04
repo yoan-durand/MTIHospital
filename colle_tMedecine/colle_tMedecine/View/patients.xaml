@@ -6,7 +6,7 @@
         <Grid.Resources>
             <BooleanToVisibilityConverter x:Key="BoolToVisConverter"/>
         </Grid.Resources>
-        <Rectangle Margin="8,-0.5,8,49.5" Stroke="Black" RadiusX="20" RadiusY="20">
+        <Rectangle Margin="8,-0.5,8,49.5" Stroke="Black" RadiusX="20" RadiusY="20">   	
 			<Rectangle.Fill>
 				<SolidColorBrush Color="#FFC9DBE7" Opacity="0.7"/>
 			</Rectangle.Fill>
@@ -23,10 +23,10 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Command="{Binding Path=DataContext.PatientSheet, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
-                                    CommandParameter="{Binding}"
-                                    Content="Consulter la fiche" 
-                                    Width="108" 
-                                    Margin="0,0,0,4.5"/>
+                        CommandParameter="{Binding}"
+                        Content="Consulter la fiche" 
+                        Width="108" 
+                        Margin="0,0,0,4.5" Style="{DynamicResource SimpleButton}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -34,11 +34,12 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Supprimer"
-                            Width="91.5" 
+                             Width="91.5" 
                             Margin="0,0,0,4.5"
                             Command="{Binding Path=DataContext.SupprPatient, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
-                            CommandParameter="{Binding}"
+                            CommandParameter="{Binding}" Style="{DynamicResource SimpleButton}"
                             Visibility="{Binding IsAdmin, Mode=TwoWay, Converter={StaticResource BoolToVisConverter}}"/>
+
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

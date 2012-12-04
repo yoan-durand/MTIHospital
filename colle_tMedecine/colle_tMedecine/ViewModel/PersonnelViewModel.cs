@@ -145,11 +145,12 @@ namespace colle_tMedecine.ViewModel
         {
             View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
             ViewModel.MainWindow mainwindowVM = (ViewModel.MainWindow)mainwindow.DataContext;
-            mainwindowVM.ViewStack.Add((UserControl)mainwindow.contentcontrol.Content);
+            
             View.Nouveau_Personnel view = new colle_tMedecine.View.Nouveau_Personnel();
             ViewModel.Nouveau_PersonnelViewModel vm = new colle_tMedecine.ViewModel.Nouveau_PersonnelViewModel();
             view.DataContext = vm;
-            mainwindow.contentcontrol.Content = view;
+
+            mainwindowVM.navigate((UserControl)mainwindow.contentcontrol.Content, view);
         }
 
         public void DeleteUser(object param)
