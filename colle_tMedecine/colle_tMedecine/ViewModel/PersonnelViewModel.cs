@@ -166,9 +166,18 @@ namespace colle_tMedecine.ViewModel
             ServiceUser.ServiceUserClient service = new ServiceUser.ServiceUserClient();
             Model.User user = (Model.User)param;
             this._allUser.Remove(user);
-            if (service.DeleteUser(user.Login))
+            
+            try
             {
-                ListUser = new ObservableCollection<Model.User>(this._allUser);
+                if (service.DeleteUser(user.Login))
+                {
+                    ListUser = new ObservableCollection<Model.User>(this._allUser);
+                }
+            }
+            catch (Exception)
+            {
+                
+                throw;
             }
 
         }
