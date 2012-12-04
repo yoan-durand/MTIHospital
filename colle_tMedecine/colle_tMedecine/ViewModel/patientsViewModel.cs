@@ -67,7 +67,14 @@ namespace colle_tMedecine.ViewModel
         public string Search
         {
             get { return this._search; }
-            set { this._search = value; }
+            set {
+                if (this._search != value)
+                {
+                    this._search = value;
+                    OnPropertyChanged("Search");
+                }
+
+                }
         }
 
         public bool IsAdmin

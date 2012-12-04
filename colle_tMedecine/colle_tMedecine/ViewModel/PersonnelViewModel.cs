@@ -59,7 +59,14 @@ namespace colle_tMedecine.ViewModel
         public string Search
         {
             get { return this._search; }
-            set { this._search = value; }
+            set
+            {
+                if (this._search != value)
+                {
+                    this._search = value;
+                    OnPropertyChanged("Search");
+                }
+            }
         }
 
         public ICommand NewUser
@@ -87,6 +94,7 @@ namespace colle_tMedecine.ViewModel
             _newUser = new RelayCommand(param => ShowNewUser(), param => true);
             _supprUser = new RelayCommand(DeleteUser);
             _searchUser = new RelayCommand(param => SearchUserAction(), param => true);
+            Search ="";
              View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
              object datacontext = mainwindow.DataContext;
             
@@ -167,12 +175,13 @@ namespace colle_tMedecine.ViewModel
 
         public void SearchUserAction()
         {
-            if (string.IsNullOrEmpty(this._search))
+            
+            if (string.IsNullOrEmpty(Search))
             {
                 ListUser = new ObservableCollection<Model.User>(this._allUser);
                 return;
             }
-            string[] tabStr = this._search.ToLower().Split(' ');
+            string[] tabStr = Search.ToLower().Split(' ');
            List<Model.User> userList = new List<Model.User>();
 
             foreach (Model.User user in this._allUser)

@@ -60,7 +60,7 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>          
     	</DataGrid>
-		<TextBox x:Name="Search_bar"  Text="{Binding Search}" Height="27.5" Margin="76.5,75.5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="207" FontStyle="Italic"/>
+        <TextBox x:Name="Search_bar"  Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" Height="27.5" Margin="76.5,75.5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="207" FontStyle="Italic"/>
         <Button x:Name="search_button" Command="{Binding SearchPatient}" Content="Rechercher" HorizontalAlignment="Left" Height="27.5" Margin="294.708,75.5,0,0" VerticalAlignment="Top" Width="99.5" Style="{DynamicResource SimpleButton}" />
         <Button x:Name="new_patient_button" Command="{Binding NewPatient}" Visibility="{Binding IsAdmin, Mode=TwoWay, Converter={StaticResource BoolToVisConverter}}" Content="Ajouter un patient" HorizontalAlignment="Right" Height="36.5" Margin="0,66.5,68,0" VerticalAlignment="Top" Width="131.5" Style="{DynamicResource SimpleButton}" />
 		<TextBlock HorizontalAlignment="Left" Height="33" Margin="9.333,29.5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="380.875" FontSize="21.333" FontWeight="Bold" TextAlignment="Center" Foreground="#FFF3F3F3"><TextBlock.Effect>
