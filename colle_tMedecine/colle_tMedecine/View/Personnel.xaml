@@ -29,8 +29,7 @@
 				<SolidColorBrush Color="#FFC9DBE7" Opacity="0.7"/>
 			</Rectangle.Fill>
 		</Rectangle>
-        <ListBox x:Name="ListUser" Margin="72.5,109.25,72,123.75" ItemsSource="{Binding ListUser}" ItemTemplate="{DynamicResource listUser}" Height="347" Background="#FFE2ECF5" />
-        <DataGrid x:Name="ListPatient" ItemsSource="{Binding ListUser}"  GridLinesVisibility="Horizontal" Margin="76.5,107,68,126" Background="#FFE2ECF5" 
+        <DataGrid x:Name="ListUser" ItemsSource="{Binding ListUser}"  GridLinesVisibility="Horizontal" Margin="72.833,107,71.667,126" Background="#FFE2ECF5" 
 		AutoGenerateColumns="False" AlternationCount="2" OpacityMask="#FFBCBCBC" HorizontalGridLinesBrush="{StaticResource BlueGridLine}" CanUserAddRows="False">
     		<DataGrid.Foreground>
     			<SolidColorBrush Color="{DynamicResource Blue_Button}"/>
