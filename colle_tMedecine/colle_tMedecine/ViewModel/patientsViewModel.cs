@@ -22,7 +22,7 @@ namespace colle_tMedecine.ViewModel
             private List<Model.Patient> _allPatient;
             private ObservableCollection<Model.Patient> _listPatient;
             private string _search;
-
+            private bool _isAdmin;
         #endregion
 
         #region Getter/setter
@@ -69,6 +69,16 @@ namespace colle_tMedecine.ViewModel
             get { return this._search; }
             set { this._search = value; }
         }
+
+        public bool IsAdmin
+        {
+            get { return this._isAdmin; }
+            set
+            {                
+                    this._isAdmin = value;
+                    OnPropertyChanged("IsAdmin");            
+            }
+        }
         #endregion
 
         #region Construtor
@@ -78,7 +88,18 @@ namespace colle_tMedecine.ViewModel
             _patientSheet = new RelayCommand (ShowPatientSheet);
             _supprPatient = new RelayCommand(DeletePatient);
             _searchPatient = new RelayCommand(param => SearchPatientAction(), param => true );
-            
+            View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
+            this._isAdmin = true;
+            object datacontext = mainwindow.DataContext;
+            ViewModel.MainWindow main = (ViewModel.MainWindow)datacontext;
+            if (main.ConnectedUser.Role.Equals("Medecin"))
+            {
+               IsAdmin = true;
+            }
+            else
+            {
+                IsAdmin = false;
+            }
             FillListPatient();
         }
         #endregion
@@ -87,28 +108,33 @@ namespace colle_tMedecine.ViewModel
         {
             View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
             ViewModel.MainWindow mainwindowVM = (ViewModel.MainWindow) mainwindow.DataContext;
-            mainwindowVM.ViewStack.Add((UserControl)mainwindow.contentcontrol.Content);
+
             View.Nouveau_patient view = new colle_tMedecine.View.Nouveau_patient();
             ViewModel.Nouveau_patientViewModel vm = new colle_tMedecine.ViewModel.Nouveau_patientViewModel();
             view.DataContext = vm;
-            mainwindow.contentcontrol.Content = view;
+
+            mainwindowVM.navigate((UserControl)mainwindow.contentcontrol.Content, view);
         }
 
         public void ShowPatientSheet(object param)
         {
+            
             View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
-           
+            ViewModel.MainWindow mainwindowVM = (ViewModel.MainWindow)mainwindow.DataContext;
+
             Model.Patient pat = (Model.Patient) param;
       
             View.Fiche_Patient view = new colle_tMedecine.View.Fiche_Patient();
 
             ViewModel.Fiche_PatientViewModel vm = new colle_tMedecine.ViewModel.Fiche_PatientViewModel(pat);
             view.DataContext = vm;
-            mainwindow.contentcontrol.Content = view;
+
+            mainwindowVM.navigate((UserControl)mainwindow.contentcontrol.Content, view);
         }
 
         public void DeletePatient(object param)
         {
+            
             Model.Patient patient = (Model.Patient)param;
             this._allPatient.Remove(patient);
             ServicePatient.ServicePatientClient service = new ServicePatient.ServicePatientClient();
@@ -122,7 +148,7 @@ namespace colle_tMedecine.ViewModel
         {
             ServicePatient.ServicePatientClient service = new ServicePatient.ServicePatientClient();
             ServicePatient.Patient[] listPatient = service.GetListPatient();
-            _allPatient = new List<Model.Patient>();
+            this._allPatient = new List<Model.Patient>();
             List<Model.Observation> listObs = new List<Model.Observation>();
 
             foreach (ServicePatient.Patient pat in listPatient)

@@ -13,6 +13,7 @@
                 <TextBlock TextWrapping="Wrap" Width="144" Margin="0,0,0,6"><Run Language="fr-fr" Text="{Binding Path=Firstname}"/></TextBlock>
                 <TextBlock TextWrapping="Wrap" Width="78" Margin="0,0,0,3"><Run Language="fr-fr" Text="{Binding Path=Role}"/></TextBlock>
                 <Button Content="Supprimer" 
+                      
                         Command="{Binding Path=DataContext.SupprUser, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}"
                         CommandParameter="{Binding}"
                         Width="108" 
