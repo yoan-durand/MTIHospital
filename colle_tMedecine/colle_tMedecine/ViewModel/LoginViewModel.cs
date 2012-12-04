@@ -106,6 +106,7 @@ namespace colle_tMedecine.ViewModel
                     ErrorMessage = "La connexion a échouée, réessayez plus tard";
                     ShowConnectError = 1;
                     ShowConnectError = 0;
+                    throw e;
                 }
             }
             else{

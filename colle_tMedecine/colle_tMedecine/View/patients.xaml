@@ -10,18 +10,29 @@
 				<SolidColorBrush Color="#FFC9DBE7" Opacity="0.7"/>
 			</Rectangle.Fill>
 		</Rectangle>
-        <DataGrid x:Name="ListPatient" ItemsSource="{Binding ListPatient}" Margin="76.5,107,68,126" Background="#FFE2ECF5" AutoGenerateColumns="False">
+        <DataGrid x:Name="ListPatient" ItemsSource="{Binding ListPatient}"  GridLinesVisibility="Horizontal" Margin="76.5,107,68,126" Background="#FFE2ECF5" 
+		AutoGenerateColumns="False" AlternationCount="2" OpacityMask="#FFBCBCBC" HorizontalGridLinesBrush="{StaticResource BlueGridLine}">
     		<DataGrid.Foreground>
     			<SolidColorBrush Color="{DynamicResource Blue_Button}"/>
     		</DataGrid.Foreground>
             <DataGrid.Resources>
                 <BooleanToVisibilityConverter x:Key="BoolToVisConverter"/>
                 <mylocal:BindingHelper x:Key="ColumnBinding" Data="{Binding}"/>
-            </DataGrid.Resources>
+				<Style TargetType="{x:Type DataGridRow}">
+				    <Style.Triggers>
+				        <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+				            <Setter Property="Background" Value="#FFCFDDE8"></Setter>
+				        </Trigger>
+				        <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+				            <Setter Property="Background" Value="White"></Setter>
+				        </Trigger>
+	    			</Style.Triggers>
+				</Style>
+           	</DataGrid.Resources>
     		<DataGrid.Columns>
-    			<DataGridTextColumn Header="Nom" Width="*" Binding="{Binding Path=Name}" Foreground="Black" />
-                <DataGridTextColumn Header="Prenom" Width="*" Binding="{Binding Path=Firstname}" />
-                <DataGridTextColumn Header="Date de naissance" Width="*" Binding="{Binding Path=Birthday}" />
+    			<DataGridTextColumn Header="Nom" Width="*" Binding="{Binding Path=Name}" Foreground="Black" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Prenom" Width="*" Binding="{Binding Path=Firstname}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Date de naissance" Width="*" Binding="{Binding Path=Birthday}" IsReadOnly="True"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -29,7 +40,7 @@
                         CommandParameter="{Binding}"
                         Content="Consulter la fiche" 
                         Width="108" 
-                        Margin="0,0,0,4.5" Style="{DynamicResource SimpleButton}"/>
+                        Margin="0,0,0,0" Style="{DynamicResource SimpleButton}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -40,7 +51,7 @@
                         <DataTemplate>
                             <Button Content="Supprimer"
                              Width="91.5" 
-                            Margin="0,0,0,4.5"
+                            Margin="0,0,0,0"
                             Command="{Binding Path=DataContext.SupprPatient, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
                             CommandParameter="{Binding}" Style="{DynamicResource SimpleButton}"
                             />

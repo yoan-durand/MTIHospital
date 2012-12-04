@@ -4,6 +4,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:colle_tMedecine.View" x:Name="personnel"
 	mc:Ignorable="d"
+	xmlns:mylocal="clr-namespace:colle_tMedecine.Helper"
 	x:Class="colle_tMedecine.View.Personnel"
 	Width="992" Height="580">
     <UserControl.Resources>
@@ -29,6 +30,56 @@
 			</Rectangle.Fill>
 		</Rectangle>
         <ListBox x:Name="ListUser" Margin="72.5,109.25,72,123.75" ItemsSource="{Binding ListUser}" ItemTemplate="{DynamicResource listUser}" Height="347" Background="#FFE2ECF5" />
+        <!--<DataGrid x:Name="ListPatient" ItemsSource="{Binding ListPatient}"  GridLinesVisibility="Horizontal" Margin="76.5,107,68,126" Background="#FFE2ECF5" 
+		AutoGenerateColumns="False" AlternationCount="2" OpacityMask="#FFBCBCBC" HorizontalGridLinesBrush="{StaticResource BlueGridLine}">
+    		<DataGrid.Foreground>
+    			<SolidColorBrush Color="{DynamicResource Blue_Button}"/>
+    		</DataGrid.Foreground>
+            <DataGrid.Resources>
+                <BooleanToVisibilityConverter x:Key="BoolToVisConverter"/>
+                <mylocal:BindingHelper x:Key="ColumnBinding" Data="{Binding}"/>
+				<Style TargetType="{x:Type DataGridRow}">
+				    <Style.Triggers>
+				        <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+				            <Setter Property="Background" Value="#FFCFDDE8"></Setter>
+				        </Trigger>
+				        <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+				            <Setter Property="Background" Value="White"></Setter>
+				        </Trigger>
+	    			</Style.Triggers>
+				</Style>
+           	</DataGrid.Resources>
+    		<DataGrid.Columns>
+    			<DataGridTextColumn Header="Nom" Width="*" Binding="{Binding Path=Name}" Foreground="Black" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Prenom" Width="*" Binding="{Binding Path=Firstname}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Date de naissance" Width="*" Binding="{Binding Path=Birthday}" IsReadOnly="True"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Command="{Binding Path=DataContext.PatientSheet, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
+                        CommandParameter="{Binding}"
+                        Content="Consulter la fiche" 
+                        Width="108" 
+                        Margin="0,0,0,0" Style="{DynamicResource SimpleButton}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn  Visibility="{Binding Data.IsAdmin,
+                        Converter={StaticResource BoolToVisConverter},
+                        Source={StaticResource ColumnBinding}}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Supprimer"
+                             Width="91.5" 
+                            Margin="0,0,0,0"
+                            Command="{Binding Path=DataContext.SupprPatient, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
+                            CommandParameter="{Binding}" Style="{DynamicResource SimpleButton}"
+                            />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>          
+    	</DataGrid>-->
 		<TextBox x:Name="Search_bar" Text="{Binding Search}"  Height="27.5" Margin="72.5,77.75,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="189" FontStyle="Italic"/>
         <Button x:Name="Search_button" Command="{Binding SearchUser}" Content="Rechercher" HorizontalAlignment="Left" Height="27.5" Margin="277,77.75,0,0"  VerticalAlignment="Top" Width="99.5" Foreground="White" Style="{DynamicResource SimpleButton}" />
         <Button x:Name="new_account" Command="{Binding NewUser}" Visibility="{Binding IsAdmin, Mode=TwoWay, Converter={StaticResource BoolToVisConverter}}" Content="Créer un compte" HorizontalAlignment="Right" Height="36.5" Margin="0,68.75,72,0"  VerticalAlignment="Top" Width="148.5" Foreground="White" Style="{DynamicResource SimpleButton}" />

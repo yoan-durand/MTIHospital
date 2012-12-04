@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         mc:Ignorable="d" x:Class="colle_tMedecine.View.MainWindow"
         xmlns:local="clr-namespace:colle_tMedecine.Converter"
-        Title="Medecine" Height="720" Width="1024" MaxHeight="720" MaxWidth="1024" MinHeight="720" MinWidth="1024" Background="#FF11476D">
+        Title="Medecine" Height="720" Width="1024" MaxHeight="720" MaxWidth="1024" MinHeight="720" MinWidth="1024" Background="#FF11476D"
+		Icon="WPFIcon1.ico">
     <Window.Resources>
         <local:ConvertByteArrayToImage x:Key="ConvertImage"/>
 
