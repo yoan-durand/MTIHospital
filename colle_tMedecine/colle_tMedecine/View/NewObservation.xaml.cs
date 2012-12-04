@@ -23,5 +23,15 @@ namespace colle_tMedecine.View
         {
             InitializeComponent();
         }
+
+        private void Image_DragEnter(object sender, DragEventArgs e)
+        {
+
+        }
+
+        private void Image_Drop(object sender, DragEventArgs e)
+        {
+
+        }
     }
 }

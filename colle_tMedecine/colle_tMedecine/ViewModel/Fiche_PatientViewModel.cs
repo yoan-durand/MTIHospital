@@ -84,7 +84,10 @@ namespace colle_tMedecine.ViewModel
         {
             _addObservation = new RelayCommand(param => AddObs(), param => true);
             Patient = patient;
-            SelectedObservation = null;
+            if (Patient.Obs != null && Patient.Obs.Count() > 0)
+                SelectedObservation = Patient.Obs.ElementAt(0);
+            else
+                SelectedObservation = null;
             ListImages = null;
         }
 
