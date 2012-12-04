@@ -21,29 +21,29 @@
     			<SolidColorBrush Color="{DynamicResource BlueTitleBg}"/>
     		</TextBlock.Background><Run Language="fr-fr" Text="Ajouter une observation"/></TextBlock>
         <TextBlock Style="{DynamicResource blueText}" Height="21" Margin="41,0,354,344" TextWrapping="Wrap" VerticalAlignment="Bottom" Grid.Column="1" FontWeight="Bold"><Run Language="fr-fr" Text="Commentaires:"/></TextBlock>
-        <RichTextBox Height="100" Margin="41,0,274,244" VerticalAlignment="Bottom" Grid.Column="1" Background="#FFDEEBF3" Style="{DynamicResource blueText}">
-    		<FlowDocument/>
-    	</RichTextBox>
+        <TextBox Text="{Binding Comment}" Height="100" Margin="41,0,274,244" VerticalAlignment="Bottom" Grid.Column="1" Background="#FFDEEBF3" Style="{DynamicResource blueText}"/>
+    	
     	<StackPanel Orientation="Horizontal" Margin="40.512,163.5,354.5,0" Height="46.5" VerticalAlignment="Top" Grid.Column="1">
             <Label Style="{DynamicResource blueText}" Content="Poids"  HorizontalAlignment="Left" Width="117" Margin="0,2.26,0,10.5"/>
-    		<TextBox Margin="0,0,0,10.5" TextWrapping="Wrap" Width="249.209" HorizontalAlignment="Center" VerticalAlignment="Center" Height="31.48"/>
+    		<TextBox Text="{Binding Weight}" Margin="0,0,0,10.5" TextWrapping="Wrap" Width="249.209" HorizontalAlignment="Center" VerticalAlignment="Center" Height="31.48"/>
     	</StackPanel>
     	<StackPanel Orientation="Horizontal" Margin="0,117,354.5,0" Height="46.5" VerticalAlignment="Top" Grid.Column="1" HorizontalAlignment="Right" Width="571.196">
             <TextBlock Margin="0,0,0,-1.5" TextWrapping="Wrap" Width="142" RenderTransformOrigin="1.22,0.302" FontWeight="Bold"><Run Language="fr-fr" Text="Date de l'observation :" Style="{DynamicResource blueText}"/></TextBlock>
-            <TextBlock x:Name="Date" Margin="0,0,0,1.5" TextWrapping="Wrap" Width="112.5"><Run Language="fr-fr" Text="01/01/01" Style="{DynamicResource blueText}"/></TextBlock>
+            <TextBlock x:Name="Date" Margin="0,0,0,1.5" TextWrapping="Wrap" Width="112.5"><Run Language="fr-fr" Text="{Binding Date}" Style="{DynamicResource blueText}"/></TextBlock>
             <TextBlock x:Name="Date_Copy" Margin="0,0,0,1.5" TextWrapping="Wrap" Width="70.5" FontWeight="Bold"><Run Language="fr-fr" Text="Patient :" Style="{DynamicResource blueText}"/></TextBlock>
-            <TextBlock x:Name="Name" Margin="0,0,0,-3" TextWrapping="Wrap" Width="198"><Run Language="fr-fr" Text="Michel Dupont" Style="{DynamicResource blueText}"/></TextBlock>
+            <TextBlock x:Name="Name" Text="{Binding PatientName}" Margin="0,0,0,-3" TextWrapping="Wrap" Width="198"><Run Language="fr-fr" Text="Michel Dupont" Style="{DynamicResource blueText}"/></TextBlock>
     	</StackPanel>
-    	<ListView Grid.Column="1" HorizontalAlignment="Right" Margin="0,43,26,269" Width="212" Background="#FFDEEBF3" d:LayoutOverrides="VerticalAlignment">
+    	<ListView Grid.Column="1" ItemsSource="{Binding Prescriptions}" HorizontalAlignment="Right" Margin="0,43,26,269" Width="212" Background="#FFDEEBF3" d:LayoutOverrides="VerticalAlignment">
     		<ListView.View>
     			<GridView>
     				<GridViewColumn Width="211" Header="Prescriptions" />
     			</GridView>
     		</ListView.View>
     	</ListView>
-    	<TextBox Grid.Column="1" HorizontalAlignment="Right" Height="21" Margin="0,0,86,244" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="152" RenderTransformOrigin="0.507,2.19" d:LayoutOverrides="VerticalAlignment"/>
-        <Button Content="Ajouter " Style="{DynamicResource SimpleButton}" Grid.Column="1" HorizontalAlignment="Right" Height="21" Margin="0,0,27,244" VerticalAlignment="Bottom" Width="55" d:LayoutOverrides="VerticalAlignment"/>
-    	<ListBox Grid.Column="1" Margin="40,354,26,90" Background="White"/>
-            
+    	<TextBox Text="{Binding Prescription}" Grid.Column="1" HorizontalAlignment="Right" Height="21" Margin="0,0,86,244" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="152" RenderTransformOrigin="0.507,2.19" d:LayoutOverrides="VerticalAlignment"/>
+        <Button Content="Ajouter" Command="{Binding AddPresc}" Style="{DynamicResource SimpleButton}" Grid.Column="1" HorizontalAlignment="Right" Height="21" Margin="0,0,27,244" VerticalAlignment="Bottom" Width="55" d:LayoutOverrides="VerticalAlignment"/>
+    	<ListBox Grid.Column="1" Margin="40,349,26,95" Background="White"/>
+        <Button Content="Ajouter" Command="{Binding AddCommand}" Style="{DynamicResource SimpleButton}" Grid.Column="1" HorizontalAlignment="Right" Height="21" Margin="0,0,403,68" VerticalAlignment="Bottom" Width="146" d:LayoutOverrides="VerticalAlignment"/> 
+        
     </Grid>
 </UserControl>
