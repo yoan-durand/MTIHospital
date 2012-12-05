@@ -67,7 +67,14 @@ namespace colle_tMedecine.ViewModel
         public string Search
         {
             get { return this._search; }
-            set { this._search = value; }
+            set {
+                if (this._search != value)
+                {
+                    this._search = value;
+                    OnPropertyChanged("Search");
+                }
+
+                }
         }
 
         public bool IsAdmin
@@ -169,8 +176,8 @@ namespace colle_tMedecine.ViewModel
                         {
                             Comments = obs.Comment,
                             Date = obs.Date,
-                            Pic = new List<byte[]>().ToArray() ?? obs.Pictures,
-                            Prescriptions = new List<string>() ?? obs.Prescription.ToList(),
+                            Pic =  obs.Pictures ?? new List<byte[]>().ToArray(),
+                            Prescriptions = obs.Prescription.ToList() ?? new List<string>(),
                             Pressure = obs.BloodPressure,
                             Weight = obs.Weight
                         };
