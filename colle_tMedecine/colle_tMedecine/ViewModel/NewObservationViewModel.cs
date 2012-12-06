@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.IO;
 using System.Windows.Controls;
+using System.Collections.ObjectModel;
 
 
 namespace colle_tMedecine.ViewModel
@@ -40,7 +41,7 @@ namespace colle_tMedecine.ViewModel
         private string _comment;
         private int _bloodPressure;
         private List<string> _prescriptions;
-        private List<Image> _pictures;
+        private ObservableCollection<Image> _pictures;
         private string _patientName;
         private Model.Patient _patient;
         private DateTime _date;
@@ -72,7 +73,7 @@ namespace colle_tMedecine.ViewModel
             set { _patientName = value; }
         }
 
-        public List<Image> Pictures
+        public ObservableCollection<Image> Pictures
         {
             get { return _pictures; }
             set { _pictures = value;
@@ -113,7 +114,7 @@ namespace colle_tMedecine.ViewModel
             _addImage = new RelayCommand(param => AddImageAction(), param => true);
             PatientName = String.Format("{0} {1}", patient.Name, patient.Firstname);
             Patient = patient;
-            Pictures = new List<Image>();
+            Pictures = new ObservableCollection<Image>();
             Date = DateTime.Now;
             Prescriptions = new List<string>();
         }
@@ -221,7 +222,7 @@ namespace colle_tMedecine.ViewModel
                 Image newimg = new Image();
                 newimg.Source = imgsrc;
 
-                List<Image> listimage = new List<Image>();
+                ObservableCollection<Image> listimage = new ObservableCollection<Image>();
                 foreach (Image img in Pictures)
                 {
                     listimage.Add(img);
