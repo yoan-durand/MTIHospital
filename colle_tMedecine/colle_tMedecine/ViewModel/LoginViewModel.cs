@@ -79,52 +79,49 @@ namespace colle_tMedecine.ViewModel
             if (!string.IsNullOrEmpty(LoginInput) && !string.IsNullOrEmpty(PasswordInput))
             {
                 ServiceUser.ServiceUserClient clientService = new ServiceUser.ServiceUserClient();
-            
-                isValid = clientService.Connect(_loginInput, _passwordInput);
-
-                if (isValid)
-                {
                     try
-                    {
-                        ServiceUser.User user = new ServiceUser.User();
-                        user = clientService.GetUser(this._loginInput);
-                        View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
-
-                        ViewModel.MainWindow mainwindowVM = (ViewModel.MainWindow)mainwindow.DataContext;
-                        mainwindowVM.MenuIsActive = true;
-                        mainwindowVM.FadeOut = false;
-                        mainwindowVM.ConnectedUser = new Model.User
+                    {          
+                        isValid = clientService.Connect(_loginInput, _passwordInput);
+                        if (isValid)
                         {
-                            Firstname = user.Firstname,
-                            Name = user.Firstname,
-                            Login = user.Login,
-                            Password = user.Pwd,
-                            Pic = user.Picture,
-                            Role = user.Role,
-                            Connected = true,
-                            Co = true,
-                            ExtensionData = user.ExtensionData
-                        };
-                        mainwindowVM.UserIdentity = user.Name + " " + user.Firstname;
-                        View.Patients view = new View.Patients();
-                        ViewModel.PatientsViewModel vm = new colle_tMedecine.ViewModel.PatientsViewModel();
-                        view.DataContext = vm;
-                        mainwindow.contentcontrol.Content = view;
+                            ServiceUser.User user = new ServiceUser.User();
+                            user = clientService.GetUser(this._loginInput);
+                            View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
+                            ViewModel.MainWindow mainwindowVM = (ViewModel.MainWindow)mainwindow.DataContext;
+                            mainwindowVM.MenuIsActive = true;
+                            mainwindowVM.FadeOut = false;
+                            mainwindowVM.ConnectedUser = new Model.User
+                            {
+                                Firstname = user.Firstname,
+                                Name = user.Firstname,
+                                Login = user.Login,
+                                Password = user.Pwd,
+                                Pic = user.Picture,
+                                Role = user.Role,
+                                Connected = true,
+                                Co = true,
+                                ExtensionData = user.ExtensionData
+                            };
+                            mainwindowVM.UserIdentity = user.Name + " " + user.Firstname;
+                            View.Patients view = new View.Patients();
+                            ViewModel.PatientsViewModel vm = new colle_tMedecine.ViewModel.PatientsViewModel();
+                            view.DataContext = vm;
+                            mainwindow.contentcontrol.Content = view;
+                        }
+                        else
+                        {
+                            ErrorMessage = "Identifiant ou mot de passe incorrect";
+                            ShowConnectError = 1;
+                            ShowConnectError = 0;
+                        }
                     }
                     catch (Exception e)
                     {
                         ErrorMessage = "La connexion a échouée, réessayez plus tard";
                         ShowConnectError = 1;
                         ShowConnectError = 0;
-                        throw e;
-                    }
-                }
-                else{
-                    ErrorMessage = "Identifiant ou mot de passe incorrect";
-                    ShowConnectError = 1;
-                    ShowConnectError = 0;
-                }
-            }
+                    }         
+            }      
             else
             {
                 ErrorMessage = "Identifiant ou mot de passe manquant";
