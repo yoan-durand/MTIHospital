@@ -14,10 +14,30 @@
 				<SolidColorBrush Color="#FFC9DBE7" Opacity="0.7"/>
 			</Rectangle.Fill>
 		</Rectangle>
+        <TextBlock Opacity="{Binding ShowConnectError}" Margin="430,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" HorizontalAlignment="Left" Width="215"><Run Language="fr-fr" Text="{Binding ErrorMessage}"/>
+                    <TextBlock.Style>
+                        <Style>
+                            <Setter Property="Button.Foreground" Value="#FFFF3131" />
+                            <Setter Property="Button.FontWeight" Value="Bold"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=ShowConnectError}" Value="1">
+                                    <DataTrigger.EnterActions>
+                                        <BeginStoryboard >
+                                            <Storyboard>
+                                                <DoubleAnimation Duration="00:00:7" From="1" To="0" Storyboard.TargetProperty="Opacity"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </DataTrigger.EnterActions>
+                                </DataTrigger>
+                        
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
         <Button x:Name="Add_button" Command="{Binding AddCommand}" Content="Ajouter" Height="34" Margin="474,0,402,254"  VerticalAlignment="Bottom" Style="{DynamicResource SimpleButton}" />
-        <TextBox x:Name="Name_input" Text="{Binding NameInput}" Height="27" Margin="445,145.91,347,0"  TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.203,-0.649"/>
-        <TextBox x:Name="Firstname_input" Text="{Binding FirstnameInput}" Height="26" Margin="445,187.91,347,0"  TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <DatePicker x:Name="Birthdate" SelectedDate="{Binding Path=DateInput}" Margin="445,228,347,0" Background="White" Height="23" VerticalAlignment="Top">
+        <TextBox x:Name="Name_input" Text="{Binding NameInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="27" Margin="445,145.91,347,0"  TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.203,-0.649"/>
+        <TextBox x:Name="Firstname_input" Text="{Binding FirstnameInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="26" Margin="445,187.91,347,0"  TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <DatePicker x:Name="Birthdate" SelectedDate="{Binding Path=DateInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="445,228,347,0" Background="White" Height="23" VerticalAlignment="Top">
         	<DatePicker.BorderBrush>
         		<LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
         			<GradientStop Color="#FFA3AEB9" Offset="0"/>
