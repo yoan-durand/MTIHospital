@@ -120,11 +120,13 @@ namespace colle_tMedecine.ViewModel
         private void AddObs()
         {
             View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
-            View.NewObservation view = new colle_tMedecine.View.NewObservation();
+            ViewModel.MainWindow mainwindowVM = (ViewModel.MainWindow)mainwindow.DataContext;
 
+            View.NewObservation view = new colle_tMedecine.View.NewObservation();
             ViewModel.NewObservationViewModel vm = new colle_tMedecine.ViewModel.NewObservationViewModel(Patient);
             view.DataContext = vm;
-            mainwindow.contentcontrol.Content = view;
+
+            mainwindowVM.navigate((UserControl)mainwindow.contentcontrol.Content, view);
         }
 
         public Model.Patient Patient

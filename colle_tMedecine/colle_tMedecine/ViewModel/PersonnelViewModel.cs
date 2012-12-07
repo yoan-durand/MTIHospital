@@ -171,18 +171,24 @@ namespace colle_tMedecine.ViewModel
         {
             ServiceUser.ServiceUserClient service = new ServiceUser.ServiceUserClient();
             Model.User user = (Model.User)param;
-            try
-            {
-                if (service.DeleteUser(user.Login))
+
+             View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
+            ViewModel.MainWindow mainwindowVM = (ViewModel.MainWindow)mainwindow.DataContext;
+            if (user.Login != mainwindowVM.ConnectedUser.Login)
+            {   
+                try
                 {
-                    this._allUser.Remove(user);
+                    if (service.DeleteUser(user.Login))
+                    {
+                        this._allUser.Remove(user);
+                        ListUser = new ObservableCollection<Model.User>(this._allUser);
+                    }
+                }
+                catch (Exception)
+                {
                     ListUser = new ObservableCollection<Model.User>(this._allUser);
                 }
-            }
-            catch (Exception)
-            {
                 
-                throw;
             }
 
         }
