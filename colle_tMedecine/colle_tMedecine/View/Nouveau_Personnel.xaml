@@ -17,18 +17,38 @@
         		<SolidColorBrush Color="#FFC9DBE7" Opacity="0.7"/>
         	</Rectangle.Fill>
         </Rectangle>
+        <TextBlock Opacity="{Binding ShowConnectError}" Margin="430,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" HorizontalAlignment="Left" Width="215"><Run Language="fr-fr" Text="{Binding ErrorMessage}"/>
+            <TextBlock.Style>
+                <Style>
+                    <Setter Property="Button.Foreground" Value="#FFFF3131" />
+                    <Setter Property="Button.FontWeight" Value="Bold"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=ShowConnectError}" Value="1">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard >
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="00:00:7" From="1" To="0" Storyboard.TargetProperty="Opacity"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                        </DataTrigger>
+                        
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
         <Button x:Name="Add_button" Command="{Binding AddCommand}" Content="Ajouter" Height="36" Margin="484,0,411,117" VerticalAlignment="Bottom" Style="{DynamicResource SimpleButton}" />
-        <TextBox x:Name="Name_input" Text="{Binding NameInput}" Height="29" Margin="428,122.507,329,0"  TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.203,-0.649"/>
-        <TextBox x:Name="Firstname_input" Text="{Binding FirstnameInput}" Height="28" Margin="429,155.507,329,0"  TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name="Name_input" Text="{Binding NameInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="29" Margin="428,122.507,329,0"  TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.203,-0.649"/>
+        <TextBox x:Name="Firstname_input" Text="{Binding FirstnameInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="28" Margin="429,155.507,329,0"  TextWrapping="Wrap" VerticalAlignment="Top"/>
         <Label Content="Nom *" Height="28" Margin="305,122.507,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="101"  Style="{DynamicResource blueText}" />
         <Label Content="Prenom *" Height="29" Margin="304,154.507,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="101" Style="{DynamicResource blueText}" />
         <Label Content="Role *" Margin="304,188.547,0,0" HorizontalAlignment="Left" Width="101" Height="25.96" VerticalAlignment="Top" Style="{DynamicResource blueText}" />
-        <ComboBox x:Name="Role_liste" SelectedValue="{Binding RoleInput}" SelectedIndex="0" Margin="427,190.547,329,0" Height="26" VerticalAlignment="Top">
+        <ComboBox x:Name="Role_liste" SelectedValue="{Binding RoleInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="0" Margin="427,190.547,329,0" Height="26" VerticalAlignment="Top">
 			<ComboBoxItem Content="Medecin"/>
 			<ComboBoxItem Content="infirmier(e)"/>
 		</ComboBox>
         <Label Content="Login *" HorizontalAlignment="Left" Margin="304,222.525,0,0" VerticalAlignment="Top" Width="100" d:LayoutOverrides="VerticalAlignment" Style="{DynamicResource blueText}" />
-        <TextBox x:Name="Login_text" Text="{Binding LoginInput}" TextWrapping="Wrap" Margin="429,218.507,329,0" Height="30" VerticalAlignment="Top"/>
+        <TextBox x:Name="Login_text" Text="{Binding LoginInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Margin="429,218.507,329,0" Height="30" VerticalAlignment="Top"/>
         <Label Content="Mot de passe*" HorizontalAlignment="Left" Margin="305,253.525,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.249,0.149" Width="100" d:LayoutOverrides="VerticalAlignment" Style="{DynamicResource blueText}" />
         <PasswordBox x:Name="Password" ff:PasswordHelper.Attach="True"  ff:PasswordHelper.Password="{Binding PasswordInput, Mode=TwoWay}" Margin="429,252.507,329,0" VerticalAlignment="Top" Height="27" d:LayoutOverrides="VerticalAlignment"/>
         <Label Content="Confirmation Mdp*" HorizontalAlignment="Left" Margin="305,284.525,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.249,0.149" Width="114.333" Style="{DynamicResource blueText}" />

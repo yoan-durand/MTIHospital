@@ -27,7 +27,11 @@ namespace colle_tMedecine.ViewModel
         public String NameInput
         {
             get { return _nameInput; }
-            set { _nameInput = value; }
+            set
+            {
+                _nameInput = value;
+                OnPropertyChanged("NameInput");
+            }
         }
 
         private String _firstNameInput;
@@ -35,7 +39,11 @@ namespace colle_tMedecine.ViewModel
         public String FirstnameInput
         {
             get { return _firstNameInput; }
-            set { _firstNameInput = value; }
+            set
+            {
+                _firstNameInput = value;
+                OnPropertyChanged("FirstnameInput");
+            }
         }
 
         private String _roleInput;
@@ -43,16 +51,24 @@ namespace colle_tMedecine.ViewModel
         public String RoleInput
         {
             get { return _roleInput; }
-            set { _roleInput = value; }
+            set
+            {
+                _roleInput = value;
+                OnPropertyChanged("RoleInput");
+            }
         }
-        
+
 
         private String _loginInput;
 
         public String LoginInput
         {
             get { return _loginInput; }
-            set { _loginInput = value; }
+            set
+            {
+                _loginInput = value;
+                OnPropertyChanged("LoginInput");
+            }
         }
 
         private String _passwordInput;
@@ -60,7 +76,11 @@ namespace colle_tMedecine.ViewModel
         public String PasswordInput
         {
             get { return _passwordInput; }
-            set { _passwordInput = value; }
+            set
+            {
+                _passwordInput = value;
+                OnPropertyChanged("PasswordInput");
+            }
         }
 
         private String _passwordConfirmInput;
@@ -68,7 +88,11 @@ namespace colle_tMedecine.ViewModel
         public String PasswordConfirmInput
         {
             get { return _passwordConfirmInput; }
-            set { _passwordConfirmInput = value; }
+            set
+            {
+                _passwordConfirmInput = value;
+                OnPropertyChanged("PasswordConfirmInput");
+            }
         }
 
         private ICommand _addImage;
@@ -91,38 +115,80 @@ namespace colle_tMedecine.ViewModel
             }
         }
 
+        private String _errorMessage;
+        private float _showConnectError;
+
+        public String ErrorMessage
+        {
+            get { return _errorMessage; }
+            set
+            {
+                _errorMessage = value;
+                OnPropertyChanged("ErrorMessage");
+            }
+        }
+
+        public float ShowConnectError
+        {
+            get { return _showConnectError; }
+            set
+            {
+                _showConnectError = value;
+                OnPropertyChanged("ShowConnectError");
+            }
+        }
+
         public Nouveau_PersonnelViewModel()
         {
             Pict = new byte[0];
             _addCommand = new RelayCommand(param => addUser(), param => true);
             _addImage = new RelayCommand (param => AddImageAction(), param => true);
-            
+            ShowConnectError = 0;
         }
 
         private void addUser()
         {
-            ServiceUserClient service = new ServiceUserClient();
-            User new_user = new User();
-            string[] roleTab = this._roleInput.Split(' ');
-
-            new_user.Connected = false;
-            new_user.Firstname = _firstNameInput;
-            new_user.Name = _nameInput;
-            new_user.Role = roleTab[roleTab.Length - 1];
-            new_user.Pwd = _passwordInput;
-            new_user.Login = _loginInput;
-            new_user.Picture = Pict;
-            
-            if (service.AddUser(new_user))
+            if (!string.IsNullOrEmpty(FirstnameInput) && !string.IsNullOrEmpty(NameInput) &&
+                !string.IsNullOrEmpty(RoleInput) && !string.IsNullOrEmpty(LoginInput) &&
+                !string.IsNullOrEmpty(PasswordInput) && !string.IsNullOrEmpty(PasswordConfirmInput))
             {
-                View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
+                if (string.Compare(PasswordInput, PasswordConfirmInput) == 0)
+                {
+                    ServiceUserClient service = new ServiceUserClient();
+                    User new_user = new User();
+                    string[] roleTab = this._roleInput.Split(' ');
 
-                View.Personnel view = new colle_tMedecine.View.Personnel();
-                ViewModel.PersonnelViewModel vm = new colle_tMedecine.ViewModel.PersonnelViewModel();
-                view.DataContext = vm;
-                mainwindow.contentcontrol.Content = view;
-            }
+                    new_user.Connected = false;
+                    new_user.Firstname = _firstNameInput;
+                    new_user.Name = _nameInput;
+                    new_user.Role = roleTab[roleTab.Length - 1];
+                    new_user.Pwd = _passwordInput;
+                    new_user.Login = _loginInput;
+                    new_user.Picture = Pict;
             
+                    if (service.AddUser(new_user))
+                    {
+                        View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
+
+                        View.Personnel view = new colle_tMedecine.View.Personnel();
+                        ViewModel.PersonnelViewModel vm = new colle_tMedecine.ViewModel.PersonnelViewModel();
+                        view.DataContext = vm;
+                        mainwindow.contentcontrol.Content = view;
+                    }
+                }
+                else
+                {
+                    ErrorMessage = "Les mots de passe sont différents.";
+                    ShowConnectError = 1;
+                    ShowConnectError = 0;
+                }
+            }
+            else
+            {
+                ErrorMessage = "Veuillez remplir tous les champs.";
+                ShowConnectError = 1;
+                ShowConnectError = 0;
+            }
 
 
         }
