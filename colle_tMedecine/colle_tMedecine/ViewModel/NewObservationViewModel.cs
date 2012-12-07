@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.IO;
 using System.Windows.Controls;
+using System.Collections.ObjectModel;
 
 
 namespace colle_tMedecine.ViewModel
@@ -29,7 +30,7 @@ namespace colle_tMedecine.ViewModel
             get { return _addPresc; }
             set { _addPresc = value; }
         }
-        
+
         public ICommand AddCommand
         {
             get { return _addCommand; }
@@ -40,7 +41,7 @@ namespace colle_tMedecine.ViewModel
         private string _comment;
         private int _bloodPressure;
         private List<string> _prescriptions;
-        private List<Image> _pictures;
+        private ObservableCollection<Image> _pictures;
         private string _patientName;
         private Model.Patient _patient;
         private DateTime _date;
@@ -49,16 +50,18 @@ namespace colle_tMedecine.ViewModel
         public string Prescription
         {
             get { return _prescription; }
-            set { _prescription = value;
-            OnPropertyChanged("Prescription");
+            set
+            {
+                _prescription = value;
+                OnPropertyChanged("Prescription");
             }
         }
-        
+
         public DateTime Date
         {
             get { return _date; }
             set { _date = value; }
-        }        
+        }
 
         public Model.Patient Patient
         {
@@ -72,22 +75,26 @@ namespace colle_tMedecine.ViewModel
             set { _patientName = value; }
         }
 
-        public List<Image> Pictures
+        public ObservableCollection<Image> Pictures
         {
             get { return _pictures; }
-            set { _pictures = value;
-            OnPropertyChanged("Pictures");
+            set
+            {
+                _pictures = value;
+                OnPropertyChanged("Pictures");
             }
         }
 
         public List<string> Prescriptions
         {
             get { return _prescriptions; }
-            set { _prescriptions = value;
-            OnPropertyChanged("Prescriptions");
+            set
+            {
+                _prescriptions = value;
+                OnPropertyChanged("Prescriptions");
             }
         }
-        
+
         public int BloodPressure
         {
             get { return _bloodPressure; }
@@ -113,7 +120,7 @@ namespace colle_tMedecine.ViewModel
             _addImage = new RelayCommand(param => AddImageAction(), param => true);
             PatientName = String.Format("{0} {1}", patient.Name, patient.Firstname);
             Patient = patient;
-            Pictures = new List<Image>();
+            Pictures = new ObservableCollection<Image>();
             Date = DateTime.Now;
             Prescriptions = new List<string>();
         }
@@ -129,10 +136,19 @@ namespace colle_tMedecine.ViewModel
             obs.Pictures = ConverttobyteArray().ToArray();
             obs.Date = Date;
 
-            if (client.AddObservation(Patient.Id, obs))
+            try
+            {
+                client.AddObservation(Patient.Id, obs);
+                
+                View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
+                View.NewObservation view = new colle_tMedecine.View.NewObservation();
+                ViewModel.NewObservationViewModel vm = new colle_tMedecine.ViewModel.NewObservationViewModel(Patient);
+                view.DataContext = vm;
+                mainwindow.contentcontrol.Content = view;
+            }
+            catch
             {
                 View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
-
                 View.NewObservation view = new colle_tMedecine.View.NewObservation();
                 ViewModel.NewObservationViewModel vm = new colle_tMedecine.ViewModel.NewObservationViewModel(Patient);
                 view.DataContext = vm;
@@ -143,13 +159,13 @@ namespace colle_tMedecine.ViewModel
         private List<byte[]> ConverttobyteArray()
         {
             List<byte[]> newlistimg = new List<byte[]>();
-            
+
 
             foreach (Image img in Pictures)
             {
                 ImageSource imgsrc = img.Source;
                 BitmapImage biimg = (BitmapImage)imgsrc;
-                
+
                 JpegBitmapEncoder encoder = new JpegBitmapEncoder();
                 encoder.Frames.Add(BitmapFrame.Create(biimg));
                 using (MemoryStream ms = new MemoryStream())
@@ -174,30 +190,6 @@ namespace colle_tMedecine.ViewModel
             Prescriptions = listpres;
         }
 
-  /*      private void Image_DragEnter(object sender, DragEventArgs e)
-        {
-
-            if (e.Data.GetDataPresent(DataFormats.Text))
-                e.Effects = DragDropEffects.Copy;
-            else
-                e.Effects = DragDropEffects.None;
-        }
-
-        private void Image_Drop(object sender, DragEventArgs e)
-        {
-            List<BitmapImage> listimage = new List<BitmapImage>();
-            foreach (BitmapImage img in Pictures)
-            {
-                listimage.Add(img);
-            }
-
-            string fpath = (string)e.Data.GetData(DataFormats.Text);
-            BitmapImage tmpImage = new BitmapImage((new Uri(fpath)));
-            listimage.Add(tmpImage);
-            Pictures = listimage;
-
-        } */
-
         public void AddImageAction()
         {
             System.Windows.Forms.OpenFileDialog dlg = new System.Windows.Forms.OpenFileDialog();
@@ -221,7 +213,7 @@ namespace colle_tMedecine.ViewModel
                 Image newimg = new Image();
                 newimg.Source = imgsrc;
 
-                List<Image> listimage = new List<Image>();
+                ObservableCollection<Image> listimage = new ObservableCollection<Image>();
                 foreach (Image img in Pictures)
                 {
                     listimage.Add(img);
