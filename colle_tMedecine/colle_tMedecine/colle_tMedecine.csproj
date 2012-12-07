@@ -41,6 +41,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Controls.DataVisualization.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -64,6 +65,11 @@
     <Compile Include="Helper\BindingHelper.cs" />
     <Compile Include="Helper\PasswordHelper.cs" />
     <Compile Include="RelayCommand.cs" />
+    <Compile Include="Service References\ServiceLive\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\ServiceObservation\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -82,6 +88,7 @@
     <Compile Include="Services\Observation.cs" />
     <Compile Include="Services\Patient.cs" />
     <Compile Include="Services\User.cs" />
+    <Compile Include="ViewModel\LiveChartsViewModel.cs" />
     <Compile Include="ViewModel\MainWindow.cs" />
     <Compile Include="ViewModel\MenuViewModel.cs" />
     <Compile Include="ViewModel\NewObservationViewModel.cs" />
@@ -95,6 +102,9 @@
     <Compile Include="ViewModel\Fiche_PatientViewModel.cs" />
     <Compile Include="View\Fiche_Patient.xaml.cs">
       <DependentUpon>Fiche_Patient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LiveChartsWindow.xaml.cs">
+      <DependentUpon>LiveChartsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
@@ -129,6 +139,10 @@
     <Compile Include="Model\Patient.cs" />
     <Compile Include="Model\User.cs" />
     <Page Include="View\Fiche_Patient.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\LiveChartsWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -191,6 +205,13 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\ServiceLive\ServiceLive.wsdl" />
+    <None Include="Service References\ServiceLive\ServiceLive.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceLive\ServiceLive1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ServiceObservation\ServiceObservation.wsdl" />
     <None Include="Service References\ServiceObservation\ServiceObservation.xsd">
       <SubType>Designer</SubType>
@@ -238,6 +259,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ServiceLive\" />
     <WCFMetadataStorage Include="Service References\ServiceObservation\" />
     <WCFMetadataStorage Include="Service References\ServicePatient\" />
     <WCFMetadataStorage Include="Service References\ServiceUser\" />
@@ -283,6 +305,19 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="iconMedecine.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Lib\System.Windows.Controls.DataVisualization.Toolkit.Design.4.0.dll" />
+    <Content Include="Lib\System.Windows.Controls.DataVisualization.Toolkit.dll" />
+    <Content Include="Lib\System.Windows.Controls.DataVisualization.Toolkit.Expression.Design.dll" />
+    <Content Include="Lib\System.Windows.Controls.DataVisualization.Toolkit.VisualStudio.Design.dll" />
+    <None Include="Service References\ServiceLive\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\ServiceLive\configuration.svcinfo" />
+    <None Include="Service References\ServiceLive\configuration91.svcinfo" />
+    <None Include="Service References\ServiceLive\ServiceLive.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

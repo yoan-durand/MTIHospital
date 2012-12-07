@@ -45,7 +45,14 @@ namespace colle_tMedecine.ViewModel
 
             InstanceContext context = new InstanceContext(this);
             _service = new ServiceLive.ServiceLiveClient(context);
-            _service.Subscribe();
+            try
+            {
+                _service.Subscribe();
+            }
+            catch
+            {
+
+            }
         }
 
         public void PushDataHeart(double requestData)
