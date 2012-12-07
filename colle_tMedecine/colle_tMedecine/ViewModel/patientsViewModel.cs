@@ -143,56 +143,69 @@ namespace colle_tMedecine.ViewModel
         {
             
             Model.Patient patient = (Model.Patient)param;
-            this._allPatient.Remove(patient);
+            
             ServicePatient.ServicePatientClient service = new ServicePatient.ServicePatientClient();
-            if (service.DeletePatient(patient.Id))
+            try
             {
+                service.DeletePatient(patient.Id);
+                this._allPatient.Remove(patient);
                 ListPatient = new ObservableCollection<Model.Patient>(_allPatient);
             }
+            catch 
+            {
+                return;
+            }
+            
         }
 
         public void FillListPatient()
         {
             ServicePatient.ServicePatientClient service = new ServicePatient.ServicePatientClient();
-            ServicePatient.Patient[] listPatient = service.GetListPatient();
-            this._allPatient = new List<Model.Patient>();
-            List<Model.Observation> listObs = new List<Model.Observation>();
-
-            foreach (ServicePatient.Patient pat in listPatient)
+            try
             {
-                Model.Patient patient = new Model.Patient
-                {
-                    Birth = pat.Birthday,
-                    Firstname = pat.Firstname,
-                    Name = pat.Name,
-                    Id = pat.Id
-                };
+                ServicePatient.Patient[] listPatient = service.GetListPatient();
+                this._allPatient = new List<Model.Patient>();
+                List<Model.Observation> listObs = new List<Model.Observation>();
 
-                if (pat.Observations != null)
+                foreach (ServicePatient.Patient pat in listPatient)
                 {
-                    foreach (ServicePatient.Observation obs in pat.Observations)
+                    Model.Patient patient = new Model.Patient
                     {
-                        Model.Observation observation = new Model.Observation
+                        Birth = pat.Birthday,
+                        Firstname = pat.Firstname,
+                        Name = pat.Name,
+                        Id = pat.Id
+                    };
+
+                    if (pat.Observations != null)
+                    {
+                        foreach (ServicePatient.Observation obs in pat.Observations)
                         {
-                            Comments = obs.Comment,
-                            Date = obs.Date,
-                            Pic =  obs.Pictures ?? new List<byte[]>().ToArray(),
-                            Prescriptions = obs.Prescription.ToList() ?? new List<string>(),
-                            Pressure = obs.BloodPressure,
-                            Weight = obs.Weight
-                        };
-                        listObs.Add(observation);
+                            Model.Observation observation = new Model.Observation
+                            {
+                                Comments = obs.Comment,
+                                Date = obs.Date,
+                                Pic = obs.Pictures ?? new List<byte[]>().ToArray(),
+                                Prescriptions = obs.Prescription.ToList() ?? new List<string>(),
+                                Pressure = obs.BloodPressure,
+                                Weight = obs.Weight
+                            };
+                            listObs.Add(observation);
+                        }
+                        patient.Obs = listObs;
                     }
-                    patient.Obs = listObs;
+
+                    patient.Name = FirstUpper(patient.Name);
+                    patient.Firstname = FirstUpper(patient.Firstname);
+                    patient.Birthday = pat.Birthday.ToString("dd/MM/yyyy");
+
+                    this._allPatient.Add(patient);
                 }
-
-                patient.Name = FirstUpper(patient.Name);
-                patient.Firstname = FirstUpper(patient.Firstname);
-                patient.Birthday = pat.Birthday.ToString("dd/MM/yyyy");
-
-                this._allPatient.Add(patient);
+                ListPatient = new ObservableCollection<Model.Patient>(this._allPatient);
             }
-            ListPatient = new ObservableCollection<Model.Patient>(this._allPatient);
+            catch
+            {
+            }
         }
 
         public string FirstUpper(string str)

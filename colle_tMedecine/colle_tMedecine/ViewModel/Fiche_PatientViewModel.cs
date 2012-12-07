@@ -25,6 +25,20 @@ namespace colle_tMedecine.ViewModel
         private Model.Patient _patient;
         private Model.Observation _selectedObservation;
         private List<Image> _listImages;
+        private bool _isAdmin;
+
+        public bool IsAdmin
+        {
+            get { return _isAdmin; }
+            set 
+            {
+                if (_isAdmin != value)
+                {
+                    _isAdmin = value;
+                    OnPropertyChanged("IsAdmin");
+                }
+            }
+        }
         
         public List<Image> ListImages
         {
@@ -81,12 +95,25 @@ namespace colle_tMedecine.ViewModel
         
         public Fiche_PatientViewModel(Model.Patient patient)
         {
+
             _addObservation = new RelayCommand(param => AddObs(), param => true);
             Patient = patient;
             if (Patient.Obs != null && Patient.Obs.Count() > 0)
                 SelectedObservation = Patient.Obs.ElementAt(0);
             else
                 SelectedObservation = null;
+            View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
+            object datacontext = mainwindow.DataContext;
+
+            ViewModel.MainWindow main = (ViewModel.MainWindow)datacontext;
+            if (main.ConnectedUser.Role.Equals("Medecin"))
+            {
+                this._isAdmin = true;
+            }
+            else
+            {
+                this._isAdmin = false;
+            }
             ListImages = null;
         }
 
