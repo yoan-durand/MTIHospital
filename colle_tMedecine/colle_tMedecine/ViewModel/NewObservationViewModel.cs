@@ -30,7 +30,7 @@ namespace colle_tMedecine.ViewModel
             get { return _addPresc; }
             set { _addPresc = value; }
         }
-        
+
         public ICommand AddCommand
         {
             get { return _addCommand; }
@@ -50,16 +50,18 @@ namespace colle_tMedecine.ViewModel
         public string Prescription
         {
             get { return _prescription; }
-            set { _prescription = value;
-            OnPropertyChanged("Prescription");
+            set
+            {
+                _prescription = value;
+                OnPropertyChanged("Prescription");
             }
         }
-        
+
         public DateTime Date
         {
             get { return _date; }
             set { _date = value; }
-        }        
+        }
 
         public Model.Patient Patient
         {
@@ -76,19 +78,23 @@ namespace colle_tMedecine.ViewModel
         public ObservableCollection<Image> Pictures
         {
             get { return _pictures; }
-            set { _pictures = value;
-            OnPropertyChanged("Pictures");
+            set
+            {
+                _pictures = value;
+                OnPropertyChanged("Pictures");
             }
         }
 
         public List<string> Prescriptions
         {
             get { return _prescriptions; }
-            set { _prescriptions = value;
-            OnPropertyChanged("Prescriptions");
+            set
+            {
+                _prescriptions = value;
+                OnPropertyChanged("Prescriptions");
             }
         }
-        
+
         public int BloodPressure
         {
             get { return _bloodPressure; }
@@ -130,10 +136,19 @@ namespace colle_tMedecine.ViewModel
             obs.Pictures = ConverttobyteArray().ToArray();
             obs.Date = Date;
 
-            if (client.AddObservation(Patient.Id, obs))
+            try
+            {
+                client.AddObservation(Patient.Id, obs);
+                
+                View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
+                View.NewObservation view = new colle_tMedecine.View.NewObservation();
+                ViewModel.NewObservationViewModel vm = new colle_tMedecine.ViewModel.NewObservationViewModel(Patient);
+                view.DataContext = vm;
+                mainwindow.contentcontrol.Content = view;
+            }
+            catch
             {
                 View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
-
                 View.NewObservation view = new colle_tMedecine.View.NewObservation();
                 ViewModel.NewObservationViewModel vm = new colle_tMedecine.ViewModel.NewObservationViewModel(Patient);
                 view.DataContext = vm;
@@ -144,13 +159,13 @@ namespace colle_tMedecine.ViewModel
         private List<byte[]> ConverttobyteArray()
         {
             List<byte[]> newlistimg = new List<byte[]>();
-            
+
 
             foreach (Image img in Pictures)
             {
                 ImageSource imgsrc = img.Source;
                 BitmapImage biimg = (BitmapImage)imgsrc;
-                
+
                 JpegBitmapEncoder encoder = new JpegBitmapEncoder();
                 encoder.Frames.Add(BitmapFrame.Create(biimg));
                 using (MemoryStream ms = new MemoryStream())
@@ -174,30 +189,6 @@ namespace colle_tMedecine.ViewModel
             Prescription = "";
             Prescriptions = listpres;
         }
-
-  /*      private void Image_DragEnter(object sender, DragEventArgs e)
-        {
-
-            if (e.Data.GetDataPresent(DataFormats.Text))
-                e.Effects = DragDropEffects.Copy;
-            else
-                e.Effects = DragDropEffects.None;
-        }
-
-        private void Image_Drop(object sender, DragEventArgs e)
-        {
-            List<BitmapImage> listimage = new List<BitmapImage>();
-            foreach (BitmapImage img in Pictures)
-            {
-                listimage.Add(img);
-            }
-
-            string fpath = (string)e.Data.GetData(DataFormats.Text);
-            BitmapImage tmpImage = new BitmapImage((new Uri(fpath)));
-            listimage.Add(tmpImage);
-            Pictures = listimage;
-
-        } */
 
         public void AddImageAction()
         {
