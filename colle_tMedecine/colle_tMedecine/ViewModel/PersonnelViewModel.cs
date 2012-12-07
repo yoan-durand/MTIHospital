@@ -115,26 +115,32 @@ namespace colle_tMedecine.ViewModel
         public void FillListUser()
         {
             ServiceUser.ServiceUserClient service = new ServiceUser.ServiceUserClient();
-            ServiceUser.User[] listUser = service.GetListUser();
-            _allUser = new List<Model.User>();
-           
-
-            foreach(ServiceUser.User user in listUser)
+            try
             {
-                Model.User userModel = new Model.User {
-                    Login = user.Login,
-                    Password = user.Pwd,
-                    Name = user.Name,
-                    Firstname = user.Firstname, 
-                    Pic = user.Picture, 
-                    Role = user.Role,
-                    Co = user.Connected};
-                userModel.Name = FirstUpper(userModel.Name);
-                userModel.Firstname = FirstUpper(userModel.Firstname);
-                userModel.Role = FirstUpper(userModel.Role);
-                this._allUser.Add(userModel);
+                ServiceUser.User[] listUser = service.GetListUser();
+                _allUser = new List<Model.User>();
+                foreach (ServiceUser.User user in listUser)
+                {
+                    Model.User userModel = new Model.User
+                    {
+                        Login = user.Login,
+                        Password = user.Pwd,
+                        Name = user.Name,
+                        Firstname = user.Firstname,
+                        Pic = user.Picture,
+                        Role = user.Role,
+                        Co = user.Connected
+                    };
+                    userModel.Name = FirstUpper(userModel.Name);
+                    userModel.Firstname = FirstUpper(userModel.Firstname);
+                    userModel.Role = FirstUpper(userModel.Role);
+                    this._allUser.Add(userModel);
+                }
+                ListUser = new ObservableCollection<Model.User>(_allUser);
             }
-            ListUser = new ObservableCollection<Model.User>(_allUser);
+            catch
+            {
+            }
         }
 
         public string FirstUpper(string str)
@@ -169,19 +175,20 @@ namespace colle_tMedecine.ViewModel
              View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
             ViewModel.MainWindow mainwindowVM = (ViewModel.MainWindow)mainwindow.DataContext;
             if (user.Login != mainwindowVM.ConnectedUser.Login)
-            {
-                this._allUser.Remove(user);
+            {   
                 try
                 {
                     if (service.DeleteUser(user.Login))
                     {
+                        this._allUser.Remove(user);
                         ListUser = new ObservableCollection<Model.User>(this._allUser);
                     }
                 }
                 catch (Exception)
                 {
-                    throw;
+                    ListUser = new ObservableCollection<Model.User>(this._allUser);
                 }
+                
             }
 
         }
