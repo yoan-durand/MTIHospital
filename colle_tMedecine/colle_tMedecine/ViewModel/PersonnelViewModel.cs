@@ -140,6 +140,13 @@ namespace colle_tMedecine.ViewModel
             }
             catch
             {
+                MainWindow main = new MainWindow();
+                View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
+
+                View.Personnel view = new colle_tMedecine.View.Personnel();
+                ViewModel.PersonnelViewModel vm = new colle_tMedecine.ViewModel.PersonnelViewModel();
+                view.DataContext = vm;
+                main.navigate((UserControl)mainwindow.contentcontrol.Content, view);
             }
         }
 
@@ -181,8 +188,7 @@ namespace colle_tMedecine.ViewModel
             }
             catch (Exception)
             {
-                
-                throw;
+                ListUser = new ObservableCollection<Model.User>(this._allUser);
             }
 
         }

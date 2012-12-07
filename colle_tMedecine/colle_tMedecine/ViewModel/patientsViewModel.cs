@@ -153,7 +153,7 @@ namespace colle_tMedecine.ViewModel
             }
             catch 
             {
-                return;
+                ListPatient = new ObservableCollection<Model.Patient>(_allPatient);
             }
             
         }
@@ -205,6 +205,14 @@ namespace colle_tMedecine.ViewModel
             }
             catch
             {
+                MainWindow main = new MainWindow();
+                View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
+
+                View.Patients view = new colle_tMedecine.View.Patients();
+                ViewModel.PatientsViewModel vm = new colle_tMedecine.ViewModel.PatientsViewModel();
+                view.DataContext = vm;
+
+                main.navigate((UserControl)mainwindow.contentcontrol.Content, view);
             }
         }
 
