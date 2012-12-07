@@ -15,13 +15,20 @@ namespace colle_tMedecine.ViewModel
     class Fiche_PatientViewModel : BaseViewModel
     {
         private ICommand _addObservation;
+        private ICommand _liveActionCommand;
 
         public ICommand AddObservation
         {
             get { return _addObservation; }
             set { _addObservation = value; }
         }
-        
+
+        public ICommand LiveActionCommand
+        {
+            get { return _liveActionCommand; }
+            set { _liveActionCommand = value; }
+        }
+
         private Model.Patient _patient;
         private Model.Observation _selectedObservation;
         private List<Image> _listImages;
@@ -95,7 +102,7 @@ namespace colle_tMedecine.ViewModel
         
         public Fiche_PatientViewModel(Model.Patient patient)
         {
-
+            _liveActionCommand = new RelayCommand(LiveAction);
             _addObservation = new RelayCommand(param => AddObs(), param => true);
             Patient = patient;
             if (Patient.Obs != null && Patient.Obs.Count() > 0)
@@ -134,7 +141,16 @@ namespace colle_tMedecine.ViewModel
             get { return _patient; }
             set { _patient = value; }
         }
-  
-        
+
+        private void LiveAction(object param)
+        {
+            View.MainWindow mainwindow = (View.MainWindow)Application.Current.MainWindow;
+            ViewModel.MainWindow mainwindowVM = (ViewModel.MainWindow)mainwindow.DataContext;
+            mainwindowVM.ViewStack.Add((UserControl)mainwindow.contentcontrol.Content);
+            View.LiveChartsWindow view = new View.LiveChartsWindow();
+            ViewModel.LiveChartsViewModel vm = new LiveChartsViewModel();
+            view.DataContext = vm;
+            mainwindow.contentcontrol.Content = view;
+        }
     }
 }

@@ -1,0 +1,110 @@
+﻿<UserControl x:Class="colle_tMedecine.View.LiveChartsWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:charts="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+             mc:Ignorable="d" Width="992" Height="580">
+    <UserControl.Resources>
+        <ControlTemplate x:Key="CommonAreaSeriesDataPointTemplate" TargetType="charts:AreaDataPoint">
+            <!--Comment out data points from the default template; just an empty template-->
+            <Grid x:Name="Root" Opacity="1">
+                <ToolTipService.ToolTip>
+                    <StackPanel Margin="2,2,2,2">
+                        <ContentControl Content="{TemplateBinding FormattedDependentValue}" />
+                        <ContentControl Content="{TemplateBinding FormattedIndependentValue}" />
+                    </StackPanel>
+                </ToolTipService.ToolTip>
+                <Ellipse Fill="Transparent" Style="{x:Null}" Opacity="0" />
+            </Grid>
+        </ControlTemplate>
+        <Style x:Key="CommonAreaSeriesDataPoint" TargetType="charts:AreaDataPoint">
+            <Setter Property="Template" Value="{StaticResource CommonAreaSeriesDataPointTemplate}" />
+        </Style>
+        <Style x:Key="CommonAreaSeriesPath" TargetType="Path">
+            <Setter Property="StrokeThickness" Value="1" />
+            <Setter Property="Stroke" Value="DarkGray" />
+        </Style>
+        <ControlTemplate x:Key="CommonLineSeriesDataPointTemplate" TargetType="charts:LineDataPoint">
+            <!--Comment out data points from the default template; just an empty template-->
+            <Grid x:Name="Root" Opacity="1">
+                <ToolTipService.ToolTip>
+                    <StackPanel Margin="2,2,2,2">
+                        <ContentControl Content="{TemplateBinding FormattedDependentValue}" />
+                        <ContentControl Content="{TemplateBinding FormattedIndependentValue}" />
+                    </StackPanel>
+                </ToolTipService.ToolTip>
+            </Grid>
+        </ControlTemplate>
+        <Style x:Key="CommonLineSeriesDataPoint" TargetType="charts:LineDataPoint">
+            <Setter Property="IndependentValueStringFormat" Value="{}{0:yyyy}" />
+            <Setter Property="DependentValueStringFormat" Value="{}{0:c0}" />
+            <Setter Property="Background" Value="#FFC9DBE7" />
+            <Setter Property="BorderBrush" Value="White" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="IsTabStop" Value="False" />
+            <Setter Property="Template" Value="{StaticResource CommonLineSeriesDataPointTemplate}" />
+        </Style>
+        <Style x:Key="CommonLineSeriesPolyline" TargetType="Polyline">
+            <Setter Property="StrokeThickness" Value="5" />
+        </Style>
+        <!-- Implicit non-Key'd Styles BasedOn Common Explicit Key'd Styles above -->
+        <Style TargetType="charts:AreaSeries">
+            <Setter Property="DataPointStyle" Value="{StaticResource CommonAreaSeriesDataPoint}" />
+            <Setter Property="PathStyle" Value="{StaticResource CommonAreaSeriesPath}" />
+        </Style>
+        <Style TargetType="charts:LineSeries">
+            <Setter Property="DataPointStyle" Value="{StaticResource CommonLineSeriesDataPoint}" />
+            <Setter Property="PolylineStyle" Value="{StaticResource CommonLineSeriesPolyline}" />
+        </Style>
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot">
+        <Rectangle Margin="8,-0.5,8,49.5" Stroke="Black" RadiusX="20" RadiusY="20">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="#FFC9DBE7" Opacity="0.65"/>
+            </Rectangle.Fill>
+        </Rectangle>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"  >
+            <charts:Chart Width="450"
+                      Height="400"
+                      Title="Rythme Cardiaque" 
+                      BorderThickness="0">
+                <charts:Chart.LegendStyle>
+                    <Style TargetType="Control">
+                        <Setter Property="Width" Value="0"/>
+                        <Setter Property="Height" Value="0"/>
+                    </Style>
+                </charts:Chart.LegendStyle>
+                <charts:Chart.Series>
+                    <charts:AreaSeries ItemsSource="{Binding LiveHeart}"
+                                   DataPointStyle="{x:Null}"
+                                   Title="Rythme Cardiaque"
+                                   IndependentValuePath="Key"
+                                   DependentValuePath="Value">
+                    </charts:AreaSeries>
+                </charts:Chart.Series>
+            </charts:Chart>
+            <charts:Chart Width="450"
+                      Height="400"
+                      Margin="20,0,0,0"
+                      Title="Température"
+                      BorderThickness="0">
+                <charts:Chart.LegendStyle>
+                    <Style TargetType="Control">
+                        <Setter Property="Width" Value="0"/>
+                        <Setter Property="Height" Value="0"/>
+                    </Style>
+                </charts:Chart.LegendStyle>
+                <charts:Chart.Series>
+                    <charts:AreaSeries ItemsSource="{Binding LiveTemp}"
+                                   DataPointStyle="{x:Null}"
+                                   Title="Température"
+                                   IndependentValuePath="Key"
+                                   DependentValuePath="Value"
+                                   >
+                    </charts:AreaSeries>
+                </charts:Chart.Series>
+            </charts:Chart>
+         </StackPanel>
+    </Grid>
+</UserControl>

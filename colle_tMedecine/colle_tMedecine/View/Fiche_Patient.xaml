@@ -107,7 +107,7 @@
                 </ScrollViewer.Resources>
                 <ListBox Height="150" ItemsSource="{Binding ListImages, Mode=TwoWay}" VerticalAlignment="Top" Background="#FFE8EBED" />
             </ScrollViewer>
-            <Button x:Name="Graph_live" Content="Graphiques" Grid.Column="4" Height="30" Margin="31.684,0,98.848,48.017" VerticalAlignment="Bottom" Style="{DynamicResource SimpleButton}"/>
+            <Button x:Name="Graph_live" Command="{Binding DataContext.LiveActionCommand, ElementName=fiche_patient}" Content="Graphiques" Grid.Column="4" Height="30" Margin="31.684,0,98.848,48.017" VerticalAlignment="Bottom" Style="{DynamicResource SimpleButton}"/>
         </Grid>
         <Button Command="{Binding AddObservation}" Visibility="{Binding IsAdmin, Mode=TwoWay, Converter={StaticResource BoolToVisConverter}}" Content="Ajouter une observation" Height="32" Margin="803,0,22,518" VerticalAlignment="Bottom" Style="{DynamicResource SimpleButton}" />
 
