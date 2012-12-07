@@ -109,6 +109,6 @@
             </ScrollViewer>
             <Button x:Name="Graph_live" Content="Graphiques" Grid.Column="4" Height="30" Margin="46.665,0,97.848,47.217" VerticalAlignment="Bottom" Style="{DynamicResource SimpleButton}"/>
         </Grid>
-        <Button Command="{Binding AddObservation}" Content="Ajouter une observation" Height="32" Margin="803,0,22,518" VerticalAlignment="Bottom" Style="{DynamicResource SimpleButton}" />
+        <Button Command="{Binding AddObservation}" Visibility="{Binding IsAdmin, Mode=TwoWay, Converter={StaticResource BoolToVisConverter}}" Content="Ajouter une observation" Height="32" Margin="803,0,22,518" VerticalAlignment="Bottom" Style="{DynamicResource SimpleButton}" />
     </Grid>
 </UserControl>
